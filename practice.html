@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43 Days DSA Practice Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .practice-container {
+            max-width: 1400px;
+            margin: 80px auto 2rem;
+            padding: 2rem;
+        }
+
+        .practice-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .practice-header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 27, 107, 0.2);
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            color: var(--text-gray);
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 27, 107, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .day-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 27, 107, 0.3);
+        }
+
+        .day-card.completed {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .day-status {
+            font-size: 1.5rem;
+        }
+
+        .problems-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .problems-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .problem-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4fc3f7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .problem-link:hover {
+            color: #81d4fa;
+        }
+
+        .problem-link.solved {
+            color: #4caf50;
+            text-decoration: line-through;
+        }
+
+        .mark-complete-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .mark-complete-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .mark-complete-btn.completed {
+            background: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="practice.html" class="active">Practice</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="practice-container">
+        <div class="practice-header">
+            <h1><i class="fas fa-trophy"></i> 43 Days DSA Practice Challenge</h1>
+            <p style="color: var(--text-gray); font-size: 1.1rem;">Master Data Structures & Algorithms with curated problems</p>
+        </div>
+
+        <div class="stats-dashboard">
+            <div class="stat-box">
+                <h3 id="completed-days">0</h3>
+                <p>Days Completed</p>
+            </div>
+            <div class="stat-box">
+                <h3 id="total-points">0</h3>
+                <p>Total Points</p>
+            </div>
+            <div class="stat-box">
+                <h3 id="solved-problems">0</h3>
+                <p>Problems Solved</p>
+            </div>
+            <div class="stat-box">
+                <h3 id="streak">0</h3>
+                <p>Day Streak</p>
+            </div>
+        </div>
+
+        <div class="days-grid" id="days-container">
+            <!-- Days will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script src="practice.js"></script>
+</body>
+</html>
