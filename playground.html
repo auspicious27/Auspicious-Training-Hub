@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Playground - Code Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .playground-container {
+            max-width: 1600px;
+            margin: 80px auto 2rem;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .editor-section, .output-section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 27, 107, 0.2);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            color: var(--text-light);
+            font-size: 1.5rem;
+        }
+
+        #code-editor {
+            width: 100%;
+            min-height: 500px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border: 1px solid rgba(255, 27, 107, 0.3);
+            border-radius: 5px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .run-btn {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .run-btn:hover {
+            transform: scale(1.05);
+        }
+
+        #output {
+            width: 100%;
+            min-height: 500px;
+            background: #1e1e1e;
+            color: #00ff00;
+            border: 1px solid rgba(255, 27, 107, 0.3);
+            border-radius: 5px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            overflow-y: auto;
+        }
+
+        .examples {
+            margin-top: 2rem;
+            grid-column: 1 / -1;
+        }
+
+        .example-btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--card-bg);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 27, 107, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .example-btn:hover {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .playground-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="practice.html">Practice</a></li>
+                <li><a href="playground.html" class="active">Playground</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="playground-container">
+        <div class="editor-section">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> Python Code Editor</h2>
+                <button class="run-btn" onclick="runCode()">
+                    <i class="fas fa-play"></i> Run Code
+                </button>
+            </div>
+            <textarea id="code-editor" placeholder="# Write your Python code here...
+print('Hello, World!')">print('Hello, World!')</textarea>
+        </div>
+
+        <div class="output-section">
+            <div class="section-header">
+                <h2><i class="fas fa-terminal"></i> Output</h2>
+                <button class="run-btn" onclick="clearOutput()" style="background: #666;">
+                    <i class="fas fa-trash"></i> Clear
+                </button>
+            </div>
+            <div id="output">Run your code to see output here...</div>
+        </div>
+
+        <div class="examples">
+            <h3 style="color: var(--text-light); margin-bottom: 1rem;">Quick Examples:</h3>
+            <button class="example-btn" onclick="loadExample('hello')">Hello World</button>
+            <button class="example-btn" onclick="loadExample('loop')">For Loop</button>
+            <button class="example-btn" onclick="loadExample('function')">Function</button>
+            <button class="example-btn" onclick="loadExample('list')">List Operations</button>
+            <button class="example-btn" onclick="loadExample('fibonacci')">Fibonacci</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="playground.js"></script>
+</body>
+</html>
