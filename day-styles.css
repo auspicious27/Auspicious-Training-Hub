@@ -329,6 +329,26 @@ tr:hover {
     border-left: 4px solid var(--gradient-start);
 }
 
+.pillar h4 {
+    color: #333333 !important;
+}
+
+.pillar p {
+    color: #555555 !important;
+}
+
+.pillar ul {
+    color: #555555 !important;
+}
+
+.pillar li {
+    color: #555555 !important;
+}
+
+.pillar strong {
+    color: #333333 !important;
+}
+
 /* Flow Types */
 .flow-types {
     display: grid;
@@ -340,6 +360,26 @@ tr:hover {
     padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 8px;
+}
+
+.flow-type h4 {
+    color: #333333 !important;
+}
+
+.flow-type p {
+    color: #555555 !important;
+}
+
+.flow-type ul {
+    color: #555555 !important;
+}
+
+.flow-type li {
+    color: #555555 !important;
+}
+
+.flow-type strong {
+    color: #333333 !important;
 }
 
 /* Language Levels */
@@ -357,14 +397,23 @@ tr:hover {
     text-align: center;
 }
 
+.level h4 {
+    color: #333333 !important;
+}
+
+.level p {
+    color: #555555 !important;
+}
+
 .level code {
     display: block;
     margin: 1rem 0;
     font-size: 1.1rem;
+    color: #e91e63 !important;
 }
 
 .level-desc {
-    color: #666;
+    color: #666 !important;
     font-style: italic;
 }
 
@@ -397,11 +446,16 @@ tr:hover {
 
 .use-case h4 {
     margin: 0.5rem 0;
+    color: #333333 !important;
+}
+
+.use-case p {
+    color: #555555 !important;
 }
 
 .use-case .example {
     font-size: 0.9rem;
-    color: #666;
+    color: #666 !important;
     font-style: italic;
 }
 
@@ -419,10 +473,23 @@ tr:hover {
     border-left: 4px solid #ccc;
 }
 
+.env-option h5 {
+    color: #333333 !important;
+}
+
+.env-option p {
+    color: #555555 !important;
+}
+
 .env-option.highlighted {
     background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
     border-left: 4px solid #e17055;
     font-weight: 600;
+}
+
+.env-option.highlighted h5,
+.env-option.highlighted p {
+    color: #333333 !important;
 }
 
 /* Installation Steps */
@@ -441,6 +508,7 @@ tr:hover {
     margin-bottom: 2rem;
     padding-left: 3rem;
     position: relative;
+    color: #555555 !important;
 }
 
 .installation-steps li::before {
@@ -463,7 +531,11 @@ tr:hover {
     display: block;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-    color: var(--text-dark);
+    color: #333333 !important;
+}
+
+.installation-steps p {
+    color: #555555 !important;
 }
 
 /* Jupyter Structure */
@@ -478,6 +550,26 @@ tr:hover {
     border-radius: 8px;
 }
 
+.structure-item h5 {
+    color: #333333 !important;
+}
+
+.structure-item p {
+    color: #555555 !important;
+}
+
+.structure-item ul {
+    color: #555555 !important;
+}
+
+.structure-item li {
+    color: #555555 !important;
+}
+
+.structure-item strong {
+    color: #333333 !important;
+}
+
 /* Launch Methods */
 .launch-method {
     margin-bottom: 2rem;
@@ -490,6 +582,21 @@ tr:hover {
 .launch-method h5 {
     color: var(--gradient-start);
     margin-bottom: 1rem;
+}
+
+.launch-method ol {
+    color: #333333 !important;
+}
+
+.launch-method li {
+    color: #555555 !important;
+}
+
+.launch-method code {
+    background: #f4f4f4;
+    color: #e91e63;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
 }
 
 /* Shortcuts Table */
@@ -528,6 +635,15 @@ kbd {
 .line-explanation p {
     margin-bottom: 0.5rem;
     font-weight: 600;
+    color: #333333 !important;
+}
+
+.line-explanation ul {
+    color: #555555 !important;
+}
+
+.line-explanation li {
+    color: #555555 !important;
 }
 
 /* Output Box */
@@ -570,8 +686,20 @@ kbd {
 }
 
 .exercise h4 {
-    color: var(--text-dark);
+    color: #333333 !important;
     margin-bottom: 1rem;
+}
+
+.exercise p {
+    color: #555555 !important;
+}
+
+.exercise ul {
+    color: #555555 !important;
+}
+
+.exercise li {
+    color: #555555 !important;
 }
 
 .exercise details {
@@ -672,12 +800,21 @@ kbd {
     background: #e0e0e0;
 }
 
+/* Answer boxes in assessment */
 .answer {
     margin-top: 1rem;
     padding: 1rem;
     background: #e8f5e9;
     border-left: 4px solid #4caf50;
     border-radius: 5px;
+}
+
+.answer p {
+    color: #333333 !important;
+}
+
+.answer strong {
+    color: #2e7d32 !important;
 }
 
 /* Day Navigation */
