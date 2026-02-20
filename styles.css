@@ -514,109 +514,9 @@ body::before {
 footer {
     background: var(--darker-bg);
     color: var(--text-light);
-    padding: 3rem 0 1.5rem;
-    border-top: 2px solid var(--accent);
-}
-
-.footer-profile {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 27, 107, 0.2);
-    margin-bottom: 2rem;
-    box-shadow: 
-        0 5px 20px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.footer-avatar {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    flex-shrink: 0;
-}
-
-.footer-avatar img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid;
-    border-image: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) 1;
-    border-radius: 50%;
-}
-
-.online-indicator {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    width: 16px;
-    height: 16px;
-    background: #00ff00;
-    border-radius: 50%;
-    border: 3px solid var(--card-bg);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-}
-
-.footer-info {
-    flex: 1;
-}
-
-.footer-info h3 {
-    font-size: 1.5rem;
-    color: var(--text-light);
-    margin-bottom: 0.3rem;
-    font-weight: 600;
-}
-
-.footer-info p {
-    color: var(--text-gray);
-    font-size: 1rem;
-}
-
-.footer-social {
-    display: flex;
-    gap: 1rem;
-}
-
-.social-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: var(--text-light);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-}
-
-.social-btn:hover {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    border-color: var(--gradient-end);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 27, 107, 0.3);
-}
-
-.social-btn i {
-    font-size: 1.2rem;
-}
-
-.footer-bottom {
     text-align: center;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-bottom p {
-    color: var(--text-gray);
-    font-size: 0.9rem;
+    padding: 2rem 0;
+    border-top: 2px solid var(--accent);
 }
 
 /* Animations */
@@ -894,20 +794,5 @@ footer {
     
     .about-content {
         grid-template-columns: 1fr;
-    }
-    
-    .footer-profile {
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-    }
-    
-    .footer-social {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .social-btn {
-        justify-content: center;
     }
 }
