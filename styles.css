@@ -514,9 +514,98 @@ body::before {
 footer {
     background: var(--darker-bg);
     color: var(--text-light);
-    text-align: center;
-    padding: 2rem 0;
+    padding: 3rem 0 1.5rem;
     border-top: 2px solid var(--accent);
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-profile-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.8);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 27, 107, 0.2);
+}
+
+.footer-avatar-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.footer-avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff1b6b;
+    display: block;
+}
+
+.footer-online-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 18px;
+    height: 18px;
+    background: #00ff00;
+    border-radius: 50%;
+    border: 3px solid var(--darker-bg);
+}
+
+.footer-profile-info {
+    flex: 1;
+}
+
+.footer-profile-info h3 {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin: 0 0 0.3rem 0;
+    font-weight: 600;
+}
+
+.footer-profile-info p {
+    color: var(--text-gray);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.footer-social-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.footer-btn:hover {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-color: var(--gradient-end);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 27, 107, 0.3);
+}
+
+.footer-btn i {
+    font-size: 1.1rem;
 }
 
 /* Animations */
@@ -794,5 +883,19 @@ footer {
     
     .about-content {
         grid-template-columns: 1fr;
+    }
+    
+    .footer-profile-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-social-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .footer-btn {
+        justify-content: center;
     }
 }
