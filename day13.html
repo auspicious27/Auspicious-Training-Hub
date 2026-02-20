@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 13: DBMS Basics and ER Model</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 13 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: DBMS Basics</a></li>
+                <li><a href="#dbms">What is DBMS</a></li>
+                <li><a href="#advantages">DBMS Advantages</a></li>
+                <li><a href="#hour2">Hour 2: ER Model</a></li>
+                <li><a href="#er-model">ER Model Basics</a></li>
+                <li><a href="#keys">Database Keys</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day12.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 12</a>
+                <a href="day14.html" class="nav-btn next">Day 14 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 13: DBMS Basics and ER Model</h1>
+                <p class="day-subtitle">Introduction to database management systems</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 13! Today we begin learning about databases. We'll cover DBMS fundamentals and the Entity-Relationship (ER) model for database design.</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>What is data, database, and DBMS</li>
+                        <li>Problems with file-based systems</li>
+                        <li>Advantages of DBMS</li>
+                        <li>ER Model concepts</li>
+                        <li>Entities, attributes, and relationships</li>
+                        <li>Database keys</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: DBMS Basics</h2>
+                
+                <div id="dbms" class="topic">
+                    <h3>What is Data, Database, and DBMS?</h3>
+                    
+                    <div class="info-box">
+                        <h4>Definitions:</h4>
+                        <ul>
+                            <li><strong>Data:</strong> Raw facts and figures (e.g., "John", 25, "New York")</li>
+                            <li><strong>Information:</strong> Processed data with meaning (e.g., "John is 25 years old and lives in New York")</li>
+                            <li><strong>Database:</strong> Organized collection of related data</li>
+                            <li><strong>DBMS:</strong> Software to create, manage, and access databases</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>Real-World Examples of Databases:</h4>
+                        <ul>
+                            <li><strong>Banking:</strong> Customer accounts, transactions</li>
+                            <li><strong>E-commerce:</strong> Products, orders, customers</li>
+                            <li><strong>Social Media:</strong> Users, posts, comments</li>
+                            <li><strong>Hospital:</strong> Patients, doctors, appointments</li>
+                            <li><strong>University:</strong> Students, courses, grades</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Popular DBMS Software:</h4>
+                        <ul>
+                            <li><strong>MySQL:</strong> Open-source, widely used</li>
+                            <li><strong>PostgreSQL:</strong> Advanced open-source</li>
+                            <li><strong>Oracle:</strong> Enterprise-level</li>
+                            <li><strong>SQL Server:</strong> Microsoft's DBMS</li>
+                            <li><strong>MongoDB:</strong> NoSQL database</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Problems with File-Based Systems</h3>
+                        <p>Before DBMS, data was stored in files. This approach had many problems:</p>
+                        
+                        <div class="info-box">
+                            <h4>File System Problems:</h4>
+                            <ul>
+                                <li><strong>Data Redundancy:</strong> Same data stored multiple times</li>
+                                <li><strong>Data Inconsistency:</strong> Different copies have different values</li>
+                                <li><strong>Difficult Access:</strong> Need to write programs for each query</li>
+                                <li><strong>No Security:</strong> Anyone can access files</li>
+                                <li><strong>No Concurrent Access:</strong> Multiple users can't access simultaneously</li>
+                                <li><strong>No Backup/Recovery:</strong> Data loss is permanent</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-box">
+                            <h4>Example of Data Redundancy:</h4>
+                            <pre>Student File:
+ID: 101, Name: John, Dept: CS, Dept_Head: Dr. Smith
+
+Course File:
+Course: DSA, Dept: CS, Dept_Head: Dr. Smith
+
+Problem: Dept_Head stored twice!
+If Dr. Smith retires, need to update multiple files.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="advantages" class="topic">
+                    <h3>Need for DBMS</h3>
+                    <p>DBMS solves all file system problems and provides many advantages:</p>
+                    
+                    <div class="four-pillars">
+                        <div class="pillar">
+                            <h4>1. Data Security</h4>
+                            <ul>
+                                <li>User authentication</li>
+                                <li>Access control</li>
+                                <li>Encryption</li>
+                                <li>Audit trails</li>
+                            </ul>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>2. Data Consistency</h4>
+                            <ul>
+                                <li>Single source of truth</li>
+                                <li>No redundancy</li>
+                                <li>Integrity constraints</li>
+                                <li>ACID properties</li>
+                            </ul>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>3. Data Sharing</h4>
+                            <ul>
+                                <li>Multiple users</li>
+                                <li>Concurrent access</li>
+                                <li>Locking mechanisms</li>
+                                <li>Transaction management</li>
+                            </ul>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>4. Backup & Recovery</h4>
+                            <ul>
+                                <li>Automatic backups</li>
+                                <li>Point-in-time recovery</li>
+                                <li>Crash recovery</li>
+                                <li>Data durability</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Additional DBMS Advantages:</h4>
+                        <ul>
+                            <li><strong>Data Independence:</strong> Change storage without affecting applications</li>
+                            <li><strong>Reduced Development Time:</strong> Built-in functions for common tasks</li>
+                            <li><strong>Data Integrity:</strong> Enforce rules and constraints</li>
+                            <li><strong>Better Decision Making:</strong> Easy data analysis</li>
+                            <li><strong>Scalability:</strong> Handle growing data</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>Real-World DBMS Applications:</h4>
+                        <ul>
+                            <li><strong>Banking:</strong> ATM transactions, account management</li>
+                            <li><strong>Airlines:</strong> Reservations, flight schedules</li>
+                            <li><strong>Telecom:</strong> Call records, billing</li>
+                            <li><strong>Education:</strong> Student records, online learning</li>
+                            <li><strong>Healthcare:</strong> Patient records, prescriptions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: ER Model & Keys</h2>
+                
+                <div id="er-model" class="topic">
+                    <h3>What is ER Model?</h3>
+                    <p>The <strong>Entity-Relationship (ER) Model</strong> is a high-level conceptual data model used to design databases. It represents data as entities, attributes, and relationships.</p>
+                    
+                    <div class="info-box">
+                        <h4>ER Model Components:</h4>
+                        <ul>
+                            <li><strong>Entity:</strong> Real-world object (e.g., Student, Course)</li>
+                            <li><strong>Attribute:</strong> Property of entity (e.g., Name, Age)</li>
+                            <li><strong>Relationship:</strong> Association between entities (e.g., Student enrolls in Course)</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Entity</h3>
+                        <p>An <strong>entity</strong> is a real-world object that can be distinctly identified.</p>
+                        
+                        <div class="example-box">
+                            <h4>Examples of Entities:</h4>
+                            <ul>
+                                <li><strong>Student:</strong> John, Alice, Bob</li>
+                                <li><strong>Course:</strong> DSA, DBMS, Python</li>
+                                <li><strong>Employee:</strong> E101, E102, E103</li>
+                                <li><strong>Product:</strong> Laptop, Phone, Tablet</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <h4>Entity Types:</h4>
+                            <ul>
+                                <li><strong>Strong Entity:</strong> Has its own key (e.g., Student with Student_ID)</li>
+                                <li><strong>Weak Entity:</strong> Depends on another entity (e.g., Dependent of Employee)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Attribute</h3>
+                        <p>An <strong>attribute</strong> is a property or characteristic of an entity.</p>
+                        
+                        <div class="example-box">
+                            <h4>Student Entity Attributes:</h4>
+                            <pre>Student
+├── Student_ID (Key attribute)
+├── Name
+├── Age
+├── Email
+└── Phone</pre>
+                        </div>
+
+                        <div class="info-box">
+                            <h4>Types of Attributes:</h4>
+                            <ul>
+                                <li><strong>Simple:</strong> Cannot be divided (e.g., Age)</li>
+                                <li><strong>Composite:</strong> Can be divided (e.g., Name = First_Name + Last_Name)</li>
+                                <li><strong>Single-valued:</strong> One value (e.g., Date_of_Birth)</li>
+                                <li><strong>Multi-valued:</strong> Multiple values (e.g., Phone_Numbers)</li>
+                                <li><strong>Derived:</strong> Calculated from other attributes (e.g., Age from DOB)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Relationship</h3>
+                        <p>A <strong>relationship</strong> is an association between two or more entities.</p>
+                        
+                        <div class="example-box">
+                            <h4>Examples of Relationships:</h4>
+                            <ul>
+                                <li>Student <strong>enrolls in</strong> Course</li>
+                                <li>Employee <strong>works in</strong> Department</li>
+                                <li>Customer <strong>places</strong> Order</li>
+                                <li>Doctor <strong>treats</strong> Patient</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <h4>Types of Relationships:</h4>
+                            <ul>
+                                <li><strong>One-to-One (1:1):</strong> One entity relates to one other
+                                    <br>Example: Person has one Passport</li>
+                                <li><strong>One-to-Many (1:M):</strong> One entity relates to many others
+                                    <br>Example: Department has many Employees</li>
+                                <li><strong>Many-to-Many (M:N):</strong> Many entities relate to many others
+                                    <br>Example: Students enroll in many Courses, Courses have many Students</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-box">
+                            <h4>ER Diagram Example:</h4>
+                            <pre>┌─────────┐         ┌─────────┐
+│ Student │─────────│ Course  │
+└─────────┘ Enrolls └─────────┘
+    │                    │
+    │                    │
+ Attributes          Attributes
+ - ID (PK)           - Code (PK)
+ - Name              - Name
+ - Age               - Credits</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="keys" class="topic">
+                    <h3>Database Keys</h3>
+                    <p><strong>Keys</strong> are attributes that uniquely identify records in a table.</p>
+                    
+                    <div class="four-pillars">
+                        <div class="pillar">
+                            <h4>Primary Key</h4>
+                            <p>Uniquely identifies each record. Cannot be NULL.</p>
+                            <div class="example-box">
+                                <pre>Student Table:
+Student_ID (PK) | Name
+101             | John
+102             | Alice</pre>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>Foreign Key</h4>
+                            <p>References primary key of another table. Creates relationships.</p>
+                            <div class="example-box">
+                                <pre>Enrollment Table:
+Student_ID (FK) | Course_ID
+101             | CS101
+102             | CS101</pre>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>Candidate Key</h4>
+                            <p>Attributes that can be primary key. Minimal set that uniquely identifies.</p>
+                            <div class="example-box">
+                                <pre>Student:
+- Student_ID ✓
+- Email ✓
+- Phone ✓
+Any can be PK</pre>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>Super Key</h4>
+                            <p>Any combination of attributes that uniquely identifies.</p>
+                            <div class="example-box">
+                                <pre>Super Keys:
+- Student_ID
+- Email
+- (ID, Name)
+- (ID, Email)</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Additional Key Types:</h4>
+                        <ul>
+                            <li><strong>Composite Key:</strong> Primary key with multiple attributes
+                                <br>Example: (Student_ID, Course_ID) in Enrollment</li>
+                            <li><strong>Alternate Key:</strong> Candidate keys not chosen as primary key</li>
+                            <li><strong>Unique Key:</strong> Ensures uniqueness but can be NULL</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Importance of Keys:</h4>
+                        <ul>
+                            <li><strong>Uniqueness:</strong> Identify records uniquely</li>
+                            <li><strong>Relationships:</strong> Connect tables via foreign keys</li>
+                            <li><strong>Integrity:</strong> Maintain data accuracy</li>
+                            <li><strong>Indexing:</strong> Faster data retrieval</li>
+                            <li><strong>Constraints:</strong> Enforce business rules</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of DBMS basics and ER model:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: DBMS Definition</h4>
+                        <p>What is DBMS?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Database Management System
+                            <p><strong>Explanation:</strong> Software to create, manage, and access databases.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: File System Problem</h4>
+                        <p>What is data redundancy?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Same data stored multiple times
+                            <p><strong>Explanation:</strong> Leads to inconsistency and wasted storage.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: DBMS Advantage</h4>
+                        <p>What is a major advantage of DBMS?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Data security and consistency
+                            <p><strong>Explanation:</strong> DBMS provides authentication, access control, and maintains data integrity.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: Entity</h4>
+                        <p>What is an entity in ER model?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Real-world object
+                            <p><strong>Explanation:</strong> Entity is something that can be distinctly identified (e.g., Student, Course).</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Attribute</h4>
+                        <p>What is an attribute?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Property of an entity
+                            <p><strong>Explanation:</strong> Attributes describe characteristics (e.g., Name, Age).</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Primary Key</h4>
+                        <p>What is the purpose of primary key?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Uniquely identify records
+                            <p><strong>Explanation:</strong> Primary key ensures each record is unique and cannot be NULL.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Foreign Key</h4>
+                        <p>What does foreign key do?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Creates relationships between tables
+                            <p><strong>Explanation:</strong> Foreign key references primary key of another table.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Relationship Type</h4>
+                        <p>What is a one-to-many relationship?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> One entity relates to multiple others
+                            <p><strong>Explanation:</strong> Example: One department has many employees.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Candidate Key</h4>
+                        <p>What is a candidate key?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Attribute that can be primary key
+                            <p><strong>Explanation:</strong> Minimal set of attributes that uniquely identifies records.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: DBMS Application</h4>
+                        <p>Where is DBMS used?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Banking, e-commerce, healthcare, etc.
+                            <p><strong>Explanation:</strong> DBMS is used wherever organized data storage is needed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>DBMS</strong> is software to manage databases</li>
+                        <li>File systems have <strong>redundancy and inconsistency</strong> problems</li>
+                        <li>DBMS provides <strong>security, consistency, sharing, backup</strong></li>
+                        <li><strong>ER Model</strong> is used for database design</li>
+                        <li><strong>Entity</strong> is a real-world object</li>
+                        <li><strong>Attribute</strong> is a property of entity</li>
+                        <li><strong>Relationship</strong> connects entities (1:1, 1:M, M:N)</li>
+                        <li><strong>Primary key</strong> uniquely identifies records</li>
+                        <li><strong>Foreign key</strong> creates table relationships</li>
+                        <li>Keys ensure <strong>data integrity</strong> and enable <strong>relationships</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 13</h2>
+                <p style="color: white; font-size: 1.1rem;">String manipulation problems for DBMS:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://leetcode.com/problems/defanging-an-ip-address/description/" target="_blank" style="color: #ffd700;">Defanging an IP Address - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/jewels-and-stones/description/" target="_blank" style="color: #ffd700;">Jewels and Stones - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/goal-parser-interpretation/description/" target="_blank" style="color: #ffd700;">Goal Parser Interpretation - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/shuffle-string/description/" target="_blank" style="color: #ffd700;">Shuffle String - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/description/" target="_blank" style="color: #ffd700;">Check if Two String Arrays are Equivalent - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/description/" target="_blank" style="color: #ffd700;">Decrypt String from Alphabet to Integer Mapping - LeetCode</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

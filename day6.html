@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6: Dictionaries and File Handling</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 6 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Dictionaries</a></li>
+                <li><a href="#dict-basics">Dictionary Basics</a></li>
+                <li><a href="#dict-methods">Dictionary Methods</a></li>
+                <li><a href="#hour2">Hour 2: File Handling</a></li>
+                <li><a href="#file-basics">File Basics</a></li>
+                <li><a href="#file-operations">File Operations</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day5.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 5</a>
+                <a href="day7.html" class="nav-btn next">Day 7 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 6: Dictionaries and File Handling</h1>
+                <p class="day-subtitle">Master key-value data and persistent storage</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 6! Today we'll learn about dictionaries (for storing key-value pairs) and file handling (for reading and writing data to files).</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>Creating and using dictionaries</li>
+                        <li>Dictionary methods and operations</li>
+                        <li>Nested dictionaries</li>
+                        <li>Reading from files</li>
+                        <li>Writing to files</li>
+                        <li>File handling best practices</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Dictionaries</h2>
+                
+                <div id="dict-basics" class="topic">
+                    <h3>What is a Dictionary?</h3>
+                    <p>A <strong>dictionary</strong> is an unordered collection of key-value pairs. Each key must be unique and maps to a value.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Analogy:</h4>
+                        <p>Think of a real dictionary: you look up a <strong>word</strong> (key) to find its <strong>meaning</strong> (value).</p>
+                        <ul>
+                            <li><strong>Phone book:</strong> Name → Phone number</li>
+                            <li><strong>Student records:</strong> Roll number → Student details</li>
+                            <li><strong>Product catalog:</strong> Product ID → Product info</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Creating Dictionaries</h4>
+                        <pre><code class="language-python"># Empty dictionary
+empty_dict = {}
+
+# Dictionary with data
+student = {
+    "name": "Alice",
+    "age": 20,
+    "grade": "A",
+    "city": "New York"
+}
+
+# Using dict() constructor
+person = dict(name="Bob", age=25, city="London")
+
+print(f"Student: {student}")
+print(f"Person: {person}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Student: {'name': 'Alice', 'age': 20, 'grade': 'A', 'city': 'New York'}
+Person: {'name': 'Bob', 'age': 25, 'city': 'London'}</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Accessing Dictionary Values</h4>
+                        <pre><code class="language-python">student = {
+    "name": "Alice",
+    "age": 20,
+    "grade": "A"
+}
+
+# Access using key
+print(f"Name: {student['name']}")
+print(f"Age: {student['age']}")
+
+# Using get() method (safer)
+print(f"Grade: {student.get('grade')}")
+print(f"City: {student.get('city', 'Not specified')}")  # Default value</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Name: Alice
+Age: 20
+Grade: A
+City: Not specified</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Modifying Dictionaries</h4>
+                        <pre><code class="language-python">student = {"name": "Alice", "age": 20}
+print(f"Original: {student}")
+
+# Add new key-value pair
+student["grade"] = "A"
+print(f"After adding grade: {student}")
+
+# Modify existing value
+student["age"] = 21
+print(f"After updating age: {student}")
+
+# Delete key-value pair
+del student["grade"]
+print(f"After deleting grade: {student}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: {'name': 'Alice', 'age': 20}
+After adding grade: {'name': 'Alice', 'age': 20, 'grade': 'A'}
+After updating age: {'name': 'Alice', 'age': 21, 'grade': 'A'}
+After deleting grade: {'name': 'Alice', 'age': 21}</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Looping Through Dictionaries</h4>
+                        <pre><code class="language-python">student = {"name": "Alice", "age": 20, "grade": "A"}
+
+# Loop through keys
+print("Keys:")
+for key in student:
+    print(f"  {key}")
+
+# Loop through values
+print("\nValues:")
+for value in student.values():
+    print(f"  {value}")
+
+# Loop through key-value pairs
+print("\nKey-Value pairs:")
+for key, value in student.items():
+    print(f"  {key}: {value}")</code></pre>
+                    </div>
+                </div>
+
+                <div id="dict-methods" class="topic">
+                    <h3>Dictionary Methods</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 5: Dictionary Methods</h4>
+                        <pre><code class="language-python">student = {"name": "Alice", "age": 20, "grade": "A"}
+
+# keys() - get all keys
+print(f"Keys: {list(student.keys())}")
+
+# values() - get all values
+print(f"Values: {list(student.values())}")
+
+# items() - get key-value pairs
+print(f"Items: {list(student.items())}")
+
+# get() - safe access
+print(f"Name: {student.get('name')}")
+print(f"City: {student.get('city', 'Unknown')}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: Update and Pop Methods</h4>
+                        <pre><code class="language-python">student = {"name": "Alice", "age": 20}
+print(f"Original: {student}")
+
+# update() - add multiple items
+student.update({"grade": "A", "city": "NYC"})
+print(f"After update: {student}")
+
+# pop() - remove and return value
+age = student.pop("age")
+print(f"Popped age: {age}")
+print(f"After pop: {student}")
+
+# popitem() - remove last item
+item = student.popitem()
+print(f"Popped item: {item}")
+print(f"After popitem: {student}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: Nested Dictionaries</h4>
+                        <pre><code class="language-python">students = {
+    "student1": {
+        "name": "Alice",
+        "age": 20,
+        "grades": [85, 90, 88]
+    },
+    "student2": {
+        "name": "Bob",
+        "age": 21,
+        "grades": [78, 82, 80]
+    }
+}
+
+# Access nested data
+print(f"Student1 name: {students['student1']['name']}")
+print(f"Student2 grades: {students['student2']['grades']}")
+
+# Calculate average
+avg = sum(students['student1']['grades']) / len(students['student1']['grades'])
+print(f"Student1 average: {avg:.2f}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: Dictionary Comprehension</h4>
+                        <pre><code class="language-python"># Create dictionary of squares
+squares = {x: x**2 for x in range(1, 6)}
+print(f"Squares: {squares}")
+
+# Filter dictionary
+numbers = {"a": 1, "b": 2, "c": 3, "d": 4}
+evens = {k: v for k, v in numbers.items() if v % 2 == 0}
+print(f"Even values: {evens}")
+
+# Transform values
+prices = {"apple": 50, "banana": 30, "cherry": 80}
+discounted = {k: v * 0.9 for k, v in prices.items()}
+print(f"Discounted: {discounted}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: Practical Dictionary Application</h4>
+                        <pre><code class="language-python"># Word frequency counter
+text = "python is easy python is powerful python is fun"
+words = text.split()
+
+frequency = {}
+for word in words:
+    frequency[word] = frequency.get(word, 0) + 1
+
+print("Word Frequency:")
+for word, count in frequency.items():
+    print(f"  {word}: {count}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Word Frequency:
+  python: 3
+  is: 3
+  easy: 1
+  powerful: 1
+  fun: 1</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: File Handling</h2>
+                
+                <div id="file-basics" class="topic">
+                    <h3>Why File Handling?</h3>
+                    <p>File handling allows programs to store data permanently. Without files, all data is lost when the program ends.</p>
+                    
+                    <div class="example-box">
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li><strong>Save user data:</strong> Settings, preferences</li>
+                            <li><strong>Log files:</strong> Track program activity</li>
+                            <li><strong>Data processing:</strong> Read CSV, JSON files</li>
+                            <li><strong>Configuration:</strong> Store app settings</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>File Open Modes:</h4>
+                        <ul>
+                            <li><strong>'r'</strong> - Read (default). File must exist.</li>
+                            <li><strong>'w'</strong> - Write. Creates new file or overwrites existing.</li>
+                            <li><strong>'a'</strong> - Append. Adds to end of file.</li>
+                            <li><strong>'r+'</strong> - Read and write.</li>
+                            <li><strong>'w+'</strong> - Write and read.</li>
+                            <li><strong>'a+'</strong> - Append and read.</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Writing to a File</h4>
+                        <pre><code class="language-python"># Write mode - creates new file or overwrites
+file = open("example.txt", "w")
+file.write("Hello, World!\n")
+file.write("This is line 2.\n")
+file.write("This is line 3.")
+file.close()
+
+print("File written successfully!")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Reading from a File</h4>
+                        <pre><code class="language-python"># Read entire file
+file = open("example.txt", "r")
+content = file.read()
+file.close()
+
+print("File content:")
+print(content)</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>File content:
+Hello, World!
+This is line 2.
+This is line 3.</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Using 'with' Statement (Best Practice)</h4>
+                        <pre><code class="language-python"># Automatically closes file
+with open("example.txt", "w") as file:
+    file.write("Line 1\n")
+    file.write("Line 2\n")
+    file.write("Line 3\n")
+
+print("File written and closed automatically!")</code></pre>
+                        
+                        <div class="info-box">
+                            <p><strong>Why use 'with'?</strong></p>
+                            <ul>
+                                <li>Automatically closes file</li>
+                                <li>Handles errors gracefully</li>
+                                <li>Cleaner code</li>
+                                <li>Prevents resource leaks</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="file-operations" class="topic">
+                    <h3>File Operations</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 4: Reading Line by Line</h4>
+                        <pre><code class="language-python"># Method 1: readline()
+with open("example.txt", "r") as file:
+    line1 = file.readline()
+    line2 = file.readline()
+    print(f"Line 1: {line1.strip()}")
+    print(f"Line 2: {line2.strip()}")
+
+# Method 2: readlines()
+with open("example.txt", "r") as file:
+    lines = file.readlines()
+    print(f"\nAll lines: {lines}")
+
+# Method 3: Loop (most efficient)
+print("\nLooping through file:")
+with open("example.txt", "r") as file:
+    for line in file:
+        print(f"  {line.strip()}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: Append Mode</h4>
+                        <pre><code class="language-python"># Append to existing file
+with open("example.txt", "a") as file:
+    file.write("Line 4 (appended)\n")
+    file.write("Line 5 (appended)\n")
+
+# Read to verify
+with open("example.txt", "r") as file:
+    print(file.read())</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: File Existence Check</h4>
+                        <pre><code class="language-python">import os
+
+filename = "example.txt"
+
+if os.path.exists(filename):
+    print(f"✓ {filename} exists")
+    print(f"  Size: {os.path.getsize(filename)} bytes")
+else:
+    print(f"✗ {filename} does not exist")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: Exception Handling with Files</h4>
+                        <pre><code class="language-python">try:
+    with open("nonexistent.txt", "r") as file:
+        content = file.read()
+        print(content)
+except FileNotFoundError:
+    print("✗ Error: File not found!")
+except PermissionError:
+    print("✗ Error: Permission denied!")
+except Exception as e:
+    print(f"✗ Error: {e}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: Writing List to File</h4>
+                        <pre><code class="language-python">students = ["Alice", "Bob", "Charlie", "David"]
+
+# Write list to file
+with open("students.txt", "w") as file:
+    for student in students:
+        file.write(student + "\n")
+
+# Read back
+with open("students.txt", "r") as file:
+    print("Students:")
+    for line in file:
+        print(f"  - {line.strip()}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: CSV-like Data Handling</h4>
+                        <pre><code class="language-python"># Write CSV-like data
+students = [
+    ["Alice", "20", "A"],
+    ["Bob", "21", "B"],
+    ["Charlie", "22", "A"]
+]
+
+with open("students.csv", "w") as file:
+    file.write("Name,Age,Grade\n")
+    for student in students:
+        file.write(",".join(student) + "\n")
+
+# Read and parse
+with open("students.csv", "r") as file:
+    header = file.readline().strip()
+    print(f"Header: {header}")
+    print("\nData:")
+    for line in file:
+        name, age, grade = line.strip().split(",")
+        print(f"  {name} is {age} years old, grade: {grade}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 10: Copy File Content</h4>
+                        <pre><code class="language-python">source = "example.txt"
+destination = "example_copy.txt"
+
+try:
+    with open(source, "r") as src:
+        content = src.read()
+    
+    with open(destination, "w") as dest:
+        dest.write(content)
+    
+    print(f"✓ Copied {source} to {destination}")
+except FileNotFoundError:
+    print(f"✗ Source file {source} not found")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of dictionaries and file handling:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: Dictionary Access</h4>
+                        <p>What is safer: <code>dict['key']</code> or <code>dict.get('key')</code>?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> dict.get('key')
+                            <p><strong>Explanation:</strong> get() returns None if key doesn't exist, while dict['key'] raises KeyError.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: Dictionary Method</h4>
+                        <p>What does <code>dict.items()</code> return?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Key-value pairs as tuples
+                            <p><strong>Explanation:</strong> items() returns a view of (key, value) tuples.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: File Mode</h4>
+                        <p>Which mode overwrites existing file content?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> 'w' (write mode)
+                            <p><strong>Explanation:</strong> Write mode creates new file or overwrites existing content.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: File Closing</h4>
+                        <p>Why use 'with' statement for file handling?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Automatically closes file
+                            <p><strong>Explanation:</strong> 'with' ensures file is closed even if errors occur.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Dictionary Keys</h4>
+                        <p>Can dictionary keys be duplicated?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> No
+                            <p><strong>Explanation:</strong> Each key must be unique. Duplicate keys overwrite previous values.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: File Reading</h4>
+                        <p>What does <code>file.read()</code> return?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Entire file content as string
+                            <p><strong>Explanation:</strong> read() reads and returns all file content at once.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Dictionary Update</h4>
+                        <p>What happens with: <code>d = {'a': 1}; d['a'] = 2</code>?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Updates value to 2
+                            <p><strong>Explanation:</strong> Assigning to existing key updates its value.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Append Mode</h4>
+                        <p>What does 'a' mode do?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Adds content to end of file
+                            <p><strong>Explanation:</strong> Append mode adds new content without deleting existing data.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Dictionary Length</h4>
+                        <p>How to get number of key-value pairs in dictionary?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> len(dict)
+                            <p><strong>Explanation:</strong> len() returns the number of items in dictionary.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: File Lines</h4>
+                        <p>What does <code>file.readlines()</code> return?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> List of lines
+                            <p><strong>Explanation:</strong> readlines() returns a list where each element is a line from the file.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Dictionaries</strong> store key-value pairs for fast lookups</li>
+                        <li>Use <strong>get()</strong> method for safe dictionary access</li>
+                        <li>Dictionary keys must be <strong>unique and immutable</strong></li>
+                        <li><strong>File handling</strong> enables permanent data storage</li>
+                        <li>Always use <strong>'with' statement</strong> for file operations</li>
+                        <li>Choose correct <strong>file mode</strong>: 'r', 'w', or 'a'</li>
+                        <li>Handle <strong>file exceptions</strong> to prevent crashes</li>
+                        <li>Close files properly to avoid <strong>resource leaks</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 6</h2>
+                <p style="color: white; font-size: 1.1rem;">Practice arrays with these problems:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.geeksforgeeks.org/problems/sum-of-array2326/1" target="_blank" style="color: #ffd700;">Sum of Array - GeeksforGeeks</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/check-if-an-array-is-sorted0701/1" target="_blank" style="color: #ffd700;">Check if Array is Sorted - GeeksforGeeks</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/find-minimum-and-maximum-element-in-an-array4428/1" target="_blank" style="color: #ffd700;">Find Min and Max in Array - GeeksforGeeks</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/number-of-occurrence2259/1" target="_blank" style="color: #ffd700;">Number of Occurrences - GeeksforGeeks</a></li>
+                    <li><a href="https://leetcode.com/problems/number-of-employees-who-met-the-target/description/" target="_blank" style="color: #ffd700;">Employees Who Met Target - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/number-of-good-pairs/description/" target="_blank" style="color: #ffd700;">Number of Good Pairs - LeetCode</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

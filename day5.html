@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5: Strings, Lists, and Tuples</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 5 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Strings</a></li>
+                <li><a href="#string-basics">String Basics</a></li>
+                <li><a href="#string-indexing">Indexing & Slicing</a></li>
+                <li><a href="#string-methods">String Methods</a></li>
+                <li><a href="#hour2">Hour 2: Lists & Tuples</a></li>
+                <li><a href="#lists">Lists</a></li>
+                <li><a href="#list-methods">List Methods</a></li>
+                <li><a href="#tuples">Tuples</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day4.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 4</a>
+                <a href="day6.html" class="nav-btn next">Day 6 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 5: Strings, Lists, and Tuples</h1>
+                <p class="day-subtitle">Master text manipulation and data collections</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 5! Today we'll explore three fundamental data types in Python: strings (for text), lists (for ordered collections), and tuples (for immutable sequences).</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>Working with strings - indexing, slicing, and methods</li>
+                        <li>String formatting and manipulation</li>
+                        <li>Creating and modifying lists</li>
+                        <li>Essential list methods and operations</li>
+                        <li>Understanding tuples and immutability</li>
+                        <li>Choosing between lists and tuples</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Strings</h2>
+                
+                <div id="string-basics" class="topic">
+                    <h3>What is a String?</h3>
+                    <p>A <strong>string</strong> is a sequence of characters enclosed in quotes. Strings are used to store and manipulate text data.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Examples:</h4>
+                        <ul>
+                            <li><strong>Names:</strong> "Alice", "Bob"</li>
+                            <li><strong>Messages:</strong> "Hello, World!"</li>
+                            <li><strong>Emails:</strong> "user@example.com"</li>
+                            <li><strong>Addresses:</strong> "123 Main Street"</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Creating Strings</h4>
+                        <pre><code class="language-python"># Different ways to create strings
+name1 = 'Alice'  # Single quotes
+name2 = "Bob"    # Double quotes
+message = '''This is a
+multi-line
+string'''        # Triple quotes
+
+print(name1)
+print(name2)
+print(message)</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Alice
+Bob
+This is a
+multi-line
+string</pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>String Characteristics:</h4>
+                        <ul>
+                            <li><strong>Immutable:</strong> Cannot be changed after creation</li>
+                            <li><strong>Ordered:</strong> Characters have specific positions</li>
+                            <li><strong>Iterable:</strong> Can loop through characters</li>
+                            <li><strong>Indexed:</strong> Access characters by position</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="string-indexing" class="topic">
+                    <h3>String Indexing and Slicing</h3>
+                    <p>Each character in a string has an <strong>index</strong> (position). Python uses zero-based indexing.</p>
+                    
+                    <div class="info-box">
+                        <h4>Index Positions:</h4>
+                        <pre>String: "PYTHON"
+Positive:  0  1  2  3  4  5
+          P  Y  T  H  O  N
+Negative: -6 -5 -4 -3 -2 -1</pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: String Indexing</h4>
+                        <pre><code class="language-python">text = "PYTHON"
+
+# Positive indexing
+print(f"First character: {text[0]}")
+print(f"Third character: {text[2]}")
+print(f"Last character: {text[5]}")
+
+# Negative indexing
+print(f"Last character: {text[-1]}")
+print(f"Second last: {text[-2]}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>First character: P
+Third character: T
+Last character: N
+Last character: N
+Second last: O</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: String Slicing</h4>
+                        <pre><code class="language-python">text = "PYTHON PROGRAMMING"
+
+# Syntax: string[start:end:step]
+print(f"First 6 chars: {text[0:6]}")
+print(f"From index 7: {text[7:]}")
+print(f"Last 11 chars: {text[-11:]}")
+print(f"Every 2nd char: {text[::2]}")
+print(f"Reverse string: {text[::-1]}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>First 6 chars: PYTHON
+From index 7: PROGRAMMING
+Last 11 chars: PROGRAMMING
+Every 2nd char: PTO RGAMN
+Reverse string: GNIMMARGORP NOHTYP</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Slicing Practice</h4>
+                        <pre><code class="language-python">email = "user@example.com"
+
+# Extract username (before @)
+username = email[:email.index('@')]
+print(f"Username: {username}")
+
+# Extract domain (after @)
+domain = email[email.index('@')+1:]
+print(f"Domain: {domain}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Username: user
+Domain: example.com</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="string-methods" class="topic">
+                    <h3>String Methods</h3>
+                    <p>Python provides many built-in methods to manipulate strings.</p>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: Case Conversion Methods</h4>
+                        <pre><code class="language-python">text = "Python Programming"
+
+print(f"Upper: {text.upper()}")
+print(f"Lower: {text.lower()}")
+print(f"Title: {text.title()}")
+print(f"Capitalize: {text.capitalize()}")
+print(f"Swap case: {text.swapcase()}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Upper: PYTHON PROGRAMMING
+Lower: python programming
+Title: Python Programming
+Capitalize: Python programming
+Swap case: pYTHON pROGRAMMING</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: String Search Methods</h4>
+                        <pre><code class="language-python">sentence = "Python is easy to learn"
+
+print(f"Find 'easy': {sentence.find('easy')}")
+print(f"Count 'a': {sentence.count('a')}")
+print(f"Starts with 'Python': {sentence.startswith('Python')}")
+print(f"Ends with 'learn': {sentence.endswith('learn')}")
+print(f"'easy' in sentence: {'easy' in sentence}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Find 'easy': 10
+Count 'a': 2
+Starts with 'Python': True
+Ends with 'learn': True
+'easy' in sentence: True</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: String Modification Methods</h4>
+                        <pre><code class="language-python">text = "  Hello World  "
+
+print(f"Strip: '{text.strip()}'")
+print(f"Replace: {text.replace('World', 'Python')}")
+print(f"Split: {text.split()}")
+
+# Join method
+words = ['Python', 'is', 'awesome']
+sentence = ' '.join(words)
+print(f"Join: {sentence}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Strip: 'Hello World'
+Replace:   Hello Python  
+Split: ['Hello', 'World']
+Join: Python is awesome</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: String Formatting</h4>
+                        <pre><code class="language-python">name = "Alice"
+age = 25
+city = "New York"
+
+# f-strings (Python 3.6+)
+print(f"Name: {name}, Age: {age}, City: {city}")
+
+# format() method
+print("Name: {}, Age: {}, City: {}".format(name, age, city))
+
+# % operator (old style)
+print("Name: %s, Age: %d, City: %s" % (name, age, city))</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Name: Alice, Age: 25, City: New York
+Name: Alice, Age: 25, City: New York
+Name: Alice, Age: 25, City: New York</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: String Validation Methods</h4>
+                        <pre><code class="language-python">text1 = "Python123"
+text2 = "12345"
+text3 = "Python"
+
+print(f"'{text1}' is alphanumeric: {text1.isalnum()}")
+print(f"'{text2}' is digit: {text2.isdigit()}")
+print(f"'{text3}' is alpha: {text3.isalpha()}")
+print(f"'{text3}' is lower: {text3.islower()}")
+print(f"'{text3}' is upper: {text3.isupper()}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>'Python123' is alphanumeric: True
+'12345' is digit: True
+'Python' is alpha: True
+'Python' is lower: False
+'Python' is upper: False</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 10: Practical String Application</h4>
+                        <pre><code class="language-python"># Password validator
+password = input("Enter password: ")
+
+has_upper = any(c.isupper() for c in password)
+has_lower = any(c.islower() for c in password)
+has_digit = any(c.isdigit() for c in password)
+is_long = len(password) >= 8
+
+if has_upper and has_lower and has_digit and is_long:
+    print("✓ Strong password!")
+else:
+    print("✗ Weak password!")
+    if not is_long:
+        print("  - Must be at least 8 characters")
+    if not has_upper:
+        print("  - Must have uppercase letter")
+    if not has_lower:
+        print("  - Must have lowercase letter")
+    if not has_digit:
+        print("  - Must have digit")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Lists & Tuples</h2>
+                
+                <div id="lists" class="topic">
+                    <h3>What is a List?</h3>
+                    <p>A <strong>list</strong> is an ordered, mutable collection that can store multiple items of different types.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Examples:</h4>
+                        <ul>
+                            <li><strong>Shopping cart:</strong> [apple, banana, milk, bread]</li>
+                            <li><strong>Grades:</strong> [85, 90, 78, 92, 88]</li>
+                            <li><strong>Todo list:</strong> [task1, task2, task3]</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Creating Lists</h4>
+                        <pre><code class="language-python"># Empty list
+empty = []
+
+# List with numbers
+numbers = [1, 2, 3, 4, 5]
+
+# List with strings
+fruits = ["apple", "banana", "cherry"]
+
+# Mixed data types
+mixed = [1, "hello", 3.14, True]
+
+# Nested list
+matrix = [[1, 2], [3, 4], [5, 6]]
+
+print(f"Numbers: {numbers}")
+print(f"Fruits: {fruits}")
+print(f"Mixed: {mixed}")
+print(f"Matrix: {matrix}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Accessing List Elements</h4>
+                        <pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+
+# Indexing
+print(f"First: {fruits[0]}")
+print(f"Last: {fruits[-1]}")
+
+# Slicing
+print(f"First 3: {fruits[:3]}")
+print(f"Last 2: {fruits[-2:]}")
+print(f"Middle: {fruits[1:4]}")
+
+# Length
+print(f"Total fruits: {len(fruits)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>First: apple
+Last: elderberry
+First 3: ['apple', 'banana', 'cherry']
+Last 2: ['date', 'elderberry']
+Middle: ['banana', 'cherry', 'date']
+Total fruits: 5</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Modifying Lists</h4>
+                        <pre><code class="language-python">numbers = [10, 20, 30, 40, 50]
+print(f"Original: {numbers}")
+
+# Change element
+numbers[0] = 15
+print(f"After change: {numbers}")
+
+# Change multiple elements
+numbers[1:3] = [25, 35]
+print(f"After slice change: {numbers}")
+
+# Delete element
+del numbers[2]
+print(f"After delete: {numbers}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: [10, 20, 30, 40, 50]
+After change: [15, 20, 30, 40, 50]
+After slice change: [15, 25, 35, 40, 50]
+After delete: [15, 25, 40, 50]</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="list-methods" class="topic">
+                    <h3>List Methods</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 4: Adding Elements</h4>
+                        <pre><code class="language-python">fruits = ["apple", "banana"]
+print(f"Original: {fruits}")
+
+# append() - add at end
+fruits.append("cherry")
+print(f"After append: {fruits}")
+
+# insert() - add at specific position
+fruits.insert(1, "avocado")
+print(f"After insert: {fruits}")
+
+# extend() - add multiple items
+fruits.extend(["date", "elderberry"])
+print(f"After extend: {fruits}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: ['apple', 'banana']
+After append: ['apple', 'banana', 'cherry']
+After insert: ['apple', 'avocado', 'banana', 'cherry']
+After extend: ['apple', 'avocado', 'banana', 'cherry', 'date', 'elderberry']</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: Removing Elements</h4>
+                        <pre><code class="language-python">numbers = [10, 20, 30, 20, 40, 50]
+print(f"Original: {numbers}")
+
+# remove() - remove first occurrence
+numbers.remove(20)
+print(f"After remove(20): {numbers}")
+
+# pop() - remove and return last item
+last = numbers.pop()
+print(f"Popped: {last}, List: {numbers}")
+
+# pop(index) - remove at specific position
+second = numbers.pop(1)
+print(f"Popped: {second}, List: {numbers}")
+
+# clear() - remove all items
+numbers.clear()
+print(f"After clear: {numbers}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: List Sorting and Reversing</h4>
+                        <pre><code class="language-python">numbers = [30, 10, 50, 20, 40]
+print(f"Original: {numbers}")
+
+# sort() - sort in place
+numbers.sort()
+print(f"After sort: {numbers}")
+
+# sort(reverse=True) - descending order
+numbers.sort(reverse=True)
+print(f"Descending: {numbers}")
+
+# reverse() - reverse order
+numbers.reverse()
+print(f"After reverse: {numbers}")
+
+# sorted() - returns new sorted list
+fruits = ["cherry", "apple", "banana"]
+sorted_fruits = sorted(fruits)
+print(f"Original fruits: {fruits}")
+print(f"Sorted fruits: {sorted_fruits}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: List Search Methods</h4>
+                        <pre><code class="language-python">fruits = ["apple", "banana", "cherry", "banana", "date"]
+
+# index() - find position
+pos = fruits.index("cherry")
+print(f"'cherry' is at index: {pos}")
+
+# count() - count occurrences
+count = fruits.count("banana")
+print(f"'banana' appears {count} times")
+
+# in operator - check existence
+if "apple" in fruits:
+    print("Apple is in the list")
+
+if "mango" not in fruits:
+    print("Mango is not in the list")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: List Comprehension</h4>
+                        <pre><code class="language-python"># Create list of squares
+squares = [x**2 for x in range(1, 6)]
+print(f"Squares: {squares}")
+
+# Filter even numbers
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+evens = [x for x in numbers if x % 2 == 0]
+print(f"Even numbers: {evens}")
+
+# Convert to uppercase
+fruits = ["apple", "banana", "cherry"]
+upper_fruits = [fruit.upper() for fruit in fruits]
+print(f"Uppercase: {upper_fruits}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Squares: [1, 4, 9, 16, 25]
+Even numbers: [2, 4, 6, 8, 10]
+Uppercase: ['APPLE', 'BANANA', 'CHERRY']</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tuples" class="topic">
+                    <h3>Tuples</h3>
+                    <p>A <strong>tuple</strong> is an ordered, immutable collection. Once created, it cannot be modified.</p>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: Creating Tuples</h4>
+                        <pre><code class="language-python"># Empty tuple
+empty = ()
+
+# Tuple with one element (note the comma!)
+single = (5,)
+
+# Tuple with multiple elements
+coordinates = (10, 20)
+rgb = (255, 128, 0)
+
+# Tuple without parentheses
+point = 3, 4
+
+print(f"Coordinates: {coordinates}")
+print(f"RGB: {rgb}")
+print(f"Point: {point}")
+print(f"Type: {type(point)}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 10: Tuple Operations</h4>
+                        <pre><code class="language-python">tuple1 = (1, 2, 3)
+tuple2 = (4, 5, 6)
+
+# Concatenation
+combined = tuple1 + tuple2
+print(f"Combined: {combined}")
+
+# Repetition
+repeated = tuple1 * 3
+print(f"Repeated: {repeated}")
+
+# Indexing and slicing
+print(f"First element: {combined[0]}")
+print(f"Last 3: {combined[-3:]}")
+
+# Unpacking
+x, y, z = tuple1
+print(f"x={x}, y={y}, z={z}")</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>List vs Tuple:</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>List</th>
+                                    <th>Tuple</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mutable (can change)</td>
+                                    <td>Immutable (cannot change)</td>
+                                </tr>
+                                <tr>
+                                    <td>Slower</td>
+                                    <td>Faster</td>
+                                </tr>
+                                <tr>
+                                    <td>More memory</td>
+                                    <td>Less memory</td>
+                                </tr>
+                                <tr>
+                                    <td>Use: [1, 2, 3]</td>
+                                    <td>Use: (1, 2, 3)</td>
+                                </tr>
+                                <tr>
+                                    <td>For changing data</td>
+                                    <td>For fixed data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of strings, lists, and tuples:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: String Slicing</h4>
+                        <p>What is the output of: <code>"PYTHON"[1:4]</code>?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> "YTH"
+                            <p><strong>Explanation:</strong> Slicing from index 1 to 4 (exclusive) gives characters at positions 1, 2, 3.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: String Method</h4>
+                        <p>What does <code>"hello world".title()</code> return?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> "Hello World"
+                            <p><strong>Explanation:</strong> title() capitalizes the first letter of each word.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: List Modification</h4>
+                        <p>What happens after: <code>lst = [1, 2, 3]; lst.append(4)</code>?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> lst becomes [1, 2, 3, 4]
+                            <p><strong>Explanation:</strong> append() adds element at the end of the list.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: List vs Tuple</h4>
+                        <p>Can you modify a tuple after creation?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> No
+                            <p><strong>Explanation:</strong> Tuples are immutable - they cannot be changed after creation.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: String Immutability</h4>
+                        <p>What happens with: <code>s = "hello"; s[0] = "H"</code>?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Error (TypeError)
+                            <p><strong>Explanation:</strong> Strings are immutable - you cannot change individual characters.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: List Method</h4>
+                        <p>What does <code>[1, 2, 3].pop()</code> return?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> 3
+                            <p><strong>Explanation:</strong> pop() removes and returns the last element.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: String Formatting</h4>
+                        <p>What is the output of: <code>f"Result: {5 + 3}"</code>?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> "Result: 8"
+                            <p><strong>Explanation:</strong> f-strings evaluate expressions inside curly braces.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: List Slicing</h4>
+                        <p>What is <code>[1, 2, 3, 4, 5][-2:]</code>?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> [4, 5]
+                            <p><strong>Explanation:</strong> [-2:] gets the last 2 elements.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Tuple Unpacking</h4>
+                        <p>What happens with: <code>a, b = (10, 20)</code>?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> a=10, b=20
+                            <p><strong>Explanation:</strong> Tuple unpacking assigns values to multiple variables.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: List Comprehension</h4>
+                        <p>What does <code>[x*2 for x in range(3)]</code> produce?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> [0, 2, 4]
+                            <p><strong>Explanation:</strong> Multiplies each number in range(3) by 2: 0*2, 1*2, 2*2.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Strings</strong> are immutable sequences of characters</li>
+                        <li>Use <strong>indexing</strong> and <strong>slicing</strong> to access parts of strings</li>
+                        <li>Python provides many <strong>string methods</strong> for manipulation</li>
+                        <li><strong>Lists</strong> are mutable, ordered collections</li>
+                        <li>Lists support many methods: append, insert, remove, pop, sort, etc.</li>
+                        <li><strong>Tuples</strong> are immutable, ordered collections</li>
+                        <li>Use lists for data that changes, tuples for fixed data</li>
+                        <li><strong>List comprehension</strong> provides concise way to create lists</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 5</h2>
+                <p style="color: white; font-size: 1.1rem;">Master patterns and loops with these problems:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://read.learnyard.com/square-star-and-rhombus-start-patterns/" target="_blank" style="color: #ffd700;">Square Star & Rhombus Patterns</a></li>
+                    <li><a href="https://read.learnyard.com/triangle-pattern/" target="_blank" style="color: #ffd700;">Triangle Patterns</a></li>
+                    <li><a href="https://read.learnyard.com/pyramid-star-pate/" target="_blank" style="color: #ffd700;">Pyramid Star Patterns</a></li>
+                    <li><a href="https://read.learnyard.com/miscellaneous-star-pattern/" target="_blank" style="color: #ffd700;">Miscellaneous Star Patterns</a></li>
+                    <li><a href="https://read.learnyard.com/number-patterns/" target="_blank" style="color: #ffd700;">Number Patterns</a></li>
+                    <li><a href="https://read.learnyard.com/number-patterns-2/" target="_blank" style="color: #ffd700;">Number Patterns 2</a></li>
+                    <li><a href="https://read.learnyard.com/triangular-number-patterns/" target="_blank" style="color: #ffd700;">Triangular Number Patterns</a></li>
+                    <li><a href="https://read.learnyard.com/triangular-num-pattern-2/" target="_blank" style="color: #ffd700;">Triangular Number Patterns 2</a></li>
+                    <li><a href="https://read.learnyard.com/triangular-num-patterns-3/" target="_blank" style="color: #ffd700;">Triangular Number Patterns 3</a></li>
+                    <li><a href="https://read.learnyard.com/loops-2/" target="_blank" style="color: #ffd700;">Loops Practice 2</a></li>
+                    <li><a href="https://read.learnyard.com/loops-3/" target="_blank" style="color: #ffd700;">Loops Practice 3</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

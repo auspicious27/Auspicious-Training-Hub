@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10: Sorting and Linked Lists</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 10 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Sorting</a></li>
+                <li><a href="#bubble">Bubble Sort</a></li>
+                <li><a href="#selection">Selection Sort</a></li>
+                <li><a href="#hour2">Hour 2: Linked Lists</a></li>
+                <li><a href="#linked-list">Linked List Basics</a></li>
+                <li><a href="#operations">List Operations</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day9.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 9</a>
+                <a href="day11.html" class="nav-btn next">Day 11 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 10: Sorting and Linked Lists</h1>
+                <p class="day-subtitle">Master sorting algorithms and dynamic data structures</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 10! Today we'll learn sorting algorithms (bubble sort, selection sort) and linked lists (a dynamic data structure).</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>Why sorting is important</li>
+                        <li>Bubble sort algorithm</li>
+                        <li>Selection sort algorithm</li>
+                        <li>Linked list structure</li>
+                        <li>Array vs Linked list</li>
+                        <li>Linked list operations</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Sorting Algorithms</h2>
+                
+                <div class="topic">
+                    <h3>Why Sorting is Needed</h3>
+                    <p><strong>Sorting</strong> arranges data in a specific order (ascending or descending). It's fundamental to many algorithms.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Examples:</h4>
+                        <ul>
+                            <li><strong>Phone contacts:</strong> Sorted alphabetically</li>
+                            <li><strong>E-commerce:</strong> Sort by price, rating</li>
+                            <li><strong>Search engines:</strong> Sort results by relevance</li>
+                            <li><strong>Databases:</strong> Faster queries on sorted data</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Benefits of Sorting:</h4>
+                        <ul>
+                            <li>Enables binary search (O(log n))</li>
+                            <li>Makes data easier to understand</li>
+                            <li>Helps find duplicates</li>
+                            <li>Required for many algorithms</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="bubble" class="topic">
+                    <h3>Bubble Sort</h3>
+                    <p><strong>Bubble sort</strong> repeatedly compares adjacent elements and swaps them if they're in wrong order. Largest element "bubbles up" to the end.</p>
+                    
+                    <div class="info-box">
+                        <h4>Algorithm:</h4>
+                        <ol>
+                            <li>Compare adjacent elements</li>
+                            <li>Swap if first > second</li>
+                            <li>Repeat for all elements</li>
+                            <li>After each pass, largest element reaches end</li>
+                            <li>Repeat n-1 times</li>
+                        </ol>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Bubble Sort Visualization</h4>
+                        <pre><code class="language-python"># Bubble Sort Step-by-Step
+"""
+Initial: [64, 34, 25, 12, 22]
+
+Pass 1:
+[34, 64, 25, 12, 22] - swap 64 and 34
+[34, 25, 64, 12, 22] - swap 64 and 25
+[34, 25, 12, 64, 22] - swap 64 and 12
+[34, 25, 12, 22, 64] - swap 64 and 22 (64 in place!)
+
+Pass 2:
+[25, 34, 12, 22, 64] - swap 34 and 25
+[25, 12, 34, 22, 64] - swap 34 and 12
+[25, 12, 22, 34, 64] - swap 34 and 22 (34 in place!)
+
+... continues until sorted
+"""</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Bubble Sort Implementation</h4>
+                        <pre><code class="language-python">def bubble_sort(arr):
+    """
+    Bubble Sort Algorithm
+    Time Complexity: O(n²)
+    Space Complexity: O(1)
+    """
+    n = len(arr)
+    
+    # Outer loop for passes
+    for i in range(n):
+        # Inner loop for comparisons
+        for j in range(n - i - 1):
+            # Swap if element is greater than next
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    
+    return arr
+
+# Test
+numbers = [64, 34, 25, 12, 22, 11, 90]
+print(f"Original: {numbers}")
+sorted_numbers = bubble_sort(numbers.copy())
+print(f"Sorted: {sorted_numbers}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: [64, 34, 25, 12, 22, 11, 90]
+Sorted: [11, 12, 22, 25, 34, 64, 90]</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Optimized Bubble Sort</h4>
+                        <pre><code class="language-python">def bubble_sort_optimized(arr):
+    """
+    Optimized version - stops if no swaps made
+    Best case: O(n) when already sorted
+    """
+    n = len(arr)
+    
+    for i in range(n):
+        swapped = False
+        
+        for j in range(n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        
+        # If no swaps, array is sorted
+        if not swapped:
+            break
+    
+    return arr
+
+# Test with already sorted array
+numbers = [1, 2, 3, 4, 5]
+print(f"Already sorted: {numbers}")
+result = bubble_sort_optimized(numbers.copy())
+print(f"Result: {result}")</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Bubble Sort Complexity:</h4>
+                        <ul>
+                            <li><strong>Best Case:</strong> O(n) - already sorted (optimized version)</li>
+                            <li><strong>Average Case:</strong> O(n²)</li>
+                            <li><strong>Worst Case:</strong> O(n²) - reverse sorted</li>
+                            <li><strong>Space:</strong> O(1) - in-place sorting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="selection" class="topic">
+                    <h3>Selection Sort</h3>
+                    <p><strong>Selection sort</strong> finds the minimum element and places it at the beginning. Repeats for remaining elements.</p>
+                    
+                    <div class="info-box">
+                        <h4>Algorithm:</h4>
+                        <ol>
+                            <li>Find minimum element in unsorted part</li>
+                            <li>Swap it with first unsorted element</li>
+                            <li>Move boundary of sorted part</li>
+                            <li>Repeat until all elements sorted</li>
+                        </ol>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Selection Sort Implementation</h4>
+                        <pre><code class="language-python">def selection_sort(arr):
+    """
+    Selection Sort Algorithm
+    Time Complexity: O(n²)
+    Space Complexity: O(1)
+    """
+    n = len(arr)
+    
+    for i in range(n):
+        # Find minimum in remaining array
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        
+        # Swap minimum with first unsorted element
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    
+    return arr
+
+# Test
+numbers = [64, 25, 12, 22, 11]
+print(f"Original: {numbers}")
+sorted_numbers = selection_sort(numbers.copy())
+print(f"Sorted: {sorted_numbers}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: [64, 25, 12, 22, 11]
+Sorted: [11, 12, 22, 25, 64]</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: Comparing Sorting Algorithms</h4>
+                        <pre><code class="language-python">import time
+
+def compare_sorts(arr):
+    """Compare bubble and selection sort"""
+    # Bubble sort
+    arr1 = arr.copy()
+    start = time.time()
+    bubble_sort(arr1)
+    bubble_time = time.time() - start
+    
+    # Selection sort
+    arr2 = arr.copy()
+    start = time.time()
+    selection_sort(arr2)
+    selection_time = time.time() - start
+    
+    print(f"Bubble Sort: {bubble_time:.6f}s")
+    print(f"Selection Sort: {selection_time:.6f}s")
+
+# Test
+numbers = [64, 34, 25, 12, 22, 11, 90, 88, 45, 50]
+compare_sorts(numbers)</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Sorting Algorithms Comparison:</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Best</th>
+                                    <th>Average</th>
+                                    <th>Worst</th>
+                                    <th>Space</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bubble Sort</td>
+                                    <td>O(n)</td>
+                                    <td>O(n²)</td>
+                                    <td>O(n²)</td>
+                                    <td>O(1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Selection Sort</td>
+                                    <td>O(n²)</td>
+                                    <td>O(n²)</td>
+                                    <td>O(n²)</td>
+                                    <td>O(1)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Linked Lists</h2>
+                
+                <div id="linked-list" class="topic">
+                    <h3>What is a Linked List?</h3>
+                    <p>A <strong>linked list</strong> is a linear data structure where elements (nodes) are connected using pointers. Each node contains data and a reference to the next node.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Analogy:</h4>
+                        <p>Think of a treasure hunt:</p>
+                        <ul>
+                            <li>Each clue (node) has information (data)</li>
+                            <li>Each clue points to next location (next pointer)</li>
+                            <li>Follow clues one by one to reach end</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Node Structure:</h4>
+                        <pre>Node:
+┌──────┬──────┐
+│ Data │ Next │
+└──────┴──────┘
+
+Linked List:
+[10|•]→[20|•]→[30|•]→[40|None]
+Head                    Tail</pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: Node Class</h4>
+                        <pre><code class="language-python">class Node:
+    """Node class for linked list"""
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+# Create nodes
+node1 = Node(10)
+node2 = Node(20)
+node3 = Node(30)
+
+# Link nodes
+node1.next = node2
+node2.next = node3
+
+# Traverse
+current = node1
+while current:
+    print(current.data, end=" → ")
+    current = current.next
+print("None")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>10 → 20 → 30 → None</pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Array vs Linked List:</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Array</th>
+                                    <th>Linked List</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Size</td>
+                                    <td>Fixed</td>
+                                    <td>Dynamic</td>
+                                </tr>
+                                <tr>
+                                    <td>Memory</td>
+                                    <td>Contiguous</td>
+                                    <td>Non-contiguous</td>
+                                </tr>
+                                <tr>
+                                    <td>Access</td>
+                                    <td>O(1)</td>
+                                    <td>O(n)</td>
+                                </tr>
+                                <tr>
+                                    <td>Insertion</td>
+                                    <td>O(n)</td>
+                                    <td>O(1) at head</td>
+                                </tr>
+                                <tr>
+                                    <td>Deletion</td>
+                                    <td>O(n)</td>
+                                    <td>O(1) at head</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="operations" class="topic">
+                    <h3>Linked List Operations</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 7: Linked List Class</h4>
+                        <pre><code class="language-python">class LinkedList:
+    """Singly Linked List implementation"""
+    def __init__(self):
+        self.head = None
+    
+    def is_empty(self):
+        """Check if list is empty"""
+        return self.head is None
+    
+    def display(self):
+        """Display all elements"""
+        if self.is_empty():
+            print("List is empty")
+            return
+        
+        current = self.head
+        while current:
+            print(current.data, end=" → ")
+            current = current.next
+        print("None")
+
+# Test
+ll = LinkedList()
+print(f"Is empty: {ll.is_empty()}")
+ll.display()</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: Insert at Beginning</h4>
+                        <pre><code class="language-python">class LinkedList:
+    # ... previous code ...
+    
+    def insert_at_beginning(self, data):
+        """Insert node at beginning - O(1)"""
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+# Test
+ll = LinkedList()
+ll.insert_at_beginning(30)
+ll.insert_at_beginning(20)
+ll.insert_at_beginning(10)
+ll.display()  # 10 → 20 → 30 → None</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: Insert at End</h4>
+                        <pre><code class="language-python">class LinkedList:
+    # ... previous code ...
+    
+    def insert_at_end(self, data):
+        """Insert node at end - O(n)"""
+        new_node = Node(data)
+        
+        if self.is_empty():
+            self.head = new_node
+            return
+        
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+
+# Test
+ll = LinkedList()
+ll.insert_at_end(10)
+ll.insert_at_end(20)
+ll.insert_at_end(30)
+ll.display()  # 10 → 20 → 30 → None</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 10: Delete Node</h4>
+                        <pre><code class="language-python">class LinkedList:
+    # ... previous code ...
+    
+    def delete_node(self, key):
+        """Delete first occurrence of key"""
+        if self.is_empty():
+            return
+        
+        # If head needs to be deleted
+        if self.head.data == key:
+            self.head = self.head.next
+            return
+        
+        # Find node to delete
+        current = self.head
+        while current.next:
+            if current.next.data == key:
+                current.next = current.next.next
+                return
+            current = current.next
+
+# Test
+ll = LinkedList()
+ll.insert_at_end(10)
+ll.insert_at_end(20)
+ll.insert_at_end(30)
+ll.display()  # 10 → 20 → 30 → None
+
+ll.delete_node(20)
+ll.display()  # 10 → 30 → None</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Types of Linked Lists:</h4>
+                        <ul>
+                            <li><strong>Singly Linked List:</strong> Each node points to next</li>
+                            <li><strong>Doubly Linked List:</strong> Each node points to next and previous</li>
+                            <li><strong>Circular Linked List:</strong> Last node points to first</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of sorting and linked lists:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: Bubble Sort</h4>
+                        <p>What is the time complexity of bubble sort?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(n²)
+                            <p><strong>Explanation:</strong> Nested loops make it quadratic time complexity.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: Selection Sort</h4>
+                        <p>How does selection sort work?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Finds minimum and places it at beginning
+                            <p><strong>Explanation:</strong> Repeatedly selects minimum from unsorted part.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: Linked List Node</h4>
+                        <p>What does a linked list node contain?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Data and pointer to next node
+                            <p><strong>Explanation:</strong> Each node has data field and next pointer.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: Array vs Linked List</h4>
+                        <p>Which has faster random access?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Array
+                            <p><strong>Explanation:</strong> Array has O(1) access, linked list has O(n).</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Linked List Advantage</h4>
+                        <p>What is the main advantage of linked lists?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Dynamic size
+                            <p><strong>Explanation:</strong> Can grow/shrink easily, no fixed size needed.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Sorting Benefit</h4>
+                        <p>Why is sorting data important?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Enables faster searching
+                            <p><strong>Explanation:</strong> Sorted data allows binary search (O(log n)).</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Insert at Head</h4>
+                        <p>What is the time complexity of inserting at head of linked list?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(1)
+                            <p><strong>Explanation:</strong> Just update head pointer, no traversal needed.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Bubble Sort Optimization</h4>
+                        <p>How can bubble sort be optimized?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Stop if no swaps made
+                            <p><strong>Explanation:</strong> If no swaps in a pass, array is sorted.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Linked List Memory</h4>
+                        <p>How is linked list stored in memory?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Non-contiguous locations
+                            <p><strong>Explanation:</strong> Nodes can be anywhere in memory, connected by pointers.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: Sorting Stability</h4>
+                        <p>Is bubble sort a stable sorting algorithm?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Yes
+                            <p><strong>Explanation:</strong> Equal elements maintain their relative order.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Sorting</strong> arranges data in specific order</li>
+                        <li><strong>Bubble sort</strong> compares adjacent elements - O(n²)</li>
+                        <li><strong>Selection sort</strong> finds minimum repeatedly - O(n²)</li>
+                        <li>Both are <strong>in-place</strong> sorting algorithms</li>
+                        <li><strong>Linked lists</strong> use nodes with data and pointers</li>
+                        <li>Linked lists have <strong>dynamic size</strong></li>
+                        <li><strong>Arrays</strong> have faster access, <strong>linked lists</strong> have faster insertion</li>
+                        <li>Insert at head of linked list is <strong>O(1)</strong></li>
+                        <li>Linked list memory is <strong>non-contiguous</strong></li>
+                        <li>Choose data structure based on <strong>operations needed</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 10</h2>
+                <p style="color: white; font-size: 1.1rem;">Stack and queue problems:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/description/" target="_blank" style="color: #ffd700;">Replace Elements with Greatest on Right - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/unique-number-of-occurrences/description/" target="_blank" style="color: #ffd700;">Unique Number of Occurrences - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/description/" target="_blank" style="color: #ffd700;">Count Pairs Whose Sum is Less Than Target - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/find-the-k-beauty-of-a-number/description/" target="_blank" style="color: #ffd700;">Find K-Beauty of a Number - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/find-the-distance-value-between-two-arrays/description/" target="_blank" style="color: #ffd700;">Find Distance Value Between Two Arrays - LeetCode</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12: Recursion and Advanced Sorting</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 12 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Recursion</a></li>
+                <li><a href="#recursion-basics">Recursion Basics</a></li>
+                <li><a href="#examples">Recursion Examples</a></li>
+                <li><a href="#hour2">Hour 2: Advanced Sorting</a></li>
+                <li><a href="#merge-sort">Merge Sort</a></li>
+                <li><a href="#quick-sort">Quick Sort</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day11.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 11</a>
+                <a href="day13.html" class="nav-btn next">Day 13 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 12: Recursion and Advanced Sorting</h1>
+                <p class="day-subtitle">Master recursive thinking and efficient sorting</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 12! Today we'll learn recursion (a powerful programming technique) and advanced sorting algorithms (merge sort and quick sort).</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>What is recursion</li>
+                        <li>Base case and recursive case</li>
+                        <li>Call stack visualization</li>
+                        <li>Recursion vs iteration</li>
+                        <li>Merge sort algorithm</li>
+                        <li>Quick sort algorithm</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Recursion</h2>
+                
+                <div id="recursion-basics" class="topic">
+                    <h3>What is Recursion?</h3>
+                    <p><strong>Recursion</strong> is a technique where a function calls itself to solve a problem by breaking it into smaller subproblems.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Analogy:</h4>
+                        <p>Imagine Russian nesting dolls (Matryoshka):</p>
+                        <ul>
+                            <li>Open a doll, find a smaller doll inside</li>
+                            <li>Open that doll, find an even smaller one</li>
+                            <li>Continue until you reach the smallest doll (base case)</li>
+                            <li>This is recursion - solving by going deeper!</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Key Components of Recursion:</h4>
+                        <ul>
+                            <li><strong>Base Case:</strong> Stopping condition (prevents infinite recursion)</li>
+                            <li><strong>Recursive Case:</strong> Function calls itself with simpler input</li>
+                            <li><strong>Progress:</strong> Each call moves toward base case</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Simple Recursion - Countdown</h4>
+                        <pre><code class="language-python">def countdown(n):
+    """Count down from n to 1"""
+    # Base case
+    if n <= 0:
+        print("Done!")
+        return
+    
+    # Recursive case
+    print(n)
+    countdown(n - 1)  # Call itself with smaller value
+
+# Test
+countdown(5)</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>5
+4
+3
+2
+1
+Done!</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Factorial Using Recursion</h4>
+                        <pre><code class="language-python">def factorial(n):
+    """
+    Calculate factorial using recursion
+    factorial(5) = 5 * 4 * 3 * 2 * 1 = 120
+    """
+    # Base case
+    if n == 0 or n == 1:
+        return 1
+    
+    # Recursive case
+    return n * factorial(n - 1)
+
+# Test
+for i in range(6):
+    print(f"{i}! = {factorial(i)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>0! = 1
+1! = 1
+2! = 2
+3! = 6
+4! = 24
+5! = 120</pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Call Stack Visualization (factorial(4)):</h4>
+                        <pre>factorial(4)
+  → 4 * factorial(3)
+      → 3 * factorial(2)
+          → 2 * factorial(1)
+              → 1 (base case)
+          ← returns 1
+      ← returns 2 * 1 = 2
+  ← returns 3 * 2 = 6
+← returns 4 * 6 = 24</pre>
+                    </div>
+                </div>
+
+                <div id="examples" class="topic">
+                    <h3>Recursion Examples</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 3: Fibonacci Sequence</h4>
+                        <pre><code class="language-python">def fibonacci(n):
+    """
+    Calculate nth Fibonacci number
+    Sequence: 0, 1, 1, 2, 3, 5, 8, 13, ...
+    """
+    # Base cases
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    
+    # Recursive case
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Test
+print("Fibonacci sequence:")
+for i in range(10):
+    print(f"F({i}) = {fibonacci(i)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Fibonacci sequence:
+F(0) = 0
+F(1) = 1
+F(2) = 1
+F(3) = 2
+F(4) = 3
+F(5) = 5
+F(6) = 8
+F(7) = 13
+F(8) = 21
+F(9) = 34</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Sum of Numbers</h4>
+                        <pre><code class="language-python">def sum_recursive(n):
+    """Sum of numbers from 1 to n"""
+    # Base case
+    if n == 0:
+        return 0
+    
+    # Recursive case
+    return n + sum_recursive(n - 1)
+
+# Test
+n = 10
+print(f"Sum of 1 to {n} = {sum_recursive(n)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Sum of 1 to 10 = 55</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: Power Function</h4>
+                        <pre><code class="language-python">def power(base, exp):
+    """Calculate base^exp using recursion"""
+    # Base case
+    if exp == 0:
+        return 1
+    
+    # Recursive case
+    return base * power(base, exp - 1)
+
+# Test
+print(f"2^5 = {power(2, 5)}")
+print(f"3^4 = {power(3, 4)}")
+print(f"5^3 = {power(5, 3)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>2^5 = 32
+3^4 = 81
+5^3 = 125</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: Recursion vs Iteration</h4>
+                        <pre><code class="language-python"># Recursive approach
+def factorial_recursive(n):
+    if n <= 1:
+        return 1
+    return n * factorial_recursive(n - 1)
+
+# Iterative approach
+def factorial_iterative(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+# Test both
+n = 5
+print(f"Recursive: {n}! = {factorial_recursive(n)}")
+print(f"Iterative: {n}! = {factorial_iterative(n)}")</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Recursion vs Iteration:</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Recursion</th>
+                                    <th>Iteration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Code</td>
+                                    <td>More elegant</td>
+                                    <td>More verbose</td>
+                                </tr>
+                                <tr>
+                                    <td>Memory</td>
+                                    <td>Uses call stack</td>
+                                    <td>Less memory</td>
+                                </tr>
+                                <tr>
+                                    <td>Speed</td>
+                                    <td>Slower (overhead)</td>
+                                    <td>Faster</td>
+                                </tr>
+                                <tr>
+                                    <td>Use When</td>
+                                    <td>Problem naturally recursive</td>
+                                    <td>Performance critical</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Recursion Pitfalls:</h4>
+                        <ul>
+                            <li><strong>Stack overflow:</strong> Too many recursive calls</li>
+                            <li><strong>Inefficiency:</strong> Repeated calculations (e.g., Fibonacci)</li>
+                            <li><strong>No base case:</strong> Infinite recursion</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Advanced Sorting</h2>
+                
+                <div id="merge-sort" class="topic">
+                    <h3>Merge Sort</h3>
+                    <p><strong>Merge sort</strong> uses divide-and-conquer strategy. It divides array into halves, sorts them, and merges them back.</p>
+                    
+                    <div class="info-box">
+                        <h4>Algorithm:</h4>
+                        <ol>
+                            <li><strong>Divide:</strong> Split array into two halves</li>
+                            <li><strong>Conquer:</strong> Recursively sort both halves</li>
+                            <li><strong>Combine:</strong> Merge sorted halves</li>
+                        </ol>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: Merge Sort Visualization</h4>
+                        <pre><code class="language-python"># Merge Sort Process
+"""
+Initial: [38, 27, 43, 3, 9, 82, 10]
+
+Divide:
+[38, 27, 43, 3] | [9, 82, 10]
+[38, 27] [43, 3] | [9, 82] [10]
+[38] [27] [43] [3] | [9] [82] [10]
+
+Merge:
+[27, 38] [3, 43] | [9, 82] [10]
+[3, 27, 38, 43] | [9, 10, 82]
+[3, 9, 10, 27, 38, 43, 82]
+"""</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: Merge Sort Implementation</h4>
+                        <pre><code class="language-python">def merge_sort(arr):
+    """
+    Merge Sort Algorithm
+    Time Complexity: O(n log n)
+    Space Complexity: O(n)
+    """
+    if len(arr) <= 1:
+        return arr
+    
+    # Divide
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    
+    # Conquer (merge)
+    return merge(left, right)
+
+def merge(left, right):
+    """Merge two sorted arrays"""
+    result = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+# Test
+numbers = [38, 27, 43, 3, 9, 82, 10]
+print(f"Original: {numbers}")
+sorted_numbers = merge_sort(numbers)
+print(f"Sorted: {sorted_numbers}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: [38, 27, 43, 3, 9, 82, 10]
+Sorted: [3, 9, 10, 27, 38, 43, 82]</pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Merge Sort Characteristics:</h4>
+                        <ul>
+                            <li><strong>Time:</strong> O(n log n) - all cases</li>
+                            <li><strong>Space:</strong> O(n) - needs extra space</li>
+                            <li><strong>Stable:</strong> Yes</li>
+                            <li><strong>Best for:</strong> Large datasets, linked lists</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="quick-sort" class="topic">
+                    <h3>Quick Sort</h3>
+                    <p><strong>Quick sort</strong> picks a pivot element and partitions array around it. Elements smaller than pivot go left, larger go right.</p>
+                    
+                    <div class="info-box">
+                        <h4>Algorithm:</h4>
+                        <ol>
+                            <li><strong>Choose pivot:</strong> Select an element as pivot</li>
+                            <li><strong>Partition:</strong> Rearrange array around pivot</li>
+                            <li><strong>Recursively sort:</strong> Sort left and right partitions</li>
+                        </ol>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: Quick Sort Implementation</h4>
+                        <pre><code class="language-python">def quick_sort(arr):
+    """
+    Quick Sort Algorithm
+    Time Complexity: O(n log n) average, O(n²) worst
+    Space Complexity: O(log n)
+    """
+    if len(arr) <= 1:
+        return arr
+    
+    # Choose pivot (last element)
+    pivot = arr[-1]
+    
+    # Partition
+    left = [x for x in arr[:-1] if x <= pivot]
+    right = [x for x in arr[:-1] if x > pivot]
+    
+    # Recursively sort and combine
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+# Test
+numbers = [64, 34, 25, 12, 22, 11, 90]
+print(f"Original: {numbers}")
+sorted_numbers = quick_sort(numbers)
+print(f"Sorted: {sorted_numbers}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: [64, 34, 25, 12, 22, 11, 90]
+Sorted: [11, 12, 22, 25, 34, 64, 90]</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 10: Sorting Algorithm Comparison</h4>
+                        <pre><code class="language-python">import time
+
+def compare_sorting_algorithms(arr):
+    """Compare different sorting algorithms"""
+    # Bubble Sort
+    arr1 = arr.copy()
+    start = time.time()
+    # bubble_sort(arr1)  # From Day 10
+    bubble_time = time.time() - start
+    
+    # Merge Sort
+    arr2 = arr.copy()
+    start = time.time()
+    merge_sort(arr2)
+    merge_time = time.time() - start
+    
+    # Quick Sort
+    arr3 = arr.copy()
+    start = time.time()
+    quick_sort(arr3)
+    quick_time = time.time() - start
+    
+    print(f"Bubble Sort: {bubble_time:.6f}s")
+    print(f"Merge Sort: {merge_time:.6f}s")
+    print(f"Quick Sort: {quick_time:.6f}s")
+
+# Test with large array
+import random
+numbers = [random.randint(1, 1000) for _ in range(100)]
+# compare_sorting_algorithms(numbers)</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Sorting Algorithms Comparison:</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Best</th>
+                                    <th>Average</th>
+                                    <th>Worst</th>
+                                    <th>Space</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bubble Sort</td>
+                                    <td>O(n)</td>
+                                    <td>O(n²)</td>
+                                    <td>O(n²)</td>
+                                    <td>O(1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Merge Sort</td>
+                                    <td>O(n log n)</td>
+                                    <td>O(n log n)</td>
+                                    <td>O(n log n)</td>
+                                    <td>O(n)</td>
+                                </tr>
+                                <tr>
+                                    <td>Quick Sort</td>
+                                    <td>O(n log n)</td>
+                                    <td>O(n log n)</td>
+                                    <td>O(n²)</td>
+                                    <td>O(log n)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of recursion and advanced sorting:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: Recursion Definition</h4>
+                        <p>What is recursion?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Function calling itself
+                            <p><strong>Explanation:</strong> Recursion is when a function calls itself to solve smaller subproblems.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: Base Case</h4>
+                        <p>Why is base case important in recursion?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Prevents infinite recursion
+                            <p><strong>Explanation:</strong> Base case is the stopping condition that ends recursion.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: Merge Sort Complexity</h4>
+                        <p>What is the time complexity of merge sort?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(n log n)
+                            <p><strong>Explanation:</strong> Merge sort has O(n log n) complexity in all cases.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: Quick Sort Pivot</h4>
+                        <p>What is the role of pivot in quick sort?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Partitioning element
+                            <p><strong>Explanation:</strong> Pivot is used to partition array into smaller and larger elements.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Recursion vs Iteration</h4>
+                        <p>Which uses more memory?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Recursion
+                            <p><strong>Explanation:</strong> Recursion uses call stack, consuming more memory.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Merge Sort Strategy</h4>
+                        <p>What strategy does merge sort use?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Divide and conquer
+                            <p><strong>Explanation:</strong> Divides problem into smaller parts, solves them, and combines results.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Factorial Base Case</h4>
+                        <p>What is the base case for factorial(n)?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> n = 0 or n = 1
+                            <p><strong>Explanation:</strong> factorial(0) = factorial(1) = 1</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Quick Sort Worst Case</h4>
+                        <p>When does quick sort have O(n²) complexity?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Already sorted array
+                            <p><strong>Explanation:</strong> Poor pivot choice leads to unbalanced partitions.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Merge Sort Stability</h4>
+                        <p>Is merge sort a stable sorting algorithm?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Yes
+                            <p><strong>Explanation:</strong> Merge sort maintains relative order of equal elements.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: Recursion Advantage</h4>
+                        <p>What is the main advantage of recursion?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Elegant code for complex problems
+                            <p><strong>Explanation:</strong> Recursion provides clean solutions for naturally recursive problems.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Recursion</strong> is a function calling itself</li>
+                        <li>Every recursion needs a <strong>base case</strong></li>
+                        <li>Recursion uses <strong>call stack</strong> memory</li>
+                        <li><strong>Merge sort</strong> uses divide-and-conquer - O(n log n)</li>
+                        <li><strong>Quick sort</strong> uses partitioning - O(n log n) average</li>
+                        <li>Merge sort is <strong>stable</strong>, quick sort is not</li>
+                        <li>Merge sort needs <strong>O(n) extra space</strong></li>
+                        <li>Quick sort is <strong>in-place</strong> sorting</li>
+                        <li>Both are much <strong>faster than bubble/selection sort</strong></li>
+                        <li>Choose algorithm based on <strong>data characteristics</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 12</h2>
+                <p style="color: white; font-size: 1.1rem;">Advanced matrix and graph problems:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://leetcode.com/problems/richest-customer-wealth/description/" target="_blank" style="color: #ffd700;">Richest Customer Wealth - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/difference-between-ones-and-zeros-in-row-and-column/description/" target="_blank" style="color: #ffd700;">Difference Between Ones and Zeros - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/description/" target="_blank" style="color: #ffd700;">Count Negative Numbers in Sorted Matrix - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/description/" target="_blank" style="color: #ffd700;">Find Winner on Tic Tac Toe Game - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/shift-2d-grid/description/" target="_blank" style="color: #ffd700;">Shift 2D Grid - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/description/" target="_blank" style="color: #ffd700;">Cells with Odd Values in Matrix - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/matrix-block-sum/description/" target="_blank" style="color: #ffd700;">Matrix Block Sum - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/special-positions-in-a-binary-matrix/description/" target="_blank" style="color: #ffd700;">Special Positions in Binary Matrix - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/spiral-matrix-iii/description/" target="_blank" style="color: #ffd700;">Spiral Matrix III - LeetCode</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

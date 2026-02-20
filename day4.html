@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Loops and Functions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 4 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Loops</a></li>
+                <li><a href="#for-loop">for Loop</a></li>
+                <li><a href="#while-loop">while Loop</a></li>
+                <li><a href="#loop-control">Loop Control</a></li>
+                <li><a href="#hour2">Hour 2: Functions</a></li>
+                <li><a href="#functions">Functions Basics</a></li>
+                <li><a href="#parameters">Parameters & Arguments</a></li>
+                <li><a href="#return">Return Values</a></li>
+                <li><a href="#scope">Variable Scope</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day3.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 3</a>
+                <a href="day5.html" class="nav-btn next">Day 5 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 4: Loops and Functions</h1>
+                <p class="day-subtitle">Master repetition and code reusability</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 4! Today we'll learn two powerful programming concepts: loops (for repeating tasks) and functions (for organizing and reusing code).</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>How to repeat tasks using for and while loops</li>
+                        <li>Controlling loop execution with break, continue, and pass</li>
+                        <li>Creating reusable code with functions</li>
+                        <li>Working with parameters and return values</li>
+                        <li>Understanding variable scope</li>
+                        <li>Writing modular, maintainable code</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Loops</h2>
+                
+                <div class="topic">
+                    <h3>Need for Repetition in Programs</h3>
+                    <p>Imagine you need to print "Hello" 100 times. Without loops, you'd write 100 print statements! Loops allow us to repeat tasks efficiently.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Examples of Repetition:</h4>
+                        <ul>
+                            <li><strong>ATM:</strong> Keep asking for PIN until correct (max 3 attempts)</li>
+                            <li><strong>Game:</strong> Keep playing until game over</li>
+                            <li><strong>Processing:</strong> Process each item in a shopping cart</li>
+                            <li><strong>Validation:</strong> Keep asking for valid input</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Concept of Iteration</h3>
+                    <p><strong>Iteration</strong> means repeating a set of instructions multiple times. Each repetition is called an <strong>iteration</strong>.</p>
+                    
+                    <div class="info-box">
+                        <p><strong>Two Types of Loops in Python:</strong></p>
+                        <ul>
+                            <li><strong>for loop:</strong> When you know how many times to repeat</li>
+                            <li><strong>while loop:</strong> When you repeat based on a condition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="for-loop" class="topic">
+                    <h3>for Loop and Its Working</h3>
+                    <p>The <code>for</code> loop iterates over a sequence (like a list, tuple, string, or range).</p>
+                    
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python">for variable in sequence:
+    # Code to execute in each iteration
+    statement1
+    statement2</code></pre>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Print Numbers 1 to 5</h4>
+                        <pre><code class="language-python"># Using range() function
+for i in range(1, 6):
+    print(i)</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>How it works:</strong></p>
+                            <ul>
+                                <li><code>range(1, 6)</code> generates numbers: 1, 2, 3, 4, 5</li>
+                                <li>In each iteration, <code>i</code> takes the next value</li>
+                                <li>Loop runs 5 times</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>1
+2
+3
+4
+5</pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Understanding range() Function:</h4>
+                        <ul>
+                            <li><code>range(5)</code> → 0, 1, 2, 3, 4 (starts from 0)</li>
+                            <li><code>range(1, 6)</code> → 1, 2, 3, 4, 5 (start, stop)</li>
+                            <li><code>range(0, 10, 2)</code> → 0, 2, 4, 6, 8 (start, stop, step)</li>
+                            <li><code>range(10, 0, -1)</code> → 10, 9, 8, ..., 1 (reverse)</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Print Even Numbers 1 to 10</h4>
+                        <pre><code class="language-python">print("Even numbers from 1 to 10:")
+for num in range(2, 11, 2):
+    print(num, end=" ")
+print()  # New line</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Even numbers from 1 to 10:
+2 4 6 8 10</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Iterate Over a String</h4>
+                        <pre><code class="language-python">name = "Python"
+print("Each character:")
+for char in name:
+    print(char)</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Each character:
+P
+y
+t
+h
+o
+n</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Iterate Over a List</h4>
+                        <pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date"]
+print("Fruits in the basket:")
+for fruit in fruits:
+    print(f"- {fruit}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Fruits in the basket:
+- apple
+- banana
+- cherry
+- date</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: Multiplication Table</h4>
+                        <pre><code class="language-python">number = int(input("Enter a number: "))
+print(f"\nMultiplication table of {number}:")
+print("-" * 30)
+
+for i in range(1, 11):
+    result = number * i
+    print(f"{number} × {i} = {result}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Sample Run:</strong>
+                            <pre>Enter a number: 5
+
+Multiplication table of 5:
+------------------------------
+5 × 1 = 5
+5 × 2 = 10
+5 × 3 = 15
+5 × 4 = 20
+5 × 5 = 25
+5 × 6 = 30
+5 × 7 = 35
+5 × 8 = 40
+5 × 9 = 45
+5 × 10 = 50</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: Sum of Numbers</h4>
+                        <pre><code class="language-python">total = 0
+n = int(input("Enter n: "))
+
+for i in range(1, n + 1):
+    total += i
+
+print(f"Sum of numbers from 1 to {n} = {total}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Sample Run:</strong>
+                            <pre>Enter n: 10
+Sum of numbers from 1 to 10 = 55</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: Factorial Calculator</h4>
+                        <pre><code class="language-python">num = int(input("Enter a number: "))
+factorial = 1
+
+for i in range(1, num + 1):
+    factorial *= i
+
+print(f"Factorial of {num} = {factorial}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Sample Run:</strong>
+                            <pre>Enter a number: 5
+Factorial of 5 = 120</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="while-loop" class="topic">
+                    <h3>while Loop and Its Working</h3>
+                    <p>The <code>while</code> loop repeats as long as a condition is True. It's used when you don't know in advance how many times to loop.</p>
+                    
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python">while condition:
+    # Code to execute
+    statement1
+    statement2</code></pre>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Important: Avoid Infinite Loops!</h4>
+                        <p>Make sure the condition eventually becomes False, otherwise the loop runs forever!</p>
+                        <pre><code class="language-python"># Infinite loop (BAD!)
+while True:
+    print("This will run forever!")
+
+# Correct approach
+count = 0
+while count < 5:
+    print(count)
+    count += 1  # This makes loop end eventually</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Count from 1 to 5</h4>
+                        <pre><code class="language-python">count = 1
+while count <= 5:
+    print(count)
+    count += 1
+print("Loop ended")</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>How it works:</strong></p>
+                            <ul>
+                                <li>Initially: count = 1, condition (1 <= 5) is True → execute</li>
+                                <li>After iteration 1: count = 2, condition (2 <= 5) is True → execute</li>
+                                <li>...</li>
+                                <li>After iteration 5: count = 6, condition (6 <= 5) is False → stop</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>1
+2
+3
+4
+5
+Loop ended</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Password Validator</h4>
+                        <pre><code class="language-python">correct_password = "python123"
+attempts = 0
+max_attempts = 3
+
+while attempts < max_attempts:
+    password = input("Enter password: ")
+    
+    if password == correct_password:
+        print("✓ Access granted!")
+        break  # Exit loop
+    else:
+        attempts += 1
+        remaining = max_attempts - attempts
+        if remaining > 0:
+            print(f"✗ Wrong password. {remaining} attempts remaining")
+        else:
+            print("✗ Account locked! Too many failed attempts")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Sum Until User Enters 0</h4>
+                        <pre><code class="language-python">total = 0
+print("Enter numbers to add (0 to stop):")
+
+while True:
+    num = float(input("Enter number: "))
+    
+    if num == 0:
+        break
+    
+    total += num
+    print(f"Current total: {total}")
+
+print(f"\nFinal sum: {total}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Guess the Number Game</h4>
+                        <pre><code class="language-python">import random
+
+secret_number = random.randint(1, 100)
+attempts = 0
+
+print("I'm thinking of a number between 1 and 100")
+print("Can you guess it?")
+
+while True:
+    guess = int(input("\nYour guess: "))
+    attempts += 1
+    
+    if guess < secret_number:
+        print("Too low! Try again")
+    elif guess > secret_number:
+        print("Too high! Try again")
+    else:
+        print(f"🎉 Correct! You guessed it in {attempts} attempts")
+        break</code></pre>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Difference Between for and while Loops</h3>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>for Loop</th>
+                                <th>while Loop</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Used when number of iterations is known</td>
+                                <td>Used when number of iterations is unknown</td>
+                            </tr>
+                            <tr>
+                                <td>Iterates over a sequence</td>
+                                <td>Repeats based on condition</td>
+                            </tr>
+                            <tr>
+                                <td>Automatically updates loop variable</td>
+                                <td>Must manually update condition variable</td>
+                            </tr>
+                            <tr>
+                                <td>Example: Print 1 to 10</td>
+                                <td>Example: Keep asking until valid input</td>
+                            </tr>
+                            <tr>
+                                <td><code>for i in range(10):</code></td>
+                                <td><code>while condition:</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="loop-control" class="topic">
+                    <h3>Loop Control Statements</h3>
+                    <p>Python provides three statements to control loop execution: <code>break</code>, <code>continue</code>, and <code>pass</code>.</p>
+
+                    <div class="four-pillars">
+                        <div class="pillar">
+                            <h4>break Statement</h4>
+                            <p>Exits the loop immediately, regardless of the condition.</p>
+                            
+                            <div class="detailed-example">
+                                <h5>Example: Find First Even Number</h5>
+                                <pre><code class="language-python">numbers = [1, 3, 5, 8, 9, 10, 11]
+
+for num in numbers:
+    if num % 2 == 0:
+        print(f"First even number: {num}")
+        break  # Stop searching
+    print(f"Checking {num}...")</code></pre>
+                                
+                                <div class="output-box">
+                                    <strong>Output:</strong>
+                                    <pre>Checking 1...
+Checking 3...
+Checking 5...
+First even number: 8</pre>
+                                </div>
+                            </div>
+
+                            <div class="detailed-example">
+                                <h5>Example: Search in List</h5>
+                                <pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date"]
+search = "cherry"
+found = False
+
+for fruit in fruits:
+    if fruit == search:
+        print(f"✓ Found {search}!")
+        found = True
+        break
+
+if not found:
+    print(f"✗ {search} not found")</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>continue Statement</h4>
+                            <p>Skips the rest of the current iteration and moves to the next one.</p>
+                            
+                            <div class="detailed-example">
+                                <h5>Example: Print Only Odd Numbers</h5>
+                                <pre><code class="language-python">for i in range(1, 11):
+    if i % 2 == 0:
+        continue  # Skip even numbers
+    print(i)</code></pre>
+                                
+                                <div class="output-box">
+                                    <strong>Output:</strong>
+                                    <pre>1
+3
+5
+7
+9</pre>
+                                </div>
+                            </div>
+
+                            <div class="detailed-example">
+                                <h5>Example: Skip Negative Numbers</h5>
+                                <pre><code class="language-python">numbers = [10, -5, 20, -3, 30, -8, 40]
+total = 0
+
+for num in numbers:
+    if num < 0:
+        print(f"Skipping {num}")
+        continue
+    total += num
+    print(f"Adding {num}, total: {total}")
+
+print(f"\nFinal sum: {total}")</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>pass Statement</h4>
+                            <p>Does nothing. Used as a placeholder when syntax requires a statement but you don't want to execute anything.</p>
+                            
+                            <div class="detailed-example">
+                                <h5>Example: Placeholder for Future Code</h5>
+                                <pre><code class="language-python">for i in range(5):
+    if i == 2:
+        pass  # TODO: Add special handling later
+    print(i)</code></pre>
+                                
+                                <div class="output-box">
+                                    <strong>Output:</strong>
+                                    <pre>0
+1
+2
+3
+4</pre>
+                                </div>
+                            </div>
+
+                            <div class="info-box">
+                                <p><strong>When to use pass:</strong></p>
+                                <ul>
+                                    <li>Creating empty functions/classes for later</li>
+                                    <li>Placeholder in if/else blocks</li>
+                                    <li>When syntax requires a statement</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example: Combining break and continue</h4>
+                        <pre><code class="language-python">print("Processing numbers:")
+for num in range(1, 21):
+    # Skip multiples of 3
+    if num % 3 == 0:
+        continue
+    
+    # Stop at 15
+    if num > 15:
+        print("Reached limit!")
+        break
+    
+    print(num, end=" ")
+print()</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Processing numbers:
+1 2 4 5 7 8 10 11 13 14 Reached limit!</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Functions</h2>
+                
+                <div id="functions" class="topic">
+                    <h3>What is a Function?</h3>
+                    <p>A <strong>function</strong> is a reusable block of code that performs a specific task. Think of it as a mini-program within your program.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Analogy:</h4>
+                        <p>A function is like a recipe:</p>
+                        <ul>
+                            <li><strong>Name:</strong> "Make Coffee"</li>
+                            <li><strong>Ingredients (Parameters):</strong> Coffee powder, water, sugar</li>
+                            <li><strong>Steps:</strong> Boil water, add coffee, add sugar, stir</li>
+                            <li><strong>Result (Return):</strong> A cup of coffee</li>
+                        </ul>
+                        <p>You can use this recipe (function) multiple times without rewriting the steps!</p>
+                    </div>
+
+                    <div class="key-points">
+                        <h4>Advantages of Functions:</h4>
+                        <ul>
+                            <li><strong>Reusability:</strong> Write once, use many times</li>
+                            <li><strong>Modularity:</strong> Break complex problems into smaller parts</li>
+                            <li><strong>Readability:</strong> Code is easier to understand</li>
+                            <li><strong>Maintainability:</strong> Easy to fix bugs and add features</li>
+                            <li><strong>Testing:</strong> Test each function independently</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Function Definition and Calling</h3>
+                    
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python"># Define a function
+def function_name(parameters):
+    """Docstring: Describes what function does"""
+    # Function body
+    statement1
+    statement2
+    return value  # Optional
+
+# Call the function
+function_name(arguments)</code></pre>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Simple Function (No Parameters)</h4>
+                        <pre><code class="language-python"># Define function
+def greet():
+    """Prints a greeting message"""
+    print("Hello, World!")
+    print("Welcome to Python!")
+
+# Call function
+greet()
+greet()  # Can call multiple times</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Hello, World!
+Welcome to Python!
+Hello, World!
+Welcome to Python!</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Function with One Parameter</h4>
+                        <pre><code class="language-python">def greet_person(name):
+    """Greets a person by name"""
+    print(f"Hello, {name}!")
+    print(f"Nice to meet you, {name}")
+
+# Call with different arguments
+greet_person("Alice")
+greet_person("Bob")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Hello, Alice!
+Nice to meet you, Alice
+Hello, Bob!
+Nice to meet you, Bob</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Function with Multiple Parameters</h4>
+                        <pre><code class="language-python">def add_numbers(a, b):
+    """Adds two numbers and prints result"""
+    result = a + b
+    print(f"{a} + {b} = {result}")
+
+add_numbers(5, 3)
+add_numbers(10, 20)</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>5 + 3 = 8
+10 + 20 = 30</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="parameters" class="topic">
+                    <h3>Parameters and Arguments</h3>
+                    <p><strong>Parameters</strong> are variables in function definition. <strong>Arguments</strong> are actual values passed when calling the function.</p>
+                    
+                    <div class="info-box">
+                        <h4>Types of Arguments:</h4>
+                        <ul>
+                            <li><strong>Positional Arguments:</strong> Order matters</li>
+                            <li><strong>Keyword Arguments:</strong> Specify parameter name</li>
+                            <li><strong>Default Arguments:</strong> Have default values</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Positional Arguments</h4>
+                        <pre><code class="language-python">def introduce(name, age, city):
+    """Introduces a person"""
+    print(f"Name: {name}")
+    print(f"Age: {age}")
+    print(f"City: {city}")
+    print()
+
+# Order matters!
+introduce("Alice", 25, "New York")
+introduce("Bob", 30, "London")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Name: Alice
+Age: 25
+City: New York
+
+Name: Bob
+Age: 30
+City: London</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Keyword Arguments</h4>
+                        <pre><code class="language-python">def book_ticket(name, destination, date):
+    """Books a ticket"""
+    print(f"Ticket booked for {name}")
+    print(f"Destination: {destination}")
+    print(f"Date: {date}")
+
+# Can specify in any order using keywords
+book_ticket(destination="Paris", name="Alice", date="2024-12-25")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Default Arguments</h4>
+                        <pre><code class="language-python">def power(base, exponent=2):
+    """Calculates base raised to exponent (default 2)"""
+    result = base ** exponent
+    return result
+
+# Using default exponent (2)
+print(f"5² = {power(5)}")
+
+# Providing custom exponent
+print(f"5³ = {power(5, 3)}")
+print(f"2⁵ = {power(2, 5)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>5² = 25
+5³ = 125
+2⁵ = 32</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Mix of Argument Types</h4>
+                        <pre><code class="language-python">def create_profile(name, age, city="Unknown", country="Unknown"):
+    """Creates a user profile"""
+    print("=" * 40)
+    print("USER PROFILE")
+    print("=" * 40)
+    print(f"Name: {name}")
+    print(f"Age: {age}")
+    print(f"City: {city}")
+    print(f"Country: {country}")
+    print("=" * 40)
+
+# Different ways to call
+create_profile("Alice", 25)
+create_profile("Bob", 30, "London")
+create_profile("Charlie", 35, city="Paris", country="France")</code></pre>
+                    </div>
+                </div>
+
+                <div id="return" class="topic">
+                    <h3>Return Values</h3>
+                    <p>Functions can return values using the <code>return</code> statement. This allows functions to produce results that can be used elsewhere.</p>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Function Returning a Value</h4>
+                        <pre><code class="language-python">def add(a, b):
+    """Returns sum of two numbers"""
+    return a + b
+
+# Store returned value
+result = add(5, 3)
+print(f"Result: {result}")
+
+# Use directly in expression
+total = add(10, 20) + add(5, 15)
+print(f"Total: {total}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Result: 8
+Total: 50</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Function with Multiple Return Statements</h4>
+                        <pre><code class="language-python">def check_grade(marks):
+    """Returns grade based on marks"""
+    if marks >= 90:
+        return "A+"
+    elif marks >= 80:
+        return "A"
+    elif marks >= 70:
+        return "B"
+    elif marks >= 60:
+        return "C"
+    elif marks >= 40:
+        return "D"
+    else:
+        return "F"
+
+# Use the function
+student_marks = 85
+grade = check_grade(student_marks)
+print(f"Marks: {student_marks}, Grade: {grade}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Marks: 85, Grade: A</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Returning Multiple Values</h4>
+                        <pre><code class="language-python">def calculate_rectangle(length, width):
+    """Returns area and perimeter of rectangle"""
+    area = length * width
+    perimeter = 2 * (length + width)
+    return area, perimeter  # Returns tuple
+
+# Unpack returned values
+rect_area, rect_perimeter = calculate_rectangle(5, 3)
+print(f"Area: {rect_area}")
+print(f"Perimeter: {rect_perimeter}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Area: 15
+Perimeter: 16</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Function Without Return (Returns None)</h4>
+                        <pre><code class="language-python">def print_message(msg):
+    """Prints message but doesn't return anything"""
+    print(msg)
+
+result = print_message("Hello")
+print(f"Returned value: {result}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Hello
+Returned value: None</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: Calculator Functions</h4>
+                        <pre><code class="language-python">def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "Error: Division by zero"
+
+# Use the functions
+x, y = 10, 5
+print(f"{x} + {y} = {add(x, y)}")
+print(f"{x} - {y} = {subtract(x, y)}")
+print(f"{x} × {y} = {multiply(x, y)}")
+print(f"{x} ÷ {y} = {divide(x, y)}")</code></pre>
+                    </div>
+                </div>
+
+                <div id="scope" class="topic">
+                    <h3>Local and Global Variables (Scope)</h3>
+                    <p><strong>Scope</strong> determines where a variable can be accessed. Python has two main scopes: local and global.</p>
+
+                    <div class="key-points">
+                        <h4>Variable Scope Rules:</h4>
+                        <ul>
+                            <li><strong>Local Variable:</strong> Created inside function, only accessible within that function</li>
+                            <li><strong>Global Variable:</strong> Created outside functions, accessible everywhere</li>
+                            <li>Local variables are destroyed when function ends</li>
+                            <li>Use <code>global</code> keyword to modify global variable inside function</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Local Variable</h4>
+                        <pre><code class="language-python">def my_function():
+    x = 10  # Local variable
+    print(f"Inside function: x = {x}")
+
+my_function()
+# print(x)  # Error! x doesn't exist outside function</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Inside function: x = 10</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Global Variable</h4>
+                        <pre><code class="language-python">x = 10  # Global variable
+
+def my_function():
+    print(f"Inside function: x = {x}")  # Can access global
+
+my_function()
+print(f"Outside function: x = {x}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Inside function: x = 10
+Outside function: x = 10</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Local vs Global with Same Name</h4>
+                        <pre><code class="language-python">x = 10  # Global
+
+def my_function():
+    x = 20  # Local (different from global)
+    print(f"Inside function: x = {x}")
+
+my_function()
+print(f"Outside function: x = {x}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Inside function: x = 20
+Outside function: x = 10</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Modifying Global Variable</h4>
+                        <pre><code class="language-python">count = 0  # Global
+
+def increment():
+    global count  # Declare we're using global variable
+    count += 1
+    print(f"Count: {count}")
+
+increment()
+increment()
+increment()
+print(f"Final count: {count}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Count: 1
+Count: 2
+Count: 3
+Final count: 3</pre>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Best Practice</h4>
+                        <p>Avoid using global variables when possible. Instead, pass values as parameters and return results:</p>
+                        <pre><code class="language-python"># Bad: Using global
+count = 0
+def increment():
+    global count
+    count += 1
+
+# Good: Using parameters and return
+def increment(count):
+    return count + 1
+
+count = 0
+count = increment(count)</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of loops and functions with these questions:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: Loop Output</h4>
+                        <p>What will be the output of this code?</p>
+                        <pre><code class="language-python">for i in range(3):
+    print(i * 2)</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> 0, 2, 4 (each on new line)
+                            <p><strong>Explanation:</strong> range(3) generates 0, 1, 2. Each is multiplied by 2.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: While Loop</h4>
+                        <p>How many times will this loop execute?</p>
+                        <pre><code class="language-python">x = 10
+while x > 5:
+    print(x)
+    x -= 2</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> 3 times (prints 10, 8, 6)
+                            <p><strong>Explanation:</strong> Loop runs while x > 5. Values: 10 → 8 → 6 → 4 (stops)</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: Break Statement</h4>
+                        <p>What does this code print?</p>
+                        <pre><code class="language-python">for i in range(1, 6):
+    if i == 3:
+        break
+    print(i)</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> 1, 2
+                            <p><strong>Explanation:</strong> Loop breaks when i equals 3, so only 1 and 2 are printed.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: Continue Statement</h4>
+                        <p>What will be the output?</p>
+                        <pre><code class="language-python">for i in range(5):
+    if i == 2:
+        continue
+    print(i)</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> 0, 1, 3, 4
+                            <p><strong>Explanation:</strong> continue skips printing when i is 2.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Function Return</h4>
+                        <p>What does this function return?</p>
+                        <pre><code class="language-python">def calculate(x, y):
+    return x * 2 + y
+
+result = calculate(5, 3)</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> 13
+                            <p><strong>Explanation:</strong> (5 * 2) + 3 = 10 + 3 = 13</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Default Parameters</h4>
+                        <p>What will be printed?</p>
+                        <pre><code class="language-python">def greet(name, msg="Hello"):
+    print(f"{msg}, {name}")
+
+greet("Alice")
+greet("Bob", "Hi")</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> "Hello, Alice" and "Hi, Bob"
+                            <p><strong>Explanation:</strong> First call uses default msg, second provides custom msg.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Variable Scope</h4>
+                        <p>What is the output?</p>
+                        <pre><code class="language-python">x = 10
+
+def test():
+    x = 20
+    print(x)
+
+test()
+print(x)</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> 20, then 10
+                            <p><strong>Explanation:</strong> Function has local x=20, global x remains 10.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Nested Loops</h4>
+                        <p>How many times will "Hello" be printed?</p>
+                        <pre><code class="language-python">for i in range(3):
+    for j in range(2):
+        print("Hello")</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> 6 times
+                            <p><strong>Explanation:</strong> Outer loop runs 3 times, inner loop runs 2 times each = 3 × 2 = 6</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Function with Multiple Returns</h4>
+                        <p>What does this return?</p>
+                        <pre><code class="language-python">def check_number(n):
+    if n > 0:
+        return "Positive"
+    elif n < 0:
+        return "Negative"
+    return "Zero"
+
+result = check_number(0)</code></pre>
+                        <div class="answer">
+                            <strong>Answer:</strong> "Zero"
+                            <p><strong>Explanation:</strong> 0 is neither > 0 nor < 0, so last return executes.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: Range Function</h4>
+                        <p>What numbers does range(2, 10, 3) generate?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> 2, 5, 8
+                            <p><strong>Explanation:</strong> Starts at 2, increments by 3, stops before 10: 2, 2+3=5, 5+3=8, 8+3=11 (exceeds 10, stops)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Use <strong>for loops</strong> when you know the number of iterations</li>
+                        <li>Use <strong>while loops</strong> when repeating based on a condition</li>
+                        <li><strong>break</strong> exits the loop, <strong>continue</strong> skips to next iteration</li>
+                        <li><strong>Functions</strong> make code reusable and organized</li>
+                        <li>Functions can have <strong>parameters</strong> and <strong>return values</strong></li>
+                        <li>Understand <strong>variable scope</strong> (local vs global)</li>
+                        <li>Use <strong>default parameters</strong> for optional arguments</li>
+                        <li>Always avoid infinite loops by ensuring conditions eventually become False</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 4</h2>
+                <p style="color: white; font-size: 1.1rem;">Practice loops and functions with these challenges:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/monks-problem-ffeebf8a/" target="_blank" style="color: #ffd700;">Monk's Problem - HackerEarth</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

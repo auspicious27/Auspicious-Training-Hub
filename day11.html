@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 11: Stacks and Queues</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 11 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Stacks</a></li>
+                <li><a href="#stack-basics">Stack Basics</a></li>
+                <li><a href="#stack-ops">Stack Operations</a></li>
+                <li><a href="#hour2">Hour 2: Queues</a></li>
+                <li><a href="#queue-basics">Queue Basics</a></li>
+                <li><a href="#queue-ops">Queue Operations</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day10.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 10</a>
+                <a href="day12.html" class="nav-btn next">Day 12 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 11: Stacks and Queues</h1>
+                <p class="day-subtitle">Master LIFO and FIFO data structures</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 11! Today we'll learn about stacks (LIFO) and queues (FIFO) - two fundamental data structures used in many applications.</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>Stack structure and LIFO principle</li>
+                        <li>Stack operations: push, pop, peek</li>
+                        <li>Stack applications</li>
+                        <li>Queue structure and FIFO principle</li>
+                        <li>Queue operations: enqueue, dequeue</li>
+                        <li>Types of queues</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Stacks</h2>
+                
+                <div id="stack-basics" class="topic">
+                    <h3>What is a Stack?</h3>
+                    <p>A <strong>stack</strong> is a linear data structure that follows <strong>LIFO</strong> (Last In, First Out) principle. The last element added is the first one removed.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Examples:</h4>
+                        <ul>
+                            <li><strong>Stack of plates:</strong> Add/remove from top only</li>
+                            <li><strong>Browser history:</strong> Back button uses stack</li>
+                            <li><strong>Undo feature:</strong> Last action undone first</li>
+                            <li><strong>Function calls:</strong> Call stack in programming</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Stack Visualization:</h4>
+                        <pre>Stack (LIFO):
+    ┌───┐
+    │ 3 │ ← Top (last in, first out)
+    ├───┤
+    │ 2 │
+    ├───┤
+    │ 1 │
+    └───┘
+
+Operations:
+- Push: Add to top
+- Pop: Remove from top
+- Peek: View top element</pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Stack Operations:</h4>
+                        <ul>
+                            <li><strong>push(item):</strong> Add item to top - O(1)</li>
+                            <li><strong>pop():</strong> Remove and return top item - O(1)</li>
+                            <li><strong>peek():</strong> View top item without removing - O(1)</li>
+                            <li><strong>isEmpty():</strong> Check if stack is empty - O(1)</li>
+                            <li><strong>size():</strong> Get number of elements - O(1)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="stack-ops" class="topic">
+                    <h3>Stack Implementation</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 1: Stack Using List</h4>
+                        <pre><code class="language-python">class Stack:
+    """Stack implementation using Python list"""
+    def __init__(self):
+        self.items = []
+    
+    def is_empty(self):
+        """Check if stack is empty"""
+        return len(self.items) == 0
+    
+    def push(self, item):
+        """Add item to top of stack"""
+        self.items.append(item)
+        print(f"Pushed: {item}")
+    
+    def pop(self):
+        """Remove and return top item"""
+        if self.is_empty():
+            return "Stack is empty"
+        return self.items.pop()
+    
+    def peek(self):
+        """View top item without removing"""
+        if self.is_empty():
+            return "Stack is empty"
+        return self.items[-1]
+    
+    def size(self):
+        """Get stack size"""
+        return len(self.items)
+    
+    def display(self):
+        """Display stack contents"""
+        print(f"Stack: {self.items}")
+
+# Test
+stack = Stack()
+stack.push(10)
+stack.push(20)
+stack.push(30)
+stack.display()
+print(f"Top element: {stack.peek()}")
+print(f"Popped: {stack.pop()}")
+stack.display()</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Pushed: 10
+Pushed: 20
+Pushed: 30
+Stack: [10, 20, 30]
+Top element: 30
+Popped: 30
+Stack: [10, 20]</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Balanced Parentheses Checker</h4>
+                        <pre><code class="language-python">def is_balanced(expression):
+    """Check if parentheses are balanced using stack"""
+    stack = []
+    opening = "({["
+    closing = ")}]"
+    pairs = {"(": ")", "{": "}", "[": "]"}
+    
+    for char in expression:
+        if char in opening:
+            stack.append(char)
+        elif char in closing:
+            if not stack:
+                return False
+            if pairs[stack.pop()] != char:
+                return False
+    
+    return len(stack) == 0
+
+# Test
+expressions = [
+    "((()))",
+    "({[]})",
+    "(()",
+    "({[}])"
+]
+
+for expr in expressions:
+    result = "Balanced" if is_balanced(expr) else "Not Balanced"
+    print(f"{expr}: {result}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>((())): Balanced
+({[]}): Balanced
+((): Not Balanced
+({[}]): Not Balanced</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Reverse String Using Stack</h4>
+                        <pre><code class="language-python">def reverse_string(text):
+    """Reverse string using stack"""
+    stack = []
+    
+    # Push all characters
+    for char in text:
+        stack.append(char)
+    
+    # Pop all characters
+    reversed_text = ""
+    while stack:
+        reversed_text += stack.pop()
+    
+    return reversed_text
+
+# Test
+text = "PYTHON"
+print(f"Original: {text}")
+print(f"Reversed: {reverse_string(text)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: PYTHON
+Reversed: NOHTYP</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Undo Feature Simulation</h4>
+                        <pre><code class="language-python">class TextEditor:
+    """Simple text editor with undo feature"""
+    def __init__(self):
+        self.text = ""
+        self.history = []
+    
+    def write(self, text):
+        """Add text and save to history"""
+        self.history.append(self.text)
+        self.text += text
+        print(f"Current text: {self.text}")
+    
+    def undo(self):
+        """Undo last action"""
+        if self.history:
+            self.text = self.history.pop()
+            print(f"After undo: {self.text}")
+        else:
+            print("Nothing to undo")
+
+# Test
+editor = TextEditor()
+editor.write("Hello ")
+editor.write("World")
+editor.write("!")
+editor.undo()
+editor.undo()</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Stack Applications:</h4>
+                        <ul>
+                            <li><strong>Function calls:</strong> Call stack in programming</li>
+                            <li><strong>Expression evaluation:</strong> Infix to postfix conversion</li>
+                            <li><strong>Backtracking:</strong> Maze solving, game trees</li>
+                            <li><strong>Browser history:</strong> Back/forward navigation</li>
+                            <li><strong>Undo/Redo:</strong> Text editors, graphics software</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Queues</h2>
+                
+                <div id="queue-basics" class="topic">
+                    <h3>What is a Queue?</h3>
+                    <p>A <strong>queue</strong> is a linear data structure that follows <strong>FIFO</strong> (First In, First Out) principle. The first element added is the first one removed.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Examples:</h4>
+                        <ul>
+                            <li><strong>Line at ticket counter:</strong> First person served first</li>
+                            <li><strong>Print queue:</strong> Documents printed in order</li>
+                            <li><strong>Call center:</strong> Calls answered in order</li>
+                            <li><strong>Task scheduling:</strong> CPU scheduling</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Queue Visualization:</h4>
+                        <pre>Queue (FIFO):
+Front                    Rear
+  ↓                        ↓
+┌───┬───┬───┬───┐
+│ 1 │ 2 │ 3 │ 4 │
+└───┴───┴───┴───┘
+  ↑                        ↑
+Dequeue                 Enqueue
+(remove)                 (add)
+
+Operations:
+- Enqueue: Add to rear
+- Dequeue: Remove from front</pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Queue Operations:</h4>
+                        <ul>
+                            <li><strong>enqueue(item):</strong> Add item to rear - O(1)</li>
+                            <li><strong>dequeue():</strong> Remove and return front item - O(1)</li>
+                            <li><strong>front():</strong> View front item - O(1)</li>
+                            <li><strong>rear():</strong> View rear item - O(1)</li>
+                            <li><strong>isEmpty():</strong> Check if queue is empty - O(1)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="queue-ops" class="topic">
+                    <h3>Queue Implementation</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 5: Queue Using List</h4>
+                        <pre><code class="language-python">class Queue:
+    """Queue implementation using Python list"""
+    def __init__(self):
+        self.items = []
+    
+    def is_empty(self):
+        """Check if queue is empty"""
+        return len(self.items) == 0
+    
+    def enqueue(self, item):
+        """Add item to rear of queue"""
+        self.items.append(item)
+        print(f"Enqueued: {item}")
+    
+    def dequeue(self):
+        """Remove and return front item"""
+        if self.is_empty():
+            return "Queue is empty"
+        return self.items.pop(0)
+    
+    def front(self):
+        """View front item"""
+        if self.is_empty():
+            return "Queue is empty"
+        return self.items[0]
+    
+    def rear(self):
+        """View rear item"""
+        if self.is_empty():
+            return "Queue is empty"
+        return self.items[-1]
+    
+    def size(self):
+        """Get queue size"""
+        return len(self.items)
+    
+    def display(self):
+        """Display queue contents"""
+        print(f"Queue: {self.items}")
+
+# Test
+queue = Queue()
+queue.enqueue(10)
+queue.enqueue(20)
+queue.enqueue(30)
+queue.display()
+print(f"Front: {queue.front()}")
+print(f"Dequeued: {queue.dequeue()}")
+queue.display()</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Enqueued: 10
+Enqueued: 20
+Enqueued: 30
+Queue: [10, 20, 30]
+Front: 10
+Dequeued: 10
+Queue: [20, 30]</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: Print Queue Simulation</h4>
+                        <pre><code class="language-python">class PrintQueue:
+    """Simulate printer queue"""
+    def __init__(self):
+        self.queue = []
+    
+    def add_document(self, doc_name):
+        """Add document to print queue"""
+        self.queue.append(doc_name)
+        print(f"Added to queue: {doc_name}")
+    
+    def print_document(self):
+        """Print next document"""
+        if not self.queue:
+            print("No documents in queue")
+            return
+        doc = self.queue.pop(0)
+        print(f"Printing: {doc}")
+    
+    def show_queue(self):
+        """Show pending documents"""
+        if not self.queue:
+            print("Queue is empty")
+        else:
+            print(f"Pending: {self.queue}")
+
+# Test
+printer = PrintQueue()
+printer.add_document("Report.pdf")
+printer.add_document("Invoice.pdf")
+printer.add_document("Letter.pdf")
+printer.show_queue()
+printer.print_document()
+printer.print_document()
+printer.show_queue()</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: Circular Queue</h4>
+                        <pre><code class="language-python">class CircularQueue:
+    """Circular queue with fixed size"""
+    def __init__(self, size):
+        self.size = size
+        self.queue = [None] * size
+        self.front = self.rear = -1
+    
+    def is_full(self):
+        return (self.rear + 1) % self.size == self.front
+    
+    def is_empty(self):
+        return self.front == -1
+    
+    def enqueue(self, item):
+        if self.is_full():
+            print("Queue is full")
+            return
+        
+        if self.front == -1:
+            self.front = 0
+        
+        self.rear = (self.rear + 1) % self.size
+        self.queue[self.rear] = item
+        print(f"Enqueued: {item}")
+    
+    def dequeue(self):
+        if self.is_empty():
+            return "Queue is empty"
+        
+        item = self.queue[self.front]
+        
+        if self.front == self.rear:
+            self.front = self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.size
+        
+        return item
+
+# Test
+cq = CircularQueue(3)
+cq.enqueue(10)
+cq.enqueue(20)
+cq.enqueue(30)
+print(f"Dequeued: {cq.dequeue()}")
+cq.enqueue(40)</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Types of Queues:</h4>
+                        <ul>
+                            <li><strong>Simple Queue:</strong> Basic FIFO queue</li>
+                            <li><strong>Circular Queue:</strong> Last position connects to first</li>
+                            <li><strong>Priority Queue:</strong> Elements have priorities</li>
+                            <li><strong>Deque:</strong> Double-ended queue (insert/delete from both ends)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Queue Applications:</h4>
+                        <ul>
+                            <li><strong>CPU scheduling:</strong> Process scheduling</li>
+                            <li><strong>Disk scheduling:</strong> I/O request handling</li>
+                            <li><strong>Print spooling:</strong> Print job management</li>
+                            <li><strong>BFS:</strong> Breadth-first search in graphs</li>
+                            <li><strong>Call center:</strong> Customer service queues</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Stack vs Queue:</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Stack</th>
+                                    <th>Queue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Principle</td>
+                                    <td>LIFO</td>
+                                    <td>FIFO</td>
+                                </tr>
+                                <tr>
+                                    <td>Insert</td>
+                                    <td>Push (top)</td>
+                                    <td>Enqueue (rear)</td>
+                                </tr>
+                                <tr>
+                                    <td>Remove</td>
+                                    <td>Pop (top)</td>
+                                    <td>Dequeue (front)</td>
+                                </tr>
+                                <tr>
+                                    <td>Example</td>
+                                    <td>Undo feature</td>
+                                    <td>Print queue</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of stacks and queues:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: Stack Principle</h4>
+                        <p>What principle does a stack follow?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> LIFO (Last In, First Out)
+                            <p><strong>Explanation:</strong> Last element added is the first one removed.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: Queue Principle</h4>
+                        <p>What principle does a queue follow?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> FIFO (First In, First Out)
+                            <p><strong>Explanation:</strong> First element added is the first one removed.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: Stack Operation</h4>
+                        <p>What is the time complexity of push operation?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(1)
+                            <p><strong>Explanation:</strong> Adding to top of stack is constant time.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: Queue Operation</h4>
+                        <p>Where is an element added in a queue?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> At the rear
+                            <p><strong>Explanation:</strong> Enqueue operation adds elements at the rear.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Stack Application</h4>
+                        <p>Which feature uses stack?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Undo/Redo
+                            <p><strong>Explanation:</strong> Stack's LIFO property is perfect for undo operations.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Queue Application</h4>
+                        <p>Which uses queue data structure?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Print spooler
+                            <p><strong>Explanation:</strong> Print jobs are processed in FIFO order.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Stack Peek</h4>
+                        <p>What does peek() operation do?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Views top element without removing
+                            <p><strong>Explanation:</strong> Peek returns top element but doesn't remove it.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Circular Queue</h4>
+                        <p>What is the advantage of circular queue?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Better space utilization
+                            <p><strong>Explanation:</strong> Reuses empty spaces at the front.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Dequeue</h4>
+                        <p>What is removed in dequeue operation?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Front element
+                            <p><strong>Explanation:</strong> Dequeue removes and returns the front element.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: Stack vs Queue</h4>
+                        <p>Which is used for function calls?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Stack
+                            <p><strong>Explanation:</strong> Call stack uses LIFO - last called function returns first.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Stack</strong> follows LIFO (Last In, First Out)</li>
+                        <li><strong>Queue</strong> follows FIFO (First In, First Out)</li>
+                        <li>Stack operations: <strong>push, pop, peek</strong> - all O(1)</li>
+                        <li>Queue operations: <strong>enqueue, dequeue</strong> - all O(1)</li>
+                        <li>Stack used for: <strong>undo, function calls, backtracking</strong></li>
+                        <li>Queue used for: <strong>scheduling, print spooler, BFS</strong></li>
+                        <li><strong>Circular queue</strong> reuses space efficiently</li>
+                        <li><strong>Priority queue</strong> serves based on priority</li>
+                        <li>Both are <strong>linear data structures</strong></li>
+                        <li>Choose based on <strong>access pattern</strong> needed</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 11</h2>
+                <p style="color: white; font-size: 1.1rem;">Matrix problems for linked lists & trees:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://leetcode.com/problems/flipping-an-image/description/" target="_blank" style="color: #ffd700;">Flipping an Image - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/transpose-matrix/description/" target="_blank" style="color: #ffd700;">Transpose Matrix - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/reshape-the-matrix/description/" target="_blank" style="color: #ffd700;">Reshape the Matrix - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/toeplitz-matrix/description/" target="_blank" style="color: #ffd700;">Toeplitz Matrix - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/matrix-diagonal-sum/description/" target="_blank" style="color: #ffd700;">Matrix Diagonal Sum - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/lucky-numbers-in-a-matrix/description/" target="_blank" style="color: #ffd700;">Lucky Numbers in Matrix - LeetCode</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

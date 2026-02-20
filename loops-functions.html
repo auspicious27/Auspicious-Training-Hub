@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops and Functions in Python</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><i class="fas fa-code"></i><span>Tech Training Hub</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Topics</h3>
+            <ul class="topic-list">
+                <li><a href="#for-loop">for Loop</a></li>
+                <li><a href="#while-loop">while Loop</a></li>
+                <li><a href="#loop-control">Loop Control</a></li>
+                <li><a href="#functions">Functions</a></li>
+                <li><a href="#scope">Variable Scope</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="conditional-statements.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Conditionals</a>
+                <a href="data-structures.html" class="nav-btn next">Data Structures <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+        <main class="content">
+            <header class="day-header">
+                <h1>Loops and Functions in Python</h1>
+                <p class="day-subtitle">Master repetition and code reusability</p>
+            </header>
+            <section id="for-loop" class="content-section">
+                <h2>for Loop</h2>
+                <div class="topic">
+                    <h3>Introduction to for Loop</h3>
+                    <p>The for loop iterates over a sequence (list, tuple, string, or range).</p>
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python">for variable in sequence:
+    # code to execute</code></pre>
+                    <div class="detailed-example">
+                        <h4>Example 1: Print Numbers 1 to 5</h4>
+                        <pre><code class="language-python">for i in range(1, 6):
+    print(i)</code></pre>
+                        <div class="output-box"><strong>Output:</strong><pre>1
+2
+3
+4
+5</pre></div>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Example 2: Iterate Over String</h4>
+                        <pre><code class="language-python">name = "Python"
+for char in name:
+    print(char)</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Example 3: Sum of Numbers</h4>
+                        <pre><code class="language-python">total = 0
+for num in range(1, 11):
+    total += num
+print(f"Sum: {total}")</code></pre>
+                        <div class="output-box"><strong>Output:</strong><pre>Sum: 55</pre></div>
+                    </div>
+                </div>
+            </section>
+            <section id="while-loop" class="content-section">
+                <h2>while Loop</h2>
+                <div class="topic">
+                    <h3>Introduction to while Loop</h3>
+                    <p>The while loop executes as long as a condition is True.</p>
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python">while condition:
+    # code to execute</code></pre>
+                    <div class="detailed-example">
+                        <h4>Example 1: Count to 5</h4>
+                        <pre><code class="language-python">count = 1
+while count <= 5:
+    print(count)
+    count += 1</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Example 2: Password Validator</h4>
+                        <pre><code class="language-python">password = ""
+while password != "python123":
+    password = input("Enter password: ")
+print("Access granted!")</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section id="loop-control" class="content-section">
+                <h2>Loop Control Statements</h2>
+                <div class="topic">
+                    <h3>break, continue, pass</h3>
+                    <div class="detailed-example">
+                        <h4>break - Exit Loop</h4>
+                        <pre><code class="language-python">for i in range(1, 11):
+    if i == 5:
+        break
+    print(i)</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>continue - Skip Iteration</h4>
+                        <pre><code class="language-python">for i in range(1, 6):
+    if i == 3:
+        continue
+    print(i)</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>pass - Placeholder</h4>
+                        <pre><code class="language-python">for i in range(5):
+    if i == 2:
+        pass  # Do nothing
+    print(i)</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section id="functions" class="content-section">
+                <h2>Functions</h2>
+                <div class="topic">
+                    <h3>Defining and Calling Functions</h3>
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python">def function_name(parameters):
+    # code
+    return value</code></pre>
+                    <div class="detailed-example">
+                        <h4>Example 1: Simple Function</h4>
+                        <pre><code class="language-python">def greet():
+    print("Hello, World!")
+
+greet()  # Call function</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Example 2: Function with Parameters</h4>
+                        <pre><code class="language-python">def greet_person(name):
+    print(f"Hello, {name}!")
+
+greet_person("Alice")</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Example 3: Function with Return</h4>
+                        <pre><code class="language-python">def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print(result)  # 8</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Example 4: Default Parameters</h4>
+                        <pre><code class="language-python">def power(base, exponent=2):
+    return base ** exponent
+
+print(power(5))      # 25
+print(power(5, 3))   # 125</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section id="scope" class="content-section">
+                <h2>Variable Scope</h2>
+                <div class="topic">
+                    <h3>Local vs Global Variables</h3>
+                    <div class="detailed-example">
+                        <h4>Local Variable</h4>
+                        <pre><code class="language-python">def my_function():
+    x = 10  # Local variable
+    print(x)
+
+my_function()
+# print(x)  # Error: x not defined outside function</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Global Variable</h4>
+                        <pre><code class="language-python">x = 10  # Global variable
+
+def my_function():
+    print(x)  # Can access global
+
+my_function()
+print(x)</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Modifying Global Variable</h4>
+                        <pre><code class="language-python">count = 0
+
+def increment():
+    global count
+    count += 1
+
+increment()
+print(count)  # 1</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer><div class="container"><p>&copy; 2024 Tech Training Hub</p></div></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

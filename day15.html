@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 15: SQL and Transactions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 15 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: SQL Basics</a></li>
+                <li><a href="#sql-intro">SQL Introduction</a></li>
+                <li><a href="#sql-commands">SQL Commands</a></li>
+                <li><a href="#hour2">Hour 2: Advanced SQL & Transactions</a></li>
+                <li><a href="#advanced-sql">Advanced SQL</a></li>
+                <li><a href="#transactions">Transactions</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day14.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 14</a>
+                <a href="index.html" class="nav-btn next">Home <i class="fas fa-home"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 15: SQL and Transactions</h1>
+                <p class="day-subtitle">Master database querying and transaction management</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 15 - the final day! Today we'll learn SQL (Structured Query Language) for database operations and transactions for maintaining data consistency.</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>What is SQL and why it's important</li>
+                        <li>SQL command types (DDL, DML, DCL, TCL)</li>
+                        <li>Basic SQL queries (SELECT, INSERT, UPDATE, DELETE)</li>
+                        <li>Advanced SQL (JOIN, GROUP BY, HAVING)</li>
+                        <li>What are transactions</li>
+                        <li>ACID properties</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: SQL Core Concepts</h2>
+                
+                <div id="sql-intro" class="topic">
+                    <h3>What is SQL?</h3>
+                    <p><strong>SQL (Structured Query Language)</strong> is a standard language for managing and manipulating relational databases.</p>
+                    
+                    <div class="info-box">
+                        <h4>Why SQL is Important:</h4>
+                        <ul>
+                            <li>Universal database language</li>
+                            <li>Easy to learn and use</li>
+                            <li>Powerful data manipulation</li>
+                            <li>Industry standard</li>
+                            <li>Required for most tech jobs</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Types of SQL Commands:</h4>
+                        <ul>
+                            <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP, TRUNCATE</li>
+                            <li><strong>DML (Data Manipulation Language):</strong> SELECT, INSERT, UPDATE, DELETE</li>
+                            <li><strong>DCL (Data Control Language):</strong> GRANT, REVOKE</li>
+                            <li><strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK, SAVEPOINT</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="sql-commands" class="topic">
+                    <h3>Basic SQL Commands</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 1: SELECT Statement</h4>
+                        <p>Retrieve data from database.</p>
+                        <pre><code class="language-sql">-- Select all columns
+SELECT * FROM Students;
+
+-- Select specific columns
+SELECT Name, Age FROM Students;
+
+-- Select with condition
+SELECT * FROM Students WHERE Age > 20;
+
+-- Select with multiple conditions
+SELECT * FROM Students 
+WHERE Age > 20 AND City = 'New York';
+
+-- Select with pattern matching
+SELECT * FROM Students 
+WHERE Name LIKE 'J%';  -- Names starting with J</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: INSERT Statement</h4>
+                        <p>Add new records to table.</p>
+                        <pre><code class="language-sql">-- Insert single record
+INSERT INTO Students (Student_ID, Name, Age, City)
+VALUES (101, 'John', 20, 'New York');
+
+-- Insert multiple records
+INSERT INTO Students (Student_ID, Name, Age, City)
+VALUES 
+    (102, 'Alice', 21, 'London'),
+    (103, 'Bob', 22, 'Paris'),
+    (104, 'Charlie', 23, 'Tokyo');</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: UPDATE Statement</h4>
+                        <p>Modify existing records.</p>
+                        <pre><code class="language-sql">-- Update single column
+UPDATE Students
+SET Age = 21
+WHERE Student_ID = 101;
+
+-- Update multiple columns
+UPDATE Students
+SET Age = 22, City = 'Boston'
+WHERE Student_ID = 102;
+
+-- Update with condition
+UPDATE Students
+SET Age = Age + 1
+WHERE City = 'New York';</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: DELETE Statement</h4>
+                        <p>Remove records from table.</p>
+                        <pre><code class="language-sql">-- Delete specific record
+DELETE FROM Students
+WHERE Student_ID = 101;
+
+-- Delete with condition
+DELETE FROM Students
+WHERE Age < 18;
+
+-- Delete all records (use carefully!)
+DELETE FROM Students;</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: WHERE Clause</h4>
+                        <p>Filter records based on conditions.</p>
+                        <pre><code class="language-sql">-- Comparison operators
+SELECT * FROM Students WHERE Age = 20;
+SELECT * FROM Students WHERE Age > 20;
+SELECT * FROM Students WHERE Age >= 20;
+SELECT * FROM Students WHERE Age < 25;
+SELECT * FROM Students WHERE Age != 20;
+
+-- Logical operators
+SELECT * FROM Students 
+WHERE Age > 20 AND City = 'New York';
+
+SELECT * FROM Students 
+WHERE City = 'London' OR City = 'Paris';
+
+SELECT * FROM Students 
+WHERE NOT City = 'Tokyo';
+
+-- IN operator
+SELECT * FROM Students 
+WHERE City IN ('New York', 'London', 'Paris');
+
+-- BETWEEN operator
+SELECT * FROM Students 
+WHERE Age BETWEEN 20 AND 25;</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: ORDER BY Clause</h4>
+                        <p>Sort results.</p>
+                        <pre><code class="language-sql">-- Sort ascending (default)
+SELECT * FROM Students
+ORDER BY Age;
+
+-- Sort descending
+SELECT * FROM Students
+ORDER BY Age DESC;
+
+-- Sort by multiple columns
+SELECT * FROM Students
+ORDER BY City, Age DESC;
+
+-- Sort with LIMIT
+SELECT * FROM Students
+ORDER BY Age DESC
+LIMIT 5;  -- Top 5 oldest students</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: Aggregate Functions</h4>
+                        <p>Perform calculations on data.</p>
+                        <pre><code class="language-sql">-- COUNT: Number of records
+SELECT COUNT(*) FROM Students;
+SELECT COUNT(*) FROM Students WHERE Age > 20;
+
+-- SUM: Total of numeric column
+SELECT SUM(Marks) FROM Grades;
+
+-- AVG: Average value
+SELECT AVG(Age) FROM Students;
+
+-- MIN and MAX
+SELECT MIN(Age) FROM Students;
+SELECT MAX(Age) FROM Students;
+
+-- Multiple aggregates
+SELECT 
+    COUNT(*) as Total_Students,
+    AVG(Age) as Average_Age,
+    MIN(Age) as Youngest,
+    MAX(Age) as Oldest
+FROM Students;</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: GROUP BY Clause</h4>
+                        <p>Group rows with same values.</p>
+                        <pre><code class="language-sql">-- Count students by city
+SELECT City, COUNT(*) as Student_Count
+FROM Students
+GROUP BY City;
+
+-- Average age by city
+SELECT City, AVG(Age) as Average_Age
+FROM Students
+GROUP BY City;
+
+-- Multiple grouping
+SELECT City, Gender, COUNT(*) as Count
+FROM Students
+GROUP BY City, Gender;</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: HAVING Clause</h4>
+                        <p>Filter grouped results.</p>
+                        <pre><code class="language-sql">-- Cities with more than 5 students
+SELECT City, COUNT(*) as Student_Count
+FROM Students
+GROUP BY City
+HAVING COUNT(*) > 5;
+
+-- Average age > 21
+SELECT City, AVG(Age) as Avg_Age
+FROM Students
+GROUP BY City
+HAVING AVG(Age) > 21;
+
+-- Difference: WHERE vs HAVING
+-- WHERE filters before grouping
+-- HAVING filters after grouping</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Advanced SQL & Transactions</h2>
+                
+                <div id="advanced-sql" class="topic">
+                    <h3>JOIN Operations</h3>
+                    <p><strong>JOIN</strong> combines rows from two or more tables based on related columns.</p>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 10: INNER JOIN</h4>
+                        <p>Returns matching records from both tables.</p>
+                        <pre><code class="language-sql">-- Join Students and Enrollments
+SELECT 
+    Students.Name,
+    Courses.Course_Name,
+    Enrollments.Grade
+FROM Students
+INNER JOIN Enrollments 
+    ON Students.Student_ID = Enrollments.Student_ID
+INNER JOIN Courses 
+    ON Enrollments.Course_ID = Courses.Course_ID;
+
+-- Using table aliases
+SELECT 
+    s.Name,
+    c.Course_Name,
+    e.Grade
+FROM Students s
+INNER JOIN Enrollments e ON s.Student_ID = e.Student_ID
+INNER JOIN Courses c ON e.Course_ID = c.Course_ID;</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 11: LEFT JOIN</h4>
+                        <p>Returns all records from left table, matching from right.</p>
+                        <pre><code class="language-sql">-- All students, even without enrollments
+SELECT 
+    s.Name,
+    c.Course_Name
+FROM Students s
+LEFT JOIN Enrollments e ON s.Student_ID = e.Student_ID
+LEFT JOIN Courses c ON e.Course_ID = c.Course_ID;
+
+-- Students not enrolled in any course
+SELECT s.Name
+FROM Students s
+LEFT JOIN Enrollments e ON s.Student_ID = e.Student_ID
+WHERE e.Student_ID IS NULL;</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 12: Subqueries</h4>
+                        <p>Query within another query.</p>
+                        <pre><code class="language-sql">-- Students older than average age
+SELECT Name, Age
+FROM Students
+WHERE Age > (SELECT AVG(Age) FROM Students);
+
+-- Students enrolled in DSA
+SELECT Name
+FROM Students
+WHERE Student_ID IN (
+    SELECT Student_ID
+    FROM Enrollments
+    WHERE Course_ID = 'CS101'
+);
+
+-- Correlated subquery
+SELECT Name, Age
+FROM Students s1
+WHERE Age > (
+    SELECT AVG(Age)
+    FROM Students s2
+    WHERE s2.City = s1.City
+);</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>JOIN Types Summary:</h4>
+                        <ul>
+                            <li><strong>INNER JOIN:</strong> Only matching records</li>
+                            <li><strong>LEFT JOIN:</strong> All from left + matching from right</li>
+                            <li><strong>RIGHT JOIN:</strong> All from right + matching from left</li>
+                            <li><strong>FULL JOIN:</strong> All records from both tables</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="transactions" class="topic">
+                    <h3>Transactions</h3>
+                    <p>A <strong>transaction</strong> is a sequence of operations performed as a single logical unit of work.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Example: Bank Transfer</h4>
+                        <pre>Transaction: Transfer $100 from Account A to Account B
+
+Step 1: Deduct $100 from Account A
+Step 2: Add $100 to Account B
+
+Both steps must succeed or both must fail!
+If Step 1 succeeds but Step 2 fails:
+- Money disappears (data inconsistency)
+- Transaction ensures: All or Nothing</pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 13: Transaction Commands</h4>
+                        <pre><code class="language-sql">-- Start transaction
+BEGIN TRANSACTION;
+
+-- Perform operations
+UPDATE Accounts 
+SET Balance = Balance - 100 
+WHERE Account_ID = 'A001';
+
+UPDATE Accounts 
+SET Balance = Balance + 100 
+WHERE Account_ID = 'A002';
+
+-- If all successful, commit
+COMMIT;
+
+-- If error occurs, rollback
+ROLLBACK;</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 14: Transaction with Error Handling</h4>
+                        <pre><code class="language-sql">BEGIN TRANSACTION;
+
+-- Check if sufficient balance
+IF (SELECT Balance FROM Accounts WHERE Account_ID = 'A001') >= 100
+BEGIN
+    -- Deduct from sender
+    UPDATE Accounts 
+    SET Balance = Balance - 100 
+    WHERE Account_ID = 'A001';
+    
+    -- Add to receiver
+    UPDATE Accounts 
+    SET Balance = Balance + 100 
+    WHERE Account_ID = 'A002';
+    
+    -- Success - commit
+    COMMIT;
+    PRINT 'Transfer successful';
+END
+ELSE
+BEGIN
+    -- Insufficient balance - rollback
+    ROLLBACK;
+    PRINT 'Insufficient balance';
+END</code></pre>
+                    </div>
+
+                    <div class="topic">
+                        <h3>ACID Properties</h3>
+                        <p>Transactions must follow <strong>ACID</strong> properties to ensure data integrity.</p>
+                        
+                        <div class="four-pillars">
+                            <div class="pillar">
+                                <h4>Atomicity</h4>
+                                <p>All or nothing. Transaction either completes fully or not at all.</p>
+                                <div class="example-box">
+                                    <pre>Transfer money:
+✓ Both debit and credit
+✗ Only debit (rolled back)</pre>
+                                </div>
+                            </div>
+
+                            <div class="pillar">
+                                <h4>Consistency</h4>
+                                <p>Database remains in valid state before and after transaction.</p>
+                                <div class="example-box">
+                                    <pre>Total money before = 
+Total money after
+
+Constraints maintained</pre>
+                                </div>
+                            </div>
+
+                            <div class="pillar">
+                                <h4>Isolation</h4>
+                                <p>Concurrent transactions don't interfere with each other.</p>
+                                <div class="example-box">
+                                    <pre>Two transfers happen:
+Each sees consistent data
+No interference</pre>
+                                </div>
+                            </div>
+
+                            <div class="pillar">
+                                <h4>Durability</h4>
+                                <p>Once committed, changes are permanent even if system crashes.</p>
+                                <div class="example-box">
+                                    <pre>After COMMIT:
+Data saved permanently
+Survives power failure</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Transaction Importance:</h4>
+                        <ul>
+                            <li><strong>Data Integrity:</strong> Maintains consistency</li>
+                            <li><strong>Error Recovery:</strong> Can undo changes</li>
+                            <li><strong>Concurrent Access:</strong> Multiple users safely</li>
+                            <li><strong>Business Logic:</strong> Ensures rules followed</li>
+                            <li><strong>Reliability:</strong> Guarantees data safety</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>Real-World Transaction Examples:</h4>
+                        <ul>
+                            <li><strong>Banking:</strong> Money transfers, withdrawals</li>
+                            <li><strong>E-commerce:</strong> Order placement, payment</li>
+                            <li><strong>Booking:</strong> Flight/hotel reservations</li>
+                            <li><strong>Inventory:</strong> Stock updates</li>
+                            <li><strong>Healthcare:</strong> Patient record updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of SQL and transactions:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: SQL Purpose</h4>
+                        <p>What is SQL used for?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Managing and querying databases
+                            <p><strong>Explanation:</strong> SQL is the standard language for relational database operations.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: SELECT Statement</h4>
+                        <p>Which SQL command retrieves data?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> SELECT
+                            <p><strong>Explanation:</strong> SELECT is used to query and retrieve data from tables.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: WHERE Clause</h4>
+                        <p>What does WHERE clause do?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Filters records based on conditions
+                            <p><strong>Explanation:</strong> WHERE specifies which records to include in results.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: JOIN Purpose</h4>
+                        <p>What does JOIN do?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Combines data from multiple tables
+                            <p><strong>Explanation:</strong> JOIN merges rows from two or more tables based on related columns.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: GROUP BY</h4>
+                        <p>What is GROUP BY used for?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Grouping rows with same values
+                            <p><strong>Explanation:</strong> GROUP BY is used with aggregate functions to group results.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Transaction Definition</h4>
+                        <p>What is a transaction?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Sequence of operations as single unit
+                            <p><strong>Explanation:</strong> Transaction ensures all operations succeed or all fail together.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: COMMIT</h4>
+                        <p>What does COMMIT do?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Saves transaction changes permanently
+                            <p><strong>Explanation:</strong> COMMIT makes all transaction changes permanent in database.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: ROLLBACK</h4>
+                        <p>What does ROLLBACK do?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Undoes transaction changes
+                            <p><strong>Explanation:</strong> ROLLBACK reverts all changes made in current transaction.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: ACID - Atomicity</h4>
+                        <p>What does Atomicity mean?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> All or nothing
+                            <p><strong>Explanation:</strong> Transaction either completes fully or not at all.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: ACID - Durability</h4>
+                        <p>What does Durability ensure?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Changes persist after commit
+                            <p><strong>Explanation:</strong> Once committed, data survives system failures.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>SQL</strong> is the standard database query language</li>
+                        <li><strong>SELECT</strong> retrieves data, <strong>INSERT</strong> adds data</li>
+                        <li><strong>UPDATE</strong> modifies data, <strong>DELETE</strong> removes data</li>
+                        <li><strong>WHERE</strong> filters records, <strong>ORDER BY</strong> sorts results</li>
+                        <li><strong>Aggregate functions:</strong> COUNT, SUM, AVG, MIN, MAX</li>
+                        <li><strong>GROUP BY</strong> groups data, <strong>HAVING</strong> filters groups</li>
+                        <li><strong>JOIN</strong> combines tables (INNER, LEFT, RIGHT, FULL)</li>
+                        <li><strong>Transactions</strong> ensure data consistency</li>
+                        <li><strong>COMMIT</strong> saves changes, <strong>ROLLBACK</strong> undoes them</li>
+                        <li><strong>ACID properties:</strong> Atomicity, Consistency, Isolation, Durability</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="margin-top: 2rem; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
+                    <h3 style="color: white; margin-top: 0;">🎉 Congratulations!</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">You've completed all 15 days of the Python, DSA & DBMS Training Program!</p>
+                    <p style="font-size: 1rem; line-height: 1.6;">You've learned:</p>
+                    <ul style="font-size: 1rem; line-height: 1.8;">
+                        <li>✅ Python fundamentals and advanced concepts</li>
+                        <li>✅ Data structures (arrays, linked lists, stacks, queues)</li>
+                        <li>✅ Algorithms (searching, sorting, recursion)</li>
+                        <li>✅ Database design and management</li>
+                        <li>✅ SQL for data manipulation</li>
+                    </ul>
+                    <p style="font-size: 1.1rem; margin-top: 1.5rem; font-weight: 500;">Keep practicing and building projects to master these skills!</p>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 15</h2>
+                <p style="color: white; font-size: 1.1rem;">OOP and database design problems:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.codechef.com/problems/CHOLY" target="_blank" style="color: #ffd700;">Chef and Olympiad - CodeChef</a></li>
+                    <li><a href="https://www.codechef.com/problems/CHOLY1" target="_blank" style="color: #ffd700;">Chef and Olympiad 1 - CodeChef</a></li>
+                    <li><a href="https://www.codechef.com/problems/CHOLY2" target="_blank" style="color: #ffd700;">Chef and Olympiad 2 - CodeChef</a></li>
+                    <li><a href="https://www.codechef.com/problems/CHOLY3" target="_blank" style="color: #ffd700;">Chef and Olympiad 3 - CodeChef</a></li>
+                    <li><a href="https://www.codechef.com/problems/CHOLY4" target="_blank" style="color: #ffd700;">Chef and Olympiad 4 - CodeChef</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

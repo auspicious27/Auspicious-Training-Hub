@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Data Structures</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><i class="fas fa-code"></i><span>Tech Training Hub</span></div>
+            <ul class="nav-links"><li><a href="index.html">Home</a></li></ul>
+        </div>
+    </nav>
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Topics</h3>
+            <ul class="topic-list">
+                <li><a href="#strings">Strings</a></li>
+                <li><a href="#lists">Lists</a></li>
+                <li><a href="#tuples">Tuples</a></li>
+                <li><a href="#dictionaries">Dictionaries</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="loops-functions.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Loops</a>
+                <a href="file-handling.html" class="nav-btn next">File Handling <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+        <main class="content">
+            <header class="day-header">
+                <h1>Python Data Structures</h1>
+                <p class="day-subtitle">Strings, Lists, Tuples, and Dictionaries</p>
+            </header>
+            <section id="strings" class="content-section">
+                <h2>Strings</h2>
+                <div class="topic">
+                    <h3>String Operations</h3>
+                    <div class="detailed-example">
+                        <h4>Indexing and Slicing</h4>
+                        <pre><code class="language-python">text = "Python"
+print(text[0])      # P
+print(text[-1])     # n
+print(text[0:3])    # Pyt
+print(text[::2])    # Pto</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>String Methods</h4>
+                        <pre><code class="language-python">text = "hello world"
+print(text.upper())        # HELLO WORLD
+print(text.capitalize())   # Hello world
+print(text.title())        # Hello World
+print(text.replace("world", "Python"))  # hello Python
+print(text.split())        # ['hello', 'world']</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section id="lists" class="content-section">
+                <h2>Lists</h2>
+                <div class="topic">
+                    <h3>List Operations</h3>
+                    <div class="detailed-example">
+                        <h4>Creating and Accessing Lists</h4>
+                        <pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+print(fruits[0])    # apple
+print(fruits[-1])   # cherry
+fruits[1] = "mango"
+print(fruits)       # ['apple', 'mango', 'cherry']</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>List Methods</h4>
+                        <pre><code class="language-python">numbers = [1, 2, 3]
+numbers.append(4)       # [1, 2, 3, 4]
+numbers.insert(0, 0)    # [0, 1, 2, 3, 4]
+numbers.remove(2)       # [0, 1, 3, 4]
+numbers.pop()           # [0, 1, 3]
+numbers.sort()          # [0, 1, 3]
+numbers.reverse()       # [3, 1, 0]</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section id="tuples" class="content-section">
+                <h2>Tuples</h2>
+                <div class="topic">
+                    <h3>Immutable Sequences</h3>
+                    <div class="detailed-example">
+                        <h4>Creating Tuples</h4>
+                        <pre><code class="language-python">coordinates = (10, 20)
+print(coordinates[0])  # 10
+# coordinates[0] = 15  # Error: tuples are immutable
+
+# Tuple unpacking
+x, y = coordinates
+print(x, y)  # 10 20</code></pre>
+                    </div>
+                </div>
+            </section>
+            <section id="dictionaries" class="content-section">
+                <h2>Dictionaries</h2>
+                <div class="topic">
+                    <h3>Key-Value Pairs</h3>
+                    <div class="detailed-example">
+                        <h4>Creating and Accessing Dictionaries</h4>
+                        <pre><code class="language-python">student = {
+    "name": "Alice",
+    "age": 20,
+    "grade": "A"
+}
+print(student["name"])     # Alice
+print(student.get("age"))  # 20
+student["age"] = 21        # Update
+student["city"] = "NYC"    # Add new key</code></pre>
+                    </div>
+                    <div class="detailed-example">
+                        <h4>Dictionary Methods</h4>
+                        <pre><code class="language-python">print(student.keys())      # dict_keys(['name', 'age', 'grade', 'city'])
+print(student.values())    # dict_values(['Alice', 21, 'A', 'NYC'])
+print(student.items())     # dict_items([...])
+
+for key, value in student.items():
+    print(f"{key}: {value}")</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer><div class="container"><p>&copy; 2024 Tech Training Hub</p></div></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

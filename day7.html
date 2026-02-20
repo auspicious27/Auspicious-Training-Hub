@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7: Python for Placements</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 7 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Problem Solving</a></li>
+                <li><a href="#interview-prep">Interview Preparation</a></li>
+                <li><a href="#problem-patterns">Problem Patterns</a></li>
+                <li><a href="#hour2">Hour 2: Best Practices</a></li>
+                <li><a href="#code-quality">Code Quality</a></li>
+                <li><a href="#optimization">Optimization Tips</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day6.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 6</a>
+                <a href="day8.html" class="nav-btn next">Day 8 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 7: Python for Placements</h1>
+                <p class="day-subtitle">Master interview skills and problem-solving techniques</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 7! Today we focus on using Python for technical interviews and placements. You'll learn common problem patterns, optimization techniques, and best practices.</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>Python in technical interviews</li>
+                        <li>Common problem-solving patterns</li>
+                        <li>String and list manipulation problems</li>
+                        <li>Code optimization techniques</li>
+                        <li>Writing clean, readable code</li>
+                        <li>Interview best practices</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Python in Problem Solving</h2>
+                
+                <div id="interview-prep" class="topic">
+                    <h3>Role of Python in Technical Interviews</h3>
+                    <p>Python is popular in interviews because of its simple syntax and powerful built-in functions. Companies like Google, Amazon, and Microsoft accept Python for coding interviews.</p>
+                    
+                    <div class="example-box">
+                        <h4>Why Python for Interviews?</h4>
+                        <ul>
+                            <li><strong>Readable syntax:</strong> Focus on logic, not syntax</li>
+                            <li><strong>Built-in functions:</strong> Solve problems faster</li>
+                            <li><strong>Dynamic typing:</strong> Less boilerplate code</li>
+                            <li><strong>Rich libraries:</strong> Many data structures available</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Types of Problems Asked:</h4>
+                        <ul>
+                            <li>String manipulation</li>
+                            <li>Array/List operations</li>
+                            <li>Dictionary problems</li>
+                            <li>Mathematical problems</li>
+                            <li>Pattern matching</li>
+                            <li>Sorting and searching</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="problem-patterns" class="topic">
+                    <h3>Common Problem Patterns</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Problem 1: Reverse a String</h4>
+                        <pre><code class="language-python"># Multiple approaches
+
+# Method 1: Slicing (Best)
+def reverse_string_v1(s):
+    return s[::-1]
+
+# Method 2: Loop
+def reverse_string_v2(s):
+    result = ""
+    for char in s:
+        result = char + result
+    return result
+
+# Method 3: Using reversed()
+def reverse_string_v3(s):
+    return ''.join(reversed(s))
+
+# Test
+text = "Python"
+print(f"Original: {text}")
+print(f"Reversed: {reverse_string_v1(text)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: Python
+Reversed: nohtyP</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 2: Check Palindrome</h4>
+                        <pre><code class="language-python">def is_palindrome(s):
+    """Check if string is palindrome"""
+    # Remove spaces and convert to lowercase
+    s = s.replace(" ", "").lower()
+    return s == s[::-1]
+
+# Test cases
+test_cases = ["racecar", "hello", "A man a plan a canal Panama", "python"]
+
+for test in test_cases:
+    result = "Yes" if is_palindrome(test) else "No"
+    print(f"'{test}' is palindrome: {result}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>'racecar' is palindrome: Yes
+'hello' is palindrome: No
+'A man a plan a canal Panama' is palindrome: Yes
+'python' is palindrome: No</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 3: Find Largest Element in List</h4>
+                        <pre><code class="language-python">def find_largest(numbers):
+    """Find largest element in list"""
+    if not numbers:
+        return None
+    
+    # Method 1: Using max()
+    return max(numbers)
+
+def find_largest_manual(numbers):
+    """Find largest without built-in function"""
+    if not numbers:
+        return None
+    
+    largest = numbers[0]
+    for num in numbers:
+        if num > largest:
+            largest = num
+    return largest
+
+# Test
+numbers = [45, 23, 67, 12, 89, 34]
+print(f"Numbers: {numbers}")
+print(f"Largest: {find_largest(numbers)}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 4: Count Vowels in String</h4>
+                        <pre><code class="language-python">def count_vowels(s):
+    """Count number of vowels in string"""
+    vowels = "aeiouAEIOU"
+    count = 0
+    for char in s:
+        if char in vowels:
+            count += 1
+    return count
+
+# Alternative: Using list comprehension
+def count_vowels_v2(s):
+    vowels = "aeiouAEIOU"
+    return sum(1 for char in s if char in vowels)
+
+# Test
+text = "Python Programming"
+print(f"Text: {text}")
+print(f"Vowels: {count_vowels(text)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Text: Python Programming
+Vowels: 4</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 5: Remove Duplicates from List</h4>
+                        <pre><code class="language-python">def remove_duplicates(numbers):
+    """Remove duplicates while preserving order"""
+    seen = set()
+    result = []
+    for num in numbers:
+        if num not in seen:
+            seen.add(num)
+            result.append(num)
+    return result
+
+# Alternative: Using dict (Python 3.7+)
+def remove_duplicates_v2(numbers):
+    return list(dict.fromkeys(numbers))
+
+# Test
+numbers = [1, 2, 3, 2, 4, 1, 5, 3]
+print(f"Original: {numbers}")
+print(f"Without duplicates: {remove_duplicates(numbers)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: [1, 2, 3, 2, 4, 1, 5, 3]
+Without duplicates: [1, 2, 3, 4, 5]</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 6: Find Second Largest Number</h4>
+                        <pre><code class="language-python">def second_largest(numbers):
+    """Find second largest number in list"""
+    if len(numbers) < 2:
+        return None
+    
+    # Remove duplicates and sort
+    unique_numbers = list(set(numbers))
+    unique_numbers.sort(reverse=True)
+    
+    return unique_numbers[1] if len(unique_numbers) >= 2 else None
+
+# Test
+numbers = [45, 23, 67, 12, 89, 34, 89]
+print(f"Numbers: {numbers}")
+print(f"Second largest: {second_largest(numbers)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Numbers: [45, 23, 67, 12, 89, 34, 89]
+Second largest: 67</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 7: Anagram Check</h4>
+                        <pre><code class="language-python">def are_anagrams(str1, str2):
+    """Check if two strings are anagrams"""
+    # Remove spaces and convert to lowercase
+    str1 = str1.replace(" ", "").lower()
+    str2 = str2.replace(" ", "").lower()
+    
+    # Method 1: Sort and compare
+    return sorted(str1) == sorted(str2)
+
+# Alternative: Using Counter
+from collections import Counter
+
+def are_anagrams_v2(str1, str2):
+    str1 = str1.replace(" ", "").lower()
+    str2 = str2.replace(" ", "").lower()
+    return Counter(str1) == Counter(str2)
+
+# Test
+pairs = [
+    ("listen", "silent"),
+    ("hello", "world"),
+    ("evil", "vile")
+]
+
+for str1, str2 in pairs:
+    result = "Yes" if are_anagrams(str1, str2) else "No"
+    print(f"'{str1}' and '{str2}' are anagrams: {result}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 8: Fibonacci Series</h4>
+                        <pre><code class="language-python">def fibonacci(n):
+    """Generate first n Fibonacci numbers"""
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    
+    fib = [0, 1]
+    for i in range(2, n):
+        fib.append(fib[i-1] + fib[i-2])
+    return fib
+
+# Test
+n = 10
+print(f"First {n} Fibonacci numbers:")
+print(fibonacci(n))</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>First 10 Fibonacci numbers:
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 9: Prime Number Check</h4>
+                        <pre><code class="language-python">def is_prime(n):
+    """Check if number is prime"""
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    
+    # Check odd divisors up to sqrt(n)
+    for i in range(3, int(n**0.5) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+# Find primes in range
+def find_primes(start, end):
+    """Find all primes in range"""
+    return [num for num in range(start, end + 1) if is_prime(num)]
+
+# Test
+print(f"Primes from 1 to 50:")
+print(find_primes(1, 50))</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Problem 10: Two Sum Problem</h4>
+                        <pre><code class="language-python">def two_sum(numbers, target):
+    """Find two numbers that add up to target"""
+    seen = {}
+    for i, num in enumerate(numbers):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return None
+
+# Test
+numbers = [2, 7, 11, 15]
+target = 9
+result = two_sum(numbers, target)
+if result:
+    print(f"Numbers: {numbers}")
+    print(f"Target: {target}")
+    print(f"Indices: {result}")
+    print(f"Values: {numbers[result[0]]} + {numbers[result[1]]} = {target}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Numbers: [2, 7, 11, 15]
+Target: 9
+Indices: [0, 1]
+Values: 2 + 7 = 9</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Best Practices</h2>
+                
+                <div id="code-quality" class="topic">
+                    <h3>Writing Clean and Readable Code</h3>
+                    
+                    <div class="info-box">
+                        <h4>Code Quality Principles:</h4>
+                        <ul>
+                            <li><strong>Meaningful names:</strong> Use descriptive variable/function names</li>
+                            <li><strong>Comments:</strong> Explain why, not what</li>
+                            <li><strong>Consistency:</strong> Follow naming conventions</li>
+                            <li><strong>Simplicity:</strong> Keep functions small and focused</li>
+                            <li><strong>DRY:</strong> Don't Repeat Yourself</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example: Good vs Bad Code</h4>
+                        <pre><code class="language-python"># BAD: Poor naming and no structure
+def f(l):
+    s = 0
+    for i in l:
+        s += i
+    return s / len(l)
+
+# GOOD: Clear naming and documentation
+def calculate_average(numbers):
+    """Calculate average of numbers in list"""
+    if not numbers:
+        return 0
+    total = sum(numbers)
+    return total / len(numbers)
+
+# Test
+scores = [85, 90, 78, 92, 88]
+avg = calculate_average(scores)
+print(f"Average score: {avg:.2f}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Naming Conventions</h4>
+                        <pre><code class="language-python"># Variables and functions: snake_case
+student_name = "Alice"
+total_marks = 450
+
+def calculate_percentage(marks, total):
+    return (marks / total) * 100
+
+# Constants: UPPER_CASE
+MAX_ATTEMPTS = 3
+DEFAULT_TIMEOUT = 30
+
+# Classes: PascalCase
+class StudentRecord:
+    def __init__(self, name, roll_number):
+        self.name = name
+        self.roll_number = roll_number</code></pre>
+                    </div>
+                </div>
+
+                <div id="optimization" class="topic">
+                    <h3>Code Optimization Tips</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Tip 1: Use Built-in Functions</h4>
+                        <pre><code class="language-python"># Slow: Manual loop
+def sum_list_slow(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+# Fast: Built-in function
+def sum_list_fast(numbers):
+    return sum(numbers)
+
+# Built-in functions are optimized in C</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Tip 2: List Comprehension vs Loops</h4>
+                        <pre><code class="language-python"># Slower: Traditional loop
+squares = []
+for i in range(10):
+    squares.append(i ** 2)
+
+# Faster: List comprehension
+squares = [i ** 2 for i in range(10)]
+
+print(f"Squares: {squares}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Tip 3: Use Sets for Membership Testing</h4>
+                        <pre><code class="language-python"># Slow: List lookup O(n)
+numbers_list = list(range(1000))
+if 500 in numbers_list:  # Checks each element
+    print("Found")
+
+# Fast: Set lookup O(1)
+numbers_set = set(range(1000))
+if 500 in numbers_set:  # Direct hash lookup
+    print("Found")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Tip 4: Avoid Repeated Calculations</h4>
+                        <pre><code class="language-python"># Bad: Repeated calculation
+def process_data(data):
+    for item in data:
+        if len(data) > 100:  # len() called every iteration!
+            print(item)
+
+# Good: Calculate once
+def process_data_optimized(data):
+    data_length = len(data)  # Calculate once
+    for item in data:
+        if data_length > 100:
+            print(item)</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Interview Tips:</h4>
+                        <ul>
+                            <li><strong>Think aloud:</strong> Explain your approach</li>
+                            <li><strong>Ask questions:</strong> Clarify requirements</li>
+                            <li><strong>Start simple:</strong> Get working solution first</li>
+                            <li><strong>Test your code:</strong> Use example inputs</li>
+                            <li><strong>Discuss complexity:</strong> Mention time/space complexity</li>
+                            <li><strong>Optimize:</strong> Improve solution if time permits</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your problem-solving and best practices knowledge:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: String Reversal</h4>
+                        <p>What is the fastest way to reverse a string in Python?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> s[::-1]
+                            <p><strong>Explanation:</strong> Slicing with step -1 is the most Pythonic and efficient way.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: Palindrome</h4>
+                        <p>Is "racecar" a palindrome?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Yes
+                            <p><strong>Explanation:</strong> It reads the same forwards and backwards.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: Time Complexity</h4>
+                        <p>What is better for membership testing: list or set?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Set
+                            <p><strong>Explanation:</strong> Set lookup is O(1), list lookup is O(n).</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: List Comprehension</h4>
+                        <p>Is list comprehension faster than traditional loops?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Yes
+                            <p><strong>Explanation:</strong> List comprehensions are optimized and generally faster.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Naming Convention</h4>
+                        <p>What naming style is used for Python functions?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> snake_case
+                            <p><strong>Explanation:</strong> Python uses snake_case for functions and variables.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Built-in Functions</h4>
+                        <p>Why use built-in functions like sum() instead of manual loops?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> They are faster and optimized
+                            <p><strong>Explanation:</strong> Built-in functions are implemented in C and highly optimized.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Anagrams</h4>
+                        <p>Are "listen" and "silent" anagrams?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Yes
+                            <p><strong>Explanation:</strong> They contain the same letters in different order.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Prime Number</h4>
+                        <p>Is 1 a prime number?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> No
+                            <p><strong>Explanation:</strong> Prime numbers are greater than 1 and divisible only by 1 and themselves.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Code Quality</h4>
+                        <p>What does DRY principle mean?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Don't Repeat Yourself
+                            <p><strong>Explanation:</strong> Avoid code duplication by using functions and reusable components.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: Interview Tip</h4>
+                        <p>Should you optimize code before getting a working solution?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> No
+                            <p><strong>Explanation:</strong> First get a working solution, then optimize if time permits.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Python is excellent for <strong>technical interviews</strong></li>
+                        <li>Master common <strong>problem patterns</strong>: strings, lists, dictionaries</li>
+                        <li>Use <strong>built-in functions</strong> for better performance</li>
+                        <li>Write <strong>clean, readable code</strong> with meaningful names</li>
+                        <li>Follow Python <strong>naming conventions</strong></li>
+                        <li>Use <strong>list comprehensions</strong> for concise code</li>
+                        <li>Choose right <strong>data structures</strong> (set vs list)</li>
+                        <li>Always <strong>test your code</strong> with examples</li>
+                        <li>Think aloud and <strong>explain your approach</strong> in interviews</li>
+                        <li>Start simple, then <strong>optimize</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 7</h2>
+                <p style="color: white; font-size: 1.1rem;">Advanced array problems for placements:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.geeksforgeeks.org/problems/find-the-smallest-and-second-smallest-element-in-an-array3226/1" target="_blank" style="color: #ffd700;">Smallest and Second Smallest - GeeksforGeeks</a></li>
+                    <li><a href="https://codeforces.com/problemset/problem/1711/A" target="_blank" style="color: #ffd700;">Problem 1711A - Codeforces</a></li>
+                    <li><a href="https://www.codechef.com/problems/MAXCOUNT" target="_blank" style="color: #ffd700;">Max Count - CodeChef</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1" target="_blank" style="color: #ffd700;">Leaders in Array - GeeksforGeeks</a></li>
+                    <li><a href="https://leetcode.com/problems/count-elements-with-maximum-frequency/description/" target="_blank" style="color: #ffd700;">Count Elements with Max Frequency - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/minimum-number-game/description/" target="_blank" style="color: #ffd700;">Minimum Number Game - LeetCode (Good)</a></li>
+                    <li><a href="https://www.hackerearth.com/practice/data-structures/arrays/1-d/practice-problems/algorithm/make-it-non-decreasing-7d3391fd/" target="_blank" style="color: #ffd700;">Make it Non-Decreasing - HackerEarth (Good)</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8: DSA Fundamentals</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 8 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Algorithms</a></li>
+                <li><a href="#algorithms">Algorithm Basics</a></li>
+                <li><a href="#hour2">Hour 2: Complexity</a></li>
+                <li><a href="#time-complexity">Time Complexity</a></li>
+                <li><a href="#big-o">Big-O Notation</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day7.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 7</a>
+                <a href="day9.html" class="nav-btn next">Day 9 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 8: DSA Fundamentals - Algorithms & Complexity</h1>
+                <p class="day-subtitle">Understanding algorithms and performance analysis</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 8! Today we begin Data Structures and Algorithms (DSA). We'll learn what algorithms are, how to analyze them, and understand time/space complexity.</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>What is an algorithm</li>
+                        <li>Characteristics of good algorithms</li>
+                        <li>Algorithm representation</li>
+                        <li>Time and space complexity</li>
+                        <li>Big-O notation</li>
+                        <li>Common complexity classes</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Algorithmic Thinking</h2>
+                
+                <div id="algorithms" class="topic">
+                    <h3>What is an Algorithm?</h3>
+                    <p>An <strong>algorithm</strong> is a step-by-step procedure to solve a problem. It's like a recipe that tells the computer exactly what to do.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Example: Making Tea</h4>
+                        <ol>
+                            <li>Boil water</li>
+                            <li>Add tea leaves</li>
+                            <li>Add sugar</li>
+                            <li>Stir well</li>
+                            <li>Strain and serve</li>
+                        </ol>
+                        <p>This is an algorithm! Clear steps that anyone can follow.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Characteristics of a Good Algorithm:</h4>
+                        <ul>
+                            <li><strong>Input:</strong> Takes zero or more inputs</li>
+                            <li><strong>Output:</strong> Produces at least one output</li>
+                            <li><strong>Definiteness:</strong> Each step is clear and unambiguous</li>
+                            <li><strong>Finiteness:</strong> Must terminate after finite steps</li>
+                            <li><strong>Effectiveness:</strong> Steps must be basic enough to execute</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Algorithm to Find Maximum</h4>
+                        <pre><code class="language-python"># Algorithm in plain English:
+# 1. Start with first number as maximum
+# 2. Compare each remaining number with maximum
+# 3. If number is greater, update maximum
+# 4. Return maximum
+
+def find_maximum(numbers):
+    """Find maximum number in list"""
+    if not numbers:
+        return None
+    
+    max_num = numbers[0]  # Step 1
+    
+    for num in numbers[1:]:  # Step 2
+        if num > max_num:  # Step 3
+            max_num = num
+    
+    return max_num  # Step 4
+
+# Test
+numbers = [45, 23, 67, 12, 89, 34]
+print(f"Numbers: {numbers}")
+print(f"Maximum: {find_maximum(numbers)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Numbers: [45, 23, 67, 12, 89, 34]
+Maximum: 89</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Algorithm to Check Even/Odd</h4>
+                        <pre><code class="language-python"># Algorithm:
+# 1. Take a number as input
+# 2. Divide number by 2
+# 3. If remainder is 0, it's even
+# 4. Otherwise, it's odd
+
+def check_even_odd(number):
+    """Check if number is even or odd"""
+    if number % 2 == 0:
+        return "Even"
+    else:
+        return "Odd"
+
+# Test
+for num in [10, 15, 22, 37]:
+    result = check_even_odd(num)
+    print(f"{num} is {result}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Algorithm Representation - Pseudocode</h4>
+                        <pre><code class="language-python"># Pseudocode for Sum of N numbers
+"""
+Algorithm: SumOfN
+Input: n (positive integer)
+Output: sum of numbers from 1 to n
+
+BEGIN
+    sum = 0
+    FOR i = 1 TO n DO
+        sum = sum + i
+    END FOR
+    RETURN sum
+END
+"""
+
+# Python implementation
+def sum_of_n(n):
+    """Calculate sum of numbers from 1 to n"""
+    total = 0
+    for i in range(1, n + 1):
+        total += i
+    return total
+
+# Test
+n = 10
+print(f"Sum of 1 to {n} = {sum_of_n(n)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Sum of 1 to 10 = 55</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Why Algorithms Matter</h4>
+                        <pre><code class="language-python"># Problem: Find if number exists in list
+
+# Approach 1: Linear Search (Simple)
+def linear_search(numbers, target):
+    for i, num in enumerate(numbers):
+        if num == target:
+            return i
+    return -1
+
+# Approach 2: Binary Search (Efficient - requires sorted list)
+def binary_search(numbers, target):
+    left, right = 0, len(numbers) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        if numbers[mid] == target:
+            return mid
+        elif numbers[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+# Test
+numbers = [2, 5, 8, 12, 16, 23, 38, 45, 56, 67, 78]
+target = 23
+
+print(f"Linear search: Found at index {linear_search(numbers, target)}")
+print(f"Binary search: Found at index {binary_search(numbers, target)}")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Time & Space Complexity</h2>
+                
+                <div id="time-complexity" class="topic">
+                    <h3>What is Time Complexity?</h3>
+                    <p><strong>Time complexity</strong> measures how the runtime of an algorithm grows as the input size increases. It helps us compare algorithms.</p>
+                    
+                    <div class="example-box">
+                        <h4>Why It Matters:</h4>
+                        <p>Imagine searching for a name in a phone book:</p>
+                        <ul>
+                            <li><strong>Method 1:</strong> Check every page from start (slow for large books)</li>
+                            <li><strong>Method 2:</strong> Use alphabetical order to jump to section (fast)</li>
+                        </ul>
+                        <p>Time complexity helps us choose Method 2!</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Space Complexity:</h4>
+                        <p><strong>Space complexity</strong> measures how much memory an algorithm uses. Important when memory is limited.</p>
+                    </div>
+                </div>
+
+                <div id="big-o" class="topic">
+                    <h3>Big-O Notation</h3>
+                    <p><strong>Big-O</strong> describes the upper bound of time/space complexity. It shows worst-case scenario.</p>
+                    
+                    <div class="detailed-example">
+                        <h4>Common Complexity Classes (Best to Worst):</h4>
+                        <pre><code class="language-python"># O(1) - Constant Time
+def get_first_element(arr):
+    """Always takes same time, regardless of array size"""
+    return arr[0] if arr else None
+
+# O(log n) - Logarithmic Time
+def binary_search_example(arr, target):
+    """Divides problem in half each time"""
+    # Implementation shown earlier
+    pass
+
+# O(n) - Linear Time
+def find_element(arr, target):
+    """Time grows linearly with input size"""
+    for element in arr:
+        if element == target:
+            return True
+    return False
+
+# O(n log n) - Linearithmic Time
+def merge_sort_example(arr):
+    """Efficient sorting algorithms"""
+    # Merge sort, Quick sort
+    pass
+
+# O(n²) - Quadratic Time
+def bubble_sort_example(arr):
+    """Nested loops - slow for large inputs"""
+    n = len(arr)
+    for i in range(n):
+        for j in range(n - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+# O(2^n) - Exponential Time
+def fibonacci_recursive(n):
+    """Very slow - avoid for large n"""
+    if n <= 1:
+        return n
+    return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Complexity Comparison (n = 1000):</h4>
+                        <ul>
+                            <li><strong>O(1):</strong> 1 operation</li>
+                            <li><strong>O(log n):</strong> ~10 operations</li>
+                            <li><strong>O(n):</strong> 1,000 operations</li>
+                            <li><strong>O(n log n):</strong> ~10,000 operations</li>
+                            <li><strong>O(n²):</strong> 1,000,000 operations</li>
+                            <li><strong>O(2^n):</strong> 10^301 operations (impossible!)</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: O(1) - Constant Time</h4>
+                        <pre><code class="language-python">def access_element(arr, index):
+    """Accessing array element is O(1)"""
+    return arr[index]
+
+def add_to_dict(dictionary, key, value):
+    """Dictionary operations are O(1)"""
+    dictionary[key] = value
+
+# These operations take same time regardless of size
+arr = [1, 2, 3, 4, 5]
+print(f"Element at index 2: {access_element(arr, 2)}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: O(n) - Linear Time</h4>
+                        <pre><code class="language-python">def sum_array(arr):
+    """Must visit each element once - O(n)"""
+    total = 0
+    for num in arr:
+        total += num
+    return total
+
+def print_all(arr):
+    """Printing all elements - O(n)"""
+    for element in arr:
+        print(element)
+
+# Time grows linearly with input size
+numbers = [1, 2, 3, 4, 5]
+print(f"Sum: {sum_array(numbers)}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: O(n²) - Quadratic Time</h4>
+                        <pre><code class="language-python">def print_pairs(arr):
+    """Nested loops - O(n²)"""
+    for i in arr:
+        for j in arr:
+            print(f"({i}, {j})")
+
+def bubble_sort(arr):
+    """Bubble sort - O(n²)"""
+    n = len(arr)
+    for i in range(n):
+        for j in range(n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+# Test
+numbers = [64, 34, 25, 12, 22]
+print(f"Original: {numbers}")
+print(f"Sorted: {bubble_sort(numbers.copy())}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: Comparing Algorithms</h4>
+                        <pre><code class="language-python">import time
+
+# Slow: O(n²)
+def find_duplicates_slow(arr):
+    duplicates = []
+    for i in range(len(arr)):
+        for j in range(i + 1, len(arr)):
+            if arr[i] == arr[j] and arr[i] not in duplicates:
+                duplicates.append(arr[i])
+    return duplicates
+
+# Fast: O(n)
+def find_duplicates_fast(arr):
+    seen = set()
+    duplicates = set()
+    for num in arr:
+        if num in seen:
+            duplicates.add(num)
+        seen.add(num)
+    return list(duplicates)
+
+# Test
+numbers = [1, 2, 3, 2, 4, 5, 3, 6, 7, 8, 9, 1]
+print(f"Duplicates: {find_duplicates_fast(numbers)}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: Space Complexity</h4>
+                        <pre><code class="language-python"># O(1) Space - Constant
+def sum_iterative(n):
+    """Uses only one variable"""
+    total = 0
+    for i in range(1, n + 1):
+        total += i
+    return total
+
+# O(n) Space - Linear
+def sum_recursive(n):
+    """Each call uses stack space"""
+    if n == 0:
+        return 0
+    return n + sum_recursive(n - 1)
+
+# O(n) Space - Creating new list
+def create_squares(n):
+    """Stores n elements"""
+    return [i ** 2 for i in range(n)]
+
+# Test
+print(f"Sum (iterative): {sum_iterative(10)}")
+print(f"Squares: {create_squares(5)}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 10: Best, Average, Worst Case</h4>
+                        <pre><code class="language-python">def linear_search_analysis(arr, target):
+    """
+    Best case: O(1) - target is first element
+    Average case: O(n/2) = O(n) - target in middle
+    Worst case: O(n) - target is last or not present
+    """
+    for i, element in enumerate(arr):
+        if element == target:
+            return i
+    return -1
+
+# Test different cases
+numbers = [10, 20, 30, 40, 50]
+
+# Best case
+print(f"Best case (first): {linear_search_analysis(numbers, 10)}")
+
+# Average case
+print(f"Average case (middle): {linear_search_analysis(numbers, 30)}")
+
+# Worst case
+print(f"Worst case (last): {linear_search_analysis(numbers, 50)}")
+print(f"Worst case (not found): {linear_search_analysis(numbers, 100)}")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of algorithms and complexity:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: Algorithm Definition</h4>
+                        <p>What is an algorithm?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Step-by-step procedure to solve a problem
+                            <p><strong>Explanation:</strong> An algorithm is a finite sequence of well-defined instructions.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: Algorithm Characteristic</h4>
+                        <p>Must an algorithm terminate?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Yes
+                            <p><strong>Explanation:</strong> Finiteness is a key characteristic - algorithms must end after finite steps.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: Time Complexity</h4>
+                        <p>What does O(1) mean?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Constant time
+                            <p><strong>Explanation:</strong> Operation takes same time regardless of input size.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: Complexity Comparison</h4>
+                        <p>Which is faster: O(n) or O(n²)?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(n)
+                            <p><strong>Explanation:</strong> Linear time is much faster than quadratic for large inputs.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Space Complexity</h4>
+                        <p>What does space complexity measure?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Memory usage
+                            <p><strong>Explanation:</strong> Space complexity measures how much memory an algorithm uses.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Big-O</h4>
+                        <p>What does Big-O notation represent?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Upper bound/worst case
+                            <p><strong>Explanation:</strong> Big-O describes the worst-case time complexity.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Linear Search</h4>
+                        <p>What is the time complexity of linear search?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(n)
+                            <p><strong>Explanation:</strong> May need to check every element in worst case.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Nested Loops</h4>
+                        <p>What is the complexity of two nested loops?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(n²)
+                            <p><strong>Explanation:</strong> Each loop runs n times, so n × n = n².</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Best Algorithm</h4>
+                        <p>Which complexity is most efficient?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(1)
+                            <p><strong>Explanation:</strong> Constant time is the fastest possible complexity.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: Algorithm Importance</h4>
+                        <p>Why study algorithms?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> To write efficient programs
+                            <p><strong>Explanation:</strong> Good algorithms make programs faster and use less resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Algorithm</strong> is a step-by-step procedure to solve problems</li>
+                        <li>Good algorithms are <strong>definite, finite, and effective</strong></li>
+                        <li><strong>Time complexity</strong> measures how runtime grows with input</li>
+                        <li><strong>Space complexity</strong> measures memory usage</li>
+                        <li><strong>Big-O notation</strong> describes worst-case complexity</li>
+                        <li>Common complexities: <strong>O(1), O(log n), O(n), O(n log n), O(n²)</strong></li>
+                        <li><strong>O(1)</strong> is fastest, <strong>O(2^n)</strong> is slowest</li>
+                        <li>Choose algorithms based on <strong>input size</strong> and requirements</li>
+                        <li>Analyze <strong>best, average, and worst</strong> cases</li>
+                        <li>Efficient algorithms are crucial for <strong>scalable applications</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 8</h2>
+                <p style="color: white; font-size: 1.1rem;">Advanced array problems for DSA fundamentals:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.geeksforgeeks.org/problems/find-the-smallest-and-second-smallest-element-in-an-array3226/1" target="_blank" style="color: #ffd700;">Smallest and Second Smallest - GeeksforGeeks</a></li>
+                    <li><a href="https://codeforces.com/problemset/problem/1711/A" target="_blank" style="color: #ffd700;">Problem 1711A - Codeforces</a></li>
+                    <li><a href="https://www.codechef.com/problems/MAXCOUNT" target="_blank" style="color: #ffd700;">Max Count - CodeChef</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1" target="_blank" style="color: #ffd700;">Leaders in Array - GeeksforGeeks</a></li>
+                    <li><a href="https://leetcode.com/problems/count-elements-with-maximum-frequency/description/" target="_blank" style="color: #ffd700;">Count Elements with Max Frequency - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/minimum-number-game/description/" target="_blank" style="color: #ffd700;">Minimum Number Game - LeetCode (Good)</a></li>
+                    <li><a href="https://www.hackerearth.com/practice/data-structures/arrays/1-d/practice-problems/algorithm/make-it-non-decreasing-7d3391fd/" target="_blank" style="color: #ffd700;">Make it Non-Decreasing - HackerEarth (Good)</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

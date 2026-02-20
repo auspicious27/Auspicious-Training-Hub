@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 14: Relational Model and Normalization</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 14 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Relational Model</a></li>
+                <li><a href="#relational">Relational Basics</a></li>
+                <li><a href="#constraints">Integrity Constraints</a></li>
+                <li><a href="#hour2">Hour 2: Normalization</a></li>
+                <li><a href="#normalization">Normalization Basics</a></li>
+                <li><a href="#normal-forms">Normal Forms</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day13.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 13</a>
+                <a href="day15.html" class="nav-btn next">Day 15 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 14: Relational Model and Normalization</h1>
+                <p class="day-subtitle">Master database design and optimization</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 14! Today we'll learn about the relational model (how data is organized in tables) and normalization (how to design efficient databases).</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>Relational model concepts</li>
+                        <li>Tables, rows, and columns</li>
+                        <li>Integrity constraints</li>
+                        <li>What is normalization</li>
+                        <li>Data anomalies</li>
+                        <li>Normal forms (1NF, 2NF, 3NF)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Relational Model</h2>
+                
+                <div id="relational" class="topic">
+                    <h3>What is Relational Model?</h3>
+                    <p>The <strong>relational model</strong> organizes data into tables (relations). Each table has rows (tuples) and columns (attributes).</p>
+                    
+                    <div class="example-box">
+                        <h4>Student Table Example:</h4>
+                        <pre>┌────────────┬──────────┬─────┬────────────┐
+│ Student_ID │   Name   │ Age │    City    │
+├────────────┼──────────┼─────┼────────────┤
+│    101     │  John    │  20 │  New York  │
+│    102     │  Alice   │  21 │  London    │
+│    103     │  Bob     │  22 │  Paris     │
+└────────────┴──────────┴─────┴────────────┘
+
+Table (Relation)
+Rows (Tuples/Records)
+Columns (Attributes/Fields)</pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Relational Model Terminology:</h4>
+                        <ul>
+                            <li><strong>Relation:</strong> Table</li>
+                            <li><strong>Tuple:</strong> Row/Record</li>
+                            <li><strong>Attribute:</strong> Column/Field</li>
+                            <li><strong>Domain:</strong> Set of allowed values for attribute</li>
+                            <li><strong>Degree:</strong> Number of columns</li>
+                            <li><strong>Cardinality:</strong> Number of rows</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Relational Schema</h3>
+                        <p>A <strong>schema</strong> defines the structure of a table.</p>
+                        
+                        <div class="example-box">
+                            <h4>Schema Notation:</h4>
+                            <pre>Student(Student_ID, Name, Age, City)
+        ↑          ↑
+   Table Name  Attributes
+
+Course(Course_ID, Course_Name, Credits)
+
+Enrollment(Student_ID, Course_ID, Grade)
+           ↑           ↑
+      Foreign Keys</pre>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Relationships Between Tables</h3>
+                        <p>Tables are connected using foreign keys.</p>
+                        
+                        <div class="example-box">
+                            <h4>Example: Student-Course Relationship:</h4>
+                            <pre>Student Table:
+┌────────────┬──────────┐
+│ Student_ID │   Name   │
+├────────────┼──────────┤
+│    101     │  John    │
+│    102     │  Alice   │
+└────────────┴──────────┘
+
+Course Table:
+┌───────────┬──────────────┐
+│ Course_ID │ Course_Name  │
+├───────────┼──────────────┤
+│   CS101   │     DSA      │
+│   CS102   │    DBMS      │
+└───────────┴──────────────┘
+
+Enrollment Table (Junction):
+┌────────────┬───────────┬───────┐
+│ Student_ID │ Course_ID │ Grade │
+├────────────┼───────────┼───────┤
+│    101     │   CS101   │   A   │
+│    101     │   CS102   │   B   │
+│    102     │   CS101   │   A   │
+└────────────┴───────────┴───────┘</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="constraints" class="topic">
+                    <h3>Integrity Constraints</h3>
+                    <p><strong>Constraints</strong> are rules that ensure data accuracy and consistency.</p>
+                    
+                    <div class="four-pillars">
+                        <div class="pillar">
+                            <h4>NOT NULL</h4>
+                            <p>Column cannot have NULL value.</p>
+                            <div class="example-box">
+                                <pre>Student_ID NOT NULL
+Name NOT NULL
+
+✓ Valid: 101, "John"
+✗ Invalid: NULL, "John"</pre>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>UNIQUE</h4>
+                            <p>All values must be different.</p>
+                            <div class="example-box">
+                                <pre>Email UNIQUE
+
+✓ Valid: Different emails
+✗ Invalid: Duplicate email</pre>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>PRIMARY KEY</h4>
+                            <p>NOT NULL + UNIQUE. Identifies record.</p>
+                            <div class="example-box">
+                                <pre>Student_ID PRIMARY KEY
+
+✓ Unique, not null
+✗ Duplicate or NULL</pre>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>FOREIGN KEY</h4>
+                            <p>References primary key of another table.</p>
+                            <div class="example-box">
+                                <pre>Student_ID FOREIGN KEY
+REFERENCES Student
+
+✓ Must exist in Student
+✗ Invalid Student_ID</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Additional Constraints:</h4>
+                        <ul>
+                            <li><strong>CHECK:</strong> Validates condition (e.g., Age > 0)</li>
+                            <li><strong>DEFAULT:</strong> Sets default value if none provided</li>
+                        </ul>
+                        
+                        <div class="example-box">
+                            <pre>Age INT CHECK (Age >= 18)
+Status VARCHAR DEFAULT 'Active'</pre>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Referential Integrity</h3>
+                        <p><strong>Referential integrity</strong> ensures foreign key values exist in referenced table.</p>
+                        
+                        <div class="example-box">
+                            <h4>Example:</h4>
+                            <pre>Enrollment Table:
+Student_ID (FK) → Must exist in Student table
+
+✓ Valid: Student_ID = 101 (exists in Student)
+✗ Invalid: Student_ID = 999 (doesn't exist)</pre>
+                        </div>
+
+                        <div class="info-box">
+                            <h4>Referential Actions:</h4>
+                            <ul>
+                                <li><strong>CASCADE:</strong> Delete/update related records</li>
+                                <li><strong>SET NULL:</strong> Set foreign key to NULL</li>
+                                <li><strong>RESTRICT:</strong> Prevent deletion if references exist</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Normalization</h2>
+                
+                <div id="normalization" class="topic">
+                    <h3>What is Normalization?</h3>
+                    <p><strong>Normalization</strong> is the process of organizing data to reduce redundancy and improve data integrity.</p>
+                    
+                    <div class="info-box">
+                        <h4>Why Normalization?</h4>
+                        <ul>
+                            <li>Eliminate data redundancy</li>
+                            <li>Prevent data anomalies</li>
+                            <li>Ensure data consistency</li>
+                            <li>Improve database design</li>
+                            <li>Easier maintenance</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Data Redundancy Problems</h3>
+                        
+                        <div class="example-box">
+                            <h4>Unnormalized Table:</h4>
+                            <pre>┌────────────┬──────────┬────────────┬──────────────┐
+│ Student_ID │   Name   │   Course   │ Instructor   │
+├────────────┼──────────┼────────────┼──────────────┤
+│    101     │  John    │    DSA     │  Dr. Smith   │
+│    101     │  John    │    DBMS    │  Dr. Jones   │
+│    102     │  Alice   │    DSA     │  Dr. Smith   │
+└────────────┴──────────┴────────────┴──────────────┘
+
+Problems:
+1. John's name repeated (redundancy)
+2. If John changes name, update multiple rows
+3. If DSA instructor changes, update multiple rows</pre>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <h3>Data Anomalies</h3>
+                        
+                        <div class="four-pillars">
+                            <div class="pillar">
+                                <h4>Insertion Anomaly</h4>
+                                <p>Cannot insert data without other data.</p>
+                                <div class="example-box">
+                                    <pre>Problem: Can't add new course
+without student enrollment</pre>
+                                </div>
+                            </div>
+
+                            <div class="pillar">
+                                <h4>Deletion Anomaly</h4>
+                                <p>Deleting data loses other information.</p>
+                                <div class="example-box">
+                                    <pre>Problem: Delete last student
+loses course information</pre>
+                                </div>
+                            </div>
+
+                            <div class="pillar">
+                                <h4>Update Anomaly</h4>
+                                <p>Updating requires multiple changes.</p>
+                                <div class="example-box">
+                                    <pre>Problem: Change instructor
+requires updating all rows</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="normal-forms" class="topic">
+                    <h3>Normal Forms</h3>
+                    
+                    <div class="topic">
+                        <h4>First Normal Form (1NF)</h4>
+                        <p>Each column contains atomic (indivisible) values. No repeating groups.</p>
+                        
+                        <div class="example-box">
+                            <h4>Not in 1NF:</h4>
+                            <pre>┌────────────┬──────────┬─────────────────┐
+│ Student_ID │   Name   │     Courses     │
+├────────────┼──────────┼─────────────────┤
+│    101     │  John    │  DSA, DBMS, OS  │ ← Multiple values
+└────────────┴──────────┴─────────────────┘</pre>
+
+                            <h4>In 1NF:</h4>
+                            <pre>┌────────────┬──────────┬────────────┐
+│ Student_ID │   Name   │   Course   │
+├────────────┼──────────┼────────────┤
+│    101     │  John    │    DSA     │
+│    101     │  John    │    DBMS    │
+│    101     │  John    │     OS     │
+└────────────┴──────────┴────────────┘</pre>
+                        </div>
+
+                        <div class="info-box">
+                            <h4>1NF Rules:</h4>
+                            <ul>
+                                <li>Each column has atomic values</li>
+                                <li>No repeating groups</li>
+                                <li>Each row is unique</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <h4>Second Normal Form (2NF)</h4>
+                        <p>Must be in 1NF. No partial dependency (non-key attributes depend on entire primary key).</p>
+                        
+                        <div class="example-box">
+                            <h4>Not in 2NF:</h4>
+                            <pre>Enrollment(Student_ID, Course_ID, Student_Name, Grade)
+           Primary Key: (Student_ID, Course_ID)
+
+Problem: Student_Name depends only on Student_ID
+         (partial dependency)</pre>
+
+                            <h4>In 2NF:</h4>
+                            <pre>Student(Student_ID, Student_Name)
+Enrollment(Student_ID, Course_ID, Grade)
+
+Now: All non-key attributes depend on entire key</pre>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <h4>Third Normal Form (3NF)</h4>
+                        <p>Must be in 2NF. No transitive dependency (non-key attributes depend only on primary key).</p>
+                        
+                        <div class="example-box">
+                            <h4>Not in 3NF:</h4>
+                            <pre>Student(Student_ID, Name, Dept_ID, Dept_Name)
+
+Problem: Dept_Name depends on Dept_ID
+         (transitive dependency)</pre>
+
+                            <h4>In 3NF:</h4>
+                            <pre>Student(Student_ID, Name, Dept_ID)
+Department(Dept_ID, Dept_Name)
+
+Now: No transitive dependencies</pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Normalization Benefits:</h4>
+                        <ul>
+                            <li><strong>Reduced redundancy:</strong> Data stored once</li>
+                            <li><strong>Data consistency:</strong> Single source of truth</li>
+                            <li><strong>Easier updates:</strong> Change in one place</li>
+                            <li><strong>Better integrity:</strong> Fewer anomalies</li>
+                            <li><strong>Flexible design:</strong> Easy to modify</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Denormalization</h4>
+                        <p>Sometimes we intentionally add redundancy for performance (faster queries). This is called <strong>denormalization</strong>.</p>
+                        <p>Use when: Read performance is critical and data doesn't change often.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of relational model and normalization:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: Relational Model</h4>
+                        <p>What is a tuple in relational model?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> A row/record in a table
+                            <p><strong>Explanation:</strong> Tuple represents a single record with all its attributes.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: Primary Key Constraint</h4>
+                        <p>Can primary key have NULL values?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> No
+                            <p><strong>Explanation:</strong> Primary key must be NOT NULL and UNIQUE.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: Foreign Key</h4>
+                        <p>What does foreign key ensure?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Referential integrity
+                            <p><strong>Explanation:</strong> Foreign key values must exist in referenced table.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: Normalization Purpose</h4>
+                        <p>Why do we normalize databases?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Reduce redundancy and anomalies
+                            <p><strong>Explanation:</strong> Normalization eliminates data duplication and inconsistencies.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: 1NF Rule</h4>
+                        <p>What does 1NF require?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Atomic values in each column
+                            <p><strong>Explanation:</strong> No multi-valued or composite attributes allowed.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Update Anomaly</h4>
+                        <p>What is an update anomaly?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Need to update multiple rows for one change
+                            <p><strong>Explanation:</strong> Caused by data redundancy.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: 2NF Requirement</h4>
+                        <p>What must be eliminated for 2NF?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Partial dependencies
+                            <p><strong>Explanation:</strong> All non-key attributes must depend on entire primary key.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: 3NF Requirement</h4>
+                        <p>What must be eliminated for 3NF?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Transitive dependencies
+                            <p><strong>Explanation:</strong> Non-key attributes should depend only on primary key.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: CHECK Constraint</h4>
+                        <p>What does CHECK constraint do?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Validates a condition
+                            <p><strong>Explanation:</strong> Ensures values meet specified criteria (e.g., Age > 0).</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: Denormalization</h4>
+                        <p>When is denormalization used?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> For better read performance
+                            <p><strong>Explanation:</strong> Intentionally add redundancy to speed up queries.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Relational model</strong> organizes data in tables</li>
+                        <li>Tables have <strong>rows (tuples)</strong> and <strong>columns (attributes)</strong></li>
+                        <li><strong>Constraints</strong> ensure data integrity</li>
+                        <li><strong>Primary key</strong> is NOT NULL and UNIQUE</li>
+                        <li><strong>Foreign key</strong> creates relationships between tables</li>
+                        <li><strong>Normalization</strong> reduces redundancy</li>
+                        <li><strong>1NF:</strong> Atomic values, no repeating groups</li>
+                        <li><strong>2NF:</strong> No partial dependencies</li>
+                        <li><strong>3NF:</strong> No transitive dependencies</li>
+                        <li>Normalization prevents <strong>insertion, deletion, update anomalies</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 14</h2>
+                <p style="color: white; font-size: 1.1rem;">Advanced string problems for SQL queries:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://leetcode.com/problems/split-a-string-in-balanced-strings/description/" target="_blank" style="color: #ffd700;">Split a String in Balanced Strings - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/description/" target="_blank" style="color: #ffd700;">Generate String with Odd Counts - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/thousand-separator/description/" target="_blank" style="color: #ffd700;">Thousand Separator - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/reformat-the-string/description/" target="_blank" style="color: #ffd700;">Reformat the String - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/count-items-matching-a-rule/description/" target="_blank" style="color: #ffd700;">Count Items Matching a Rule - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/sorting-the-sentence/description/" target="_blank" style="color: #ffd700;">Sorting the Sentence - LeetCode</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

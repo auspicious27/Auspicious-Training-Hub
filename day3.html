@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: Conditional Statements & Program Structure</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 3 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Conditional Statements</a></li>
+                <li><a href="#if-statement">if Statement</a></li>
+                <li><a href="#if-else">if-else Statement</a></li>
+                <li><a href="#elif">elif Ladder</a></li>
+                <li><a href="#nested">Nested Conditionals</a></li>
+                <li><a href="#hour2">Hour 2: Program Structure</a></li>
+                <li><a href="#structure">Code Organization</a></li>
+                <li><a href="#best-practices">Best Practices</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day2.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 2</a>
+                <a href="day4.html" class="nav-btn next">Day 4 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 3: Conditional Statements & Program Structure</h1>
+                <p class="day-subtitle">Learn how to make decisions in your programs</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 3! Today we'll learn how programs make decisions using conditional statements. This is crucial for creating intelligent, responsive applications that can handle different scenarios.</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>How to use if statements to make decisions</li>
+                        <li>Creating alternative paths with if-else</li>
+                        <li>Handling multiple conditions with elif</li>
+                        <li>Nesting conditionals for complex logic</li>
+                        <li>Writing clean, organized code</li>
+                        <li>Best practices for program structure</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Conditional Statements</h2>
+                
+                <div class="topic">
+                    <h3>Need for Decision Making in Programs</h3>
+                    <p>Real-world applications need to make decisions based on different conditions. For example:</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Examples:</h4>
+                        <ul>
+                            <li><strong>ATM:</strong> "If PIN is correct, allow withdrawal, else show error"</li>
+                            <li><strong>E-commerce:</strong> "If cart total > ₹1000, apply discount"</li>
+                            <li><strong>Game:</strong> "If score > 100, level up"</li>
+                            <li><strong>Login:</strong> "If username and password match, grant access"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="if-statement" class="topic">
+                    <h3>if Statement</h3>
+                    <p>The <code>if</code> statement executes a block of code only when a condition is True.</p>
+                    
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python">if condition:
+    # This code runs only if condition is True
+    statement1
+    statement2</code></pre>
+
+                    <div class="info-box">
+                        <p><strong>Important:</strong> Python uses indentation (4 spaces or 1 tab) to define code blocks. This is different from languages like C++ or Java that use curly braces { }.</p>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Check Voting Eligibility</h4>
+                        <pre><code class="language-python"># Check if person can vote
+age = 20
+
+if age >= 18:
+    print("You are eligible to vote")
+    print("Please register if you haven't already")</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>Line 2:</strong> <code>age = 20</code></p>
+                            <ul>
+                                <li>We store the age value</li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>Line 4:</strong> <code>if age >= 18:</code></p>
+                            <ul>
+                                <li>Checks if age is greater than or equal to 18</li>
+                                <li>The colon (:) is mandatory</li>
+                                <li>If True, execute indented code below</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>You are eligible to vote
+Please register if you haven't already</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Check Positive Number</h4>
+                        <pre><code class="language-python">number = 15
+
+if number > 0:
+    print(f"{number} is a positive number")
+    print("Positive numbers are greater than zero")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>15 is a positive number
+Positive numbers are greater than zero</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Password Length Check</h4>
+                        <pre><code class="language-python">password = "python123"
+
+if len(password) >= 8:
+    print("Password length is acceptable")
+    print(f"Your password has {len(password)} characters")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Password length is acceptable
+Your password has 9 characters</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Discount Eligibility</h4>
+                        <pre><code class="language-python">purchase_amount = 1500
+
+if purchase_amount >= 1000:
+    discount = purchase_amount * 0.10
+    print(f"Congratulations! You get ₹{discount} discount")
+    print(f"Final amount: ₹{purchase_amount - discount}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Congratulations! You get ₹150.0 discount
+Final amount: ₹1350.0</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="if-else" class="topic">
+                    <h3>if-else Statement</h3>
+                    <p>The <code>if-else</code> statement provides an alternative path when the condition is False.</p>
+                    
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python">if condition:
+    # Code if condition is True
+else:
+    # Code if condition is False</code></pre>
+
+                    <div class="example-box">
+                        <h4>Real-World Analogy:</h4>
+                        <p>Think of a traffic light:</p>
+                        <ul>
+                            <li><strong>If</strong> light is green → Cross the road</li>
+                            <li><strong>Else</strong> (if not green) → Wait</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Even or Odd Number</h4>
+                        <pre><code class="language-python">number = int(input("Enter a number: "))
+
+if number % 2 == 0:
+    print(f"{number} is an even number")
+    print("Even numbers are divisible by 2")
+else:
+    print(f"{number} is an odd number")
+    print("Odd numbers leave remainder 1 when divided by 2")</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>How it works:</strong></p>
+                            <ul>
+                                <li>If <code>number % 2 == 0</code> is True → number is even</li>
+                                <li>If <code>number % 2 == 0</code> is False → number is odd</li>
+                                <li>Only ONE block executes (either if or else)</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Sample Run 1:</strong>
+                            <pre>Enter a number: 10
+10 is an even number
+Even numbers are divisible by 2</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Sample Run 2:</strong>
+                            <pre>Enter a number: 7
+7 is an odd number
+Odd numbers leave remainder 1 when divided by 2</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Pass or Fail</h4>
+                        <pre><code class="language-python">marks = 65
+passing_marks = 40
+
+if marks >= passing_marks:
+    print("🎉 Congratulations! You passed")
+    print(f"Your marks: {marks}")
+    print(f"You scored {marks - passing_marks} marks above passing")
+else:
+    print("😞 Sorry, you failed")
+    print(f"Your marks: {marks}")
+    print(f"You need {passing_marks - marks} more marks to pass")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>🎉 Congratulations! You passed
+Your marks: 65
+You scored 25 marks above passing</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Age Category</h4>
+                        <pre><code class="language-python">age = 16
+
+if age >= 18:
+    print("You are an adult")
+    print("You can:")
+    print("- Vote in elections")
+    print("- Get a driving license")
+    print("- Open a bank account independently")
+else:
+    print("You are a minor")
+    print("You need parental consent for:")
+    print("- Bank accounts")
+    print("- Legal documents")
+    years_to_adult = 18 - age
+    print(f"You'll be an adult in {years_to_adult} years")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>You are a minor
+You need parental consent for:
+- Bank accounts
+- Legal documents
+You'll be an adult in 2 years</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Temperature Check</h4>
+                        <pre><code class="language-python">temperature = 25
+
+if temperature >= 30:
+    print("It's hot outside! 🌞")
+    print("Recommendations:")
+    print("- Drink plenty of water")
+    print("- Wear light clothes")
+    print("- Use sunscreen")
+else:
+    print("Weather is pleasant! 😊")
+    print("Recommendations:")
+    print("- Enjoy outdoor activities")
+    print("- Perfect for a walk")</code></pre>
+                    </div>
+                </div>
+
+                <div id="elif" class="topic">
+                    <h3>if-elif-else Ladder</h3>
+                    <p>The <code>elif</code> (else if) allows checking multiple conditions in sequence. Python checks each condition from top to bottom and executes the first True block.</p>
+                    
+                    <h4>Syntax:</h4>
+                    <pre><code class="language-python">if condition1:
+    # Code if condition1 is True
+elif condition2:
+    # Code if condition2 is True
+elif condition3:
+    # Code if condition3 is True
+else:
+    # Code if all conditions are False</code></pre>
+
+                    <div class="info-box">
+                        <p><strong>Key Points:</strong></p>
+                        <ul>
+                            <li>You can have multiple elif statements</li>
+                            <li>else is optional</li>
+                            <li>Only ONE block executes (the first True condition)</li>
+                            <li>Once a condition is True, remaining conditions are not checked</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Grade Calculator</h4>
+                        <pre><code class="language-python">marks = 85
+
+if marks >= 90:
+                            grade = "A+"
+    message = "Outstanding! Excellent performance!"
+elif marks >= 80:
+    grade = "A"
+    message = "Very Good! Keep it up!"
+elif marks >= 70:
+    grade = "B"
+    message = "Good! You can do better!"
+elif marks >= 60:
+    grade = "C"
+    message = "Average. Need more effort!"
+elif marks >= 40:
+    grade = "D"
+    message = "Pass. Work harder next time!"
+else:
+    grade = "F"
+    message = "Fail. Don't give up, try again!"
+
+print(f"Marks: {marks}")
+print(f"Grade: {grade}")
+print(f"Feedback: {message}")</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>How it works:</strong></p>
+                            <ul>
+                                <li>Checks if marks >= 90 → No (85 < 90)</li>
+                                <li>Checks if marks >= 80 → Yes! (85 >= 80)</li>
+                                <li>Executes this block and stops checking</li>
+                                <li>Remaining elif and else are skipped</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Marks: 85
+Grade: A
+Feedback: Very Good! Keep it up!</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Traffic Light System</h4>
+                        <pre><code class="language-python">light_color = input("Enter traffic light color (red/yellow/green): ").lower()
+
+if light_color == "red":
+    print("🔴 STOP!")
+    print("Do not cross the road")
+    print("Wait for green light")
+elif light_color == "yellow":
+    print("🟡 WAIT!")
+    print("Prepare to stop")
+    print("Do not start crossing")
+elif light_color == "green":
+    print("🟢 GO!")
+    print("You can cross the road")
+    print("Look both ways before crossing")
+else:
+    print("❌ Invalid color!")
+    print("Please enter: red, yellow, or green")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Sample Run:</strong>
+                            <pre>Enter traffic light color (red/yellow/green): yellow
+🟡 WAIT!
+Prepare to stop
+Do not start crossing</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: BMI Calculator with Categories</h4>
+                        <pre><code class="language-python">weight = float(input("Enter weight in kg: "))
+height = float(input("Enter height in meters: "))
+
+bmi = weight / (height ** 2)
+
+print(f"\nYour BMI: {bmi:.2f}")
+print("-" * 40)
+
+if bmi < 18.5:
+    category = "Underweight"
+    advice = "You should eat more nutritious food"
+    risk = "Low"
+elif bmi < 25:
+    category = "Normal weight"
+    advice = "Maintain your current lifestyle"
+    risk = "Low"
+elif bmi < 30:
+    category = "Overweight"
+    advice = "Consider exercise and balanced diet"
+    risk = "Medium"
+elif bmi < 35:
+    category = "Obese Class I"
+    advice = "Consult a doctor for weight management"
+    risk = "High"
+else:
+    category = "Obese Class II or III"
+    advice = "Immediate medical consultation recommended"
+    risk = "Very High"
+
+print(f"Category: {category}")
+print(f"Health Risk: {risk}")
+print(f"Advice: {advice}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Sample Run:</strong>
+                            <pre>Enter weight in kg: 70
+Enter height in meters: 1.75
+
+Your BMI: 22.86
+----------------------------------------
+Category: Normal weight
+Health Risk: Low
+Advice: Maintain your current lifestyle</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Ticket Pricing System</h4>
+                        <pre><code class="language-python">age = int(input("Enter your age: "))
+
+if age < 3:
+    price = 0
+    category = "Infant"
+    print("Entry is FREE for infants!")
+elif age < 12:
+    price = 100
+    category = "Child"
+    print("Child ticket")
+elif age < 18:
+    price = 150
+    category = "Teenager"
+    print("Teenager ticket")
+elif age < 60:
+    price = 200
+    category = "Adult"
+    print("Adult ticket")
+else:
+    price = 120
+    category = "Senior Citizen"
+    print("Senior citizen discount applied!")
+
+print(f"Category: {category}")
+print(f"Ticket Price: ₹{price}")</code></pre>
+                    </div>
+                </div>
+
+                <div id="nested" class="topic">
+                    <h3>Nested Conditional Statements</h3>
+                    <p><strong>Nested conditionals</strong> are if statements inside other if statements. They allow complex decision-making with multiple levels of conditions.</p>
+
+                    <div class="example-box">
+                        <h4>Real-World Analogy:</h4>
+                        <p>Loan approval process:</p>
+                        <ul>
+                            <li><strong>First check:</strong> Is age >= 21?</li>
+                            <li><strong>If yes, second check:</strong> Is income >= ₹30,000?</li>
+                            <li><strong>If yes, third check:</strong> Is credit score >= 700?</li>
+                            <li><strong>If all yes:</strong> Approve loan</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Loan Eligibility Checker</h4>
+                        <pre><code class="language-python">age = 30
+income = 50000
+credit_score = 750
+
+print("Checking loan eligibility...")
+print("-" * 40)
+
+if age >= 21:
+    print("✓ Age requirement met")
+    
+    if income >= 30000:
+        print("✓ Income requirement met")
+        
+        if credit_score >= 700:
+            print("✓ Credit score requirement met")
+            print("\n🎉 LOAN APPROVED!")
+            print("You meet all eligibility criteria")
+        else:
+            print("✗ Credit score too low")
+            print(f"Your score: {credit_score}")
+            print("Required: 700 or above")
+            print("\n❌ LOAN REJECTED")
+    else:
+        print("✗ Income too low")
+        print(f"Your income: ₹{income}")
+        print("Required: ₹30,000 or above")
+        print("\n❌ LOAN REJECTED")
+else:
+    print("✗ Age requirement not met")
+    print(f"Your age: {age}")
+    print("Required: 21 or above")
+    print("\n❌ LOAN REJECTED")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Checking loan eligibility...
+----------------------------------------
+✓ Age requirement met
+✓ Income requirement met
+✓ Credit score requirement met
+
+🎉 LOAN APPROVED!
+You meet all eligibility criteria</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Movie Ticket Pricing (Complex)</h4>
+                        <pre><code class="language-python">age = int(input("Enter your age: "))
+day = input("Is it a weekday or weekend? ").lower()
+is_member = input("Are you a member? (yes/no): ").lower() == "yes"
+
+print("\n" + "=" * 50)
+print("TICKET PRICING")
+print("=" * 50)
+
+if age < 12:
+    print("Category: Child")
+    if day == "weekday":
+        base_price = 100
+    else:
+        base_price = 150
+elif age >= 60:
+    print("Category: Senior Citizen")
+    if day == "weekday":
+        base_price = 120
+    else:
+        base_price = 180
+else:
+    print("Category: Adult")
+    if day == "weekday":
+        base_price = 200
+    else:
+        base_price = 300
+
+# Apply membership discount
+if is_member:
+    discount = base_price * 0.10
+    final_price = base_price - discount
+    print(f"Base Price: ₹{base_price}")
+    print(f"Membership Discount (10%): -₹{discount}")
+    print(f"Final Price: ₹{final_price}")
+else:
+    final_price = base_price
+    print(f"Price: ₹{final_price}")
+    print("(Become a member to get 10% discount!)")
+
+print("=" * 50)</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Best Practice: Avoid Deep Nesting</h4>
+                        <p>Too many nested levels make code hard to read. Instead of:</p>
+                        <pre><code class="language-python"># Bad: Too many nested levels
+if age >= 21:
+    if income >= 30000:
+        if credit_score >= 700:
+            if employment_years >= 2:
+                print("Approved")</code></pre>
+                        
+                        <p>Use logical operators:</p>
+                        <pre><code class="language-python"># Good: Using logical operators
+if age >= 21 and income >= 30000 and credit_score >= 700 and employment_years >= 2:
+    print("Approved")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Student Grade with Attendance</h4>
+                        <pre><code class="language-python">marks = 85
+attendance = 75
+
+print("Grade Calculation")
+print("-" * 40)
+
+if attendance >= 75:
+    print("✓ Attendance requirement met")
+    
+    if marks >= 90:
+        grade = "A+"
+    elif marks >= 80:
+        grade = "A"
+    elif marks >= 70:
+        grade = "B"
+    elif marks >= 60:
+        grade = "C"
+    else:
+        grade = "D"
+    
+    print(f"Your Grade: {grade}")
+else:
+    print("✗ Attendance too low")
+    print(f"Your attendance: {attendance}%")
+    print("Required: 75% or above")
+    print("Grade: F (Due to low attendance)")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Program Structure & Logic Design</h2>
+                
+                <div id="structure" class="topic">
+                    <h3>Structured Programming Concept</h3>
+                    <p><strong>Structured programming</strong> is an approach that emphasizes breaking programs into clear, logical sections with proper organization.</p>
+                    
+                    <div class="key-points">
+                        <h4>Principles of Structured Programming:</h4>
+                        <ul>
+                            <li><strong>Sequence:</strong> Instructions execute in order</li>
+                            <li><strong>Selection:</strong> Choose between alternatives (if-else)</li>
+                            <li><strong>Iteration:</strong> Repeat instructions (loops)</li>
+                            <li><strong>Modularity:</strong> Break into smaller parts (functions)</li>
+                        </ul>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example: Well-Structured Program</h4>
+                        <pre><code class="language-python"># ============================================
+# PROGRAM: Student Grade Calculator
+# AUTHOR: Your Name
+# DATE: 2024
+# ============================================
+
+# INPUT SECTION
+print("=" * 50)
+print("STUDENT GRADE CALCULATOR")
+print("=" * 50)
+
+student_name = input("Enter student name: ")
+marks = float(input("Enter marks (0-100): "))
+attendance = float(input("Enter attendance %: "))
+
+# VALIDATION SECTION
+if marks < 0 or marks > 100:
+    print("Error: Marks must be between 0 and 100")
+elif attendance < 0 or attendance > 100:
+    print("Error: Attendance must be between 0 and 100")
+else:
+    # PROCESSING SECTION
+    if attendance >= 75:
+        if marks >= 90:
+            grade = "A+"
+        elif marks >= 80:
+            grade = "A"
+        elif marks >= 70:
+            grade = "B"
+        elif marks >= 60:
+            grade = "C"
+        elif marks >= 40:
+            grade = "D"
+        else:
+            grade = "F"
+    else:
+        grade = "F (Low Attendance)"
+    
+    # OUTPUT SECTION
+    print("\n" + "=" * 50)
+    print("RESULT")
+    print("=" * 50)
+    print(f"Student Name: {student_name}")
+    print(f"Marks: {marks}")
+    print(f"Attendance: {attendance}%")
+    print(f"Grade: {grade}")
+    print("=" * 50)</code></pre>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Importance of Readable and Well-Organized Code</h3>
+                    
+                    <div class="key-points">
+                        <h4>Why Code Readability Matters:</h4>
+                        <ul>
+                            <li><strong>Maintenance:</strong> Easy to fix bugs and add features</li>
+                            <li><strong>Collaboration:</strong> Others can understand your code</li>
+                            <li><strong>Debugging:</strong> Easier to find and fix errors</li>
+                            <li><strong>Professional:</strong> Shows coding maturity</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>Bad vs Good Code Example:</h4>
+                        
+                        <p><strong>❌ Bad Code (Hard to Read):</strong></p>
+                        <pre><code class="language-python">a=int(input(""))
+if a>=18:print("yes")
+else:print("no")</code></pre>
+                        
+                        <p><strong>✅ Good Code (Easy to Read):</strong></p>
+                        <pre><code class="language-python"># Check voting eligibility
+age = int(input("Enter your age: "))
+
+if age >= 18:
+    print("You are eligible to vote")
+else:
+    print("You are not eligible to vote yet")</code></pre>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Code Blocks and Indentation</h3>
+                    <p>Python uses indentation to define code blocks. Consistent indentation is crucial!</p>
+                    
+                    <div class="warning-box">
+                        <h4>⚠️ Common Indentation Errors:</h4>
+                        <pre><code class="language-python"># Error 1: No indentation
+if age >= 18:
+print("Adult")  # IndentationError!
+
+# Error 2: Inconsistent indentation
+if age >= 18:
+    print("Adult")
+      print("Can vote")  # IndentationError!
+
+# Error 3: Mixing tabs and spaces
+if age >= 18:
+    print("Adult")  # 4 spaces
+	print("Can vote")  # Tab - Error!
+
+# Correct: Consistent indentation
+if age >= 18:
+    print("Adult")
+    print("Can vote")</code></pre>
+                    </div>
+                </div>
+
+                <div id="best-practices" class="topic">
+                    <h3>Role of Comments in Programs</h3>
+                    <p>Comments explain what code does, making it easier to understand.</p>
+                    
+                    <div class="detailed-example">
+                        <h4>Good Commenting Practice:</h4>
+                        <pre><code class="language-python"># Program: Calculate electricity bill
+# Formula: 
+#   0-100 units: ₹5 per unit
+#   101-200 units: ₹7 per unit
+#   Above 200: ₹10 per unit
+
+units = int(input("Enter units consumed: "))
+
+# Calculate bill based on slabs
+if units <= 100:
+    bill = units * 5
+elif units <= 200:
+    # First 100 at ₹5, remaining at ₹7
+    bill = (100 * 5) + ((units - 100) * 7)
+else:
+    # First 100 at ₹5, next 100 at ₹7, remaining at ₹10
+    bill = (100 * 5) + (100 * 7) + ((units - 200) * 10)
+
+print(f"Total Bill: ₹{bill}")</code></pre>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Common Logical and Structural Mistakes</h3>
+                    
+                    <div class="warning-box">
+                        <h4>Mistake 1: Using = instead of ==</h4>
+                        <pre><code class="language-python"># Wrong
+if age = 18:  # SyntaxError!
+    print("Eighteen")
+
+# Correct
+if age == 18:
+    print("Eighteen")</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>Mistake 2: Forgetting Colon</h4>
+                        <pre><code class="language-python"># Wrong
+if age >= 18  # SyntaxError!
+    print("Adult")
+
+# Correct
+if age >= 18:
+    print("Adult")</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>Mistake 3: Wrong Condition Order</h4>
+                        <pre><code class="language-python"># Wrong - will never reach other conditions
+if marks >= 40:
+    grade = "D"
+elif marks >= 90:  # Never reached!
+    grade = "A+"
+
+# Correct - check highest first
+if marks >= 90:
+    grade = "A+"
+elif marks >= 40:
+    grade = "D"</code></pre>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Planning Logic Before Writing Code</h3>
+                    <p>Always plan your logic before coding. Use flowcharts or pseudocode.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example: Planning a Login System</h4>
+                        
+                        <p><strong>Step 1: Write Pseudocode</strong></p>
+                        <pre>1. Get username from user
+2. Get password from user
+3. IF username is correct:
+       IF password is correct:
+           Show "Login successful"
+       ELSE:
+           Show "Wrong password"
+   ELSE:
+       Show "Username not found"</pre>
+                        
+                        <p><strong>Step 2: Convert to Python</strong></p>
+                        <pre><code class="language-python">correct_username = "admin"
+correct_password = "pass123"
+
+username = input("Enter username: ")
+password = input("Enter password: ")
+
+if username == correct_username:
+    if password == correct_password:
+        print("✓ Login successful!")
+        print("Welcome to the system")
+    else:
+        print("✗ Wrong password")
+        print("Please try again")
+else:
+    print("✗ Username not found")
+    print("Please check your username")</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section assessment-section">
+                <h2><i class="fas fa-clipboard-check"></i> Day 3 Assessment</h2>
+                
+                <div class="assessment-intro">
+                    <p>Test your understanding of conditional statements and program structure!</p>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="question">
+                        <h3>Question 1: Multiple Choice</h3>
+                        <p>What is the correct syntax for an if statement in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> A) if (condition) { }</label>
+                            <label><input type="radio" name="q1" value="b"> B) if condition:</label>
+                            <label><input type="radio" name="q1" value="c"> C) if condition then</label>
+                            <label><input type="radio" name="q1" value="d"> D) if [condition]</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: B) if condition:</strong></p>
+                            <p>Python uses a colon (:) after the condition and indentation for the code block.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 2: Code Analysis</h3>
+                        <p>What will be the output?</p>
+                        <pre><code class="language-python">x = 10
+if x > 5:
+    print("A")
+elif x > 8:
+    print("B")
+else:
+    print("C")</code></pre>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: A</strong></p>
+                            <p>Since x > 5 is True (10 > 5), it prints "A" and stops. The elif is not checked even though x > 8 is also True.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 3: True/False</h3>
+                        <p>In Python, indentation is optional for if statements.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="true"> True</label>
+                            <label><input type="radio" name="q3" value="false"> False</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: False</strong></p>
+                            <p>Indentation is mandatory in Python. It defines code blocks.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 4: Practical</h3>
+                        <p>Write a program to check if a number is positive, negative, or zero.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python">number = float(input("Enter a number: "))
+
+if number > 0:
+    print(f"{number} is positive")
+elif number < 0:
+    print(f"{number} is negative")
+else:
+    print("The number is zero")</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 5: Practical</h3>
+                        <p>Write a program to find the largest of three numbers.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python">a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
+
+if a >= b and a >= c:
+    print(f"Largest number is: {a}")
+elif b >= a and b >= c:
+    print(f"Largest number is: {b}")
+else:
+    print(f"Largest number is: {c}")</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 6: Practical Challenge</h3>
+                        <p>Write a program to check if a year is a leap year. Rules: Divisible by 4 but not by 100, OR divisible by 400.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python">year = int(input("Enter a year: "))
+
+if year % 4 == 0:
+    if year % 100 == 0:
+        if year % 400 == 0:
+            print(f"{year} is a leap year")
+        else:
+            print(f"{year} is not a leap year")
+    else:
+        print(f"{year} is a leap year")
+else:
+    print(f"{year} is not a leap year")
+
+# Alternative solution using logical operators:
+# if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+#     print(f"{year} is a leap year")
+# else:
+#     print(f"{year} is not a leap year")</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 7: Code Debugging</h3>
+                        <p>Find and fix the error in this code:</p>
+                        <pre><code class="language-python">age = 20
+if age >= 18
+    print("Adult")</code></pre>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Error: Missing colon (:) after condition</strong></p>
+                            <pre><code class="language-python"># Corrected code:
+age = 20
+if age >= 18:
+    print("Adult")</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 8: Practical</h3>
+                        <p>Create a simple calculator that takes two numbers and an operator (+, -, *, /) and performs the operation.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python">num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+operator = input("Enter operator (+, -, *, /): ")
+
+if operator == "+":
+    result = num1 + num2
+    print(f"{num1} + {num2} = {result}")
+elif operator == "-":
+    result = num1 - num2
+    print(f"{num1} - {num2} = {result}")
+elif operator == "*":
+    result = num1 * num2
+    print(f"{num1} * {num2} = {result}")
+elif operator == "/":
+    if num2 != 0:
+        result = num1 / num2
+        print(f"{num1} / {num2} = {result}")
+    else:
+        print("Error: Cannot divide by zero")
+else:
+    print("Error: Invalid operator")</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 9: Conceptual</h3>
+                        <p>Explain the difference between if-elif-else and multiple if statements.</p>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Difference:</strong></p>
+                            <p><strong>if-elif-else:</strong> Only ONE block executes (the first True condition). Once a condition is True, remaining conditions are not checked.</p>
+                            <p><strong>Multiple if:</strong> ALL conditions are checked independently. Multiple blocks can execute.</p>
+                            <pre><code class="language-python"># if-elif-else: Only prints "A"
+x = 10
+if x > 5:
+    print("A")
+elif x > 8:
+    print("B")  # Not checked
+
+# Multiple if: Prints both "A" and "B"
+x = 10
+if x > 5:
+    print("A")
+if x > 8:
+    print("B")  # Also checked</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 10: Practical Challenge</h3>
+                        <p>Write a program for a discount system: 10% off for purchases above ₹1000, 20% off for above ₹5000, 30% off for above ₹10000.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python">purchase_amount = float(input("Enter purchase amount: ₹"))
+
+print("\n" + "=" * 50)
+print("BILL SUMMARY")
+print("=" * 50)
+
+if purchase_amount >= 10000:
+    discount_percent = 30
+elif purchase_amount >= 5000:
+    discount_percent = 20
+elif purchase_amount >= 1000:
+    discount_percent = 10
+else:
+    discount_percent = 0
+
+discount_amount = purchase_amount * discount_percent / 100
+final_amount = purchase_amount - discount_amount
+
+print(f"Original Amount: ₹{purchase_amount}")
+print(f"Discount ({discount_percent}%): -₹{discount_amount}")
+print(f"Final Amount: ₹{final_amount}")
+print("=" * 50)
+
+if discount_percent > 0:
+    print(f"You saved ₹{discount_amount}!")
+else:
+    print("Shop for ₹1000 or more to get discount!")</code></pre>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems</h2>
+                <p style="color: white; font-size: 1.1rem;">Practice conditional statements with these problems:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.codechef.com/problems/WATERCONS" target="_blank" style="color: #ffd700;">Water Consumption - CodeChef (Simple)</a></li>
+                    <li><a href="https://codeforces.com/contest/1915/problem/A" target="_blank" style="color: #ffd700;">Problem 1915A - Codeforces (Simple)</a></li>
+                    <li><a href="https://www.codechef.com/problems/FAVOURITENUM" target="_blank" style="color: #ffd700;">Favourite Number - CodeChef (Simple)</a></li>
+                    <li><a href="https://leetcode.com/problems/sum-multiples/description/" target="_blank" style="color: #ffd700;">Sum Multiples - LeetCode (Intermediate)</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/armstrong-numbers2727/1" target="_blank" style="color: #ffd700;">Armstrong Numbers - GeeksforGeeks (Intermediate)</a></li>
+                    <li><a href="https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/monks-problem-ffeebf8a/" target="_blank" style="color: #ffd700;">Monk's Problem - HackerEarth (Intermediate)</a></li>
+                    <li><a href="https://codeforces.com/problemset/problem/1665/A" target="_blank" style="color: #ffd700;">Problem 1665A - Codeforces (Good)</a></li>
+                    <li><a href="https://www.hackerearth.com/practice/math/number-theory/primality-tests/practice-problems/algorithm/does-it-divide-3c60b8fb/" target="_blank" style="color: #ffd700;">Does it Divide - HackerEarth (Good)</a></li>
+                </ul>
+            </section>
+
+            <div class="day-navigation">
+                <a href="day2.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 2: Variables & Operators</a>
+                <a href="day4.html" class="nav-btn next">Day 4: Loops & Functions <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

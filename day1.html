@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: Programming Foundations + Environment Setup</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 1 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Programming Logic</a></li>
+                <li><a href="#computational">Computational Thinking</a></li>
+                <li><a href="#ipo">IPO Model</a></li>
+                <li><a href="#hour2">Hour 2: Python Setup</a></li>
+                <li><a href="#anaconda">Anaconda & Jupyter</a></li>
+                <li><a href="#syntax">Python Syntax</a></li>
+                <li><a href="#examples">Code Examples</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="index.html" class="nav-btn prev"><i class="fas fa-home"></i> Home</a>
+                <a href="day2.html" class="nav-btn next">Day 2 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 1: Programming Foundations + Environment Setup</h1>
+                <p class="day-subtitle">Understanding how computers think and setting up your Python environment</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 1 of your programming journey! Today, we'll explore the fundamental concepts of programming and set up your Python development environment. By the end of this day, you'll understand how computers solve problems and write your first Python program.</p>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Programming Logic & Computational Thinking</h2>
+                
+                <div class="topic">
+                    <h3>What is Programming?</h3>
+                    <p><strong>Programming</strong> is the process of creating a set of instructions that tell a computer how to perform a task. It's like writing a recipe for a computer to follow.</p>
+                    
+                    <div class="key-points">
+                        <h4>Purpose of Programming:</h4>
+                        <ul>
+                            <li><strong>Automation:</strong> Perform repetitive tasks quickly and accurately</li>
+                            <li><strong>Problem Solving:</strong> Break down complex problems into manageable steps</li>
+                            <li><strong>Data Processing:</strong> Analyze and manipulate large amounts of information</li>
+                            <li><strong>Communication:</strong> Enable different systems to work together</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>Real-World Example:</h4>
+                        <p>Think of an ATM machine. When you withdraw money, the program:</p>
+                        <ol>
+                            <li>Verifies your PIN</li>
+                            <li>Checks your account balance</li>
+                            <li>Dispenses the requested amount</li>
+                            <li>Updates your balance</li>
+                            <li>Prints a receipt</li>
+                        </ol>
+                        <p>Each step is a programmed instruction!</p>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>How Computers Solve Problems</h3>
+                    <p>Computers are incredibly fast but fundamentally simple machines. They can only:</p>
+                    <ul>
+                        <li>Perform basic arithmetic operations (+, -, ×, ÷)</li>
+                        <li>Store and retrieve data from memory</li>
+                        <li>Make simple comparisons (is A greater than B?)</li>
+                        <li>Repeat instructions</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <p><strong>Key Insight:</strong> The power of computers comes from executing billions of these simple operations per second, not from being "smart."</p>
+                    </div>
+                </div>
+
+                <div id="computational" class="topic">
+                    <h3>Computational Thinking</h3>
+                    <p><strong>Computational thinking</strong> is a problem-solving approach that involves breaking down complex problems into smaller, manageable parts that can be solved systematically.</p>
+                    
+                    <div class="four-pillars">
+                        <h4>Four Pillars of Computational Thinking:</h4>
+                        
+                        <div class="pillar">
+                            <h5>1. Decomposition</h5>
+                            <p>Breaking a complex problem into smaller, more manageable sub-problems.</p>
+                            <div class="example-box">
+                                <strong>Example:</strong> Making a sandwich
+                                <ul>
+                                    <li>Get bread</li>
+                                    <li>Get ingredients</li>
+                                    <li>Assemble sandwich</li>
+                                    <li>Cut and serve</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h5>2. Pattern Recognition</h5>
+                            <p>Identifying similarities or patterns in problems.</p>
+                            <div class="example-box">
+                                <strong>Example:</strong> Calculating area
+                                <ul>
+                                    <li>Rectangle: length × width</li>
+                                    <li>Square: side × side</li>
+                                    <li>Pattern: multiply two dimensions</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h5>3. Abstraction</h5>
+                            <p>Focusing on important information and ignoring irrelevant details.</p>
+                            <div class="example-box">
+                                <strong>Example:</strong> A map
+                                <ul>
+                                    <li>Shows roads and landmarks</li>
+                                    <li>Ignores individual trees, houses</li>
+                                    <li>Focuses on what's needed for navigation</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h5>4. Algorithm Design</h5>
+                            <p>Creating step-by-step instructions to solve the problem.</p>
+                            <div class="example-box">
+                                <strong>Example:</strong> Making tea
+                                <ol>
+                                    <li>Boil water</li>
+                                    <li>Put tea bag in cup</li>
+                                    <li>Pour hot water</li>
+                                    <li>Wait 3 minutes</li>
+                                    <li>Remove tea bag</li>
+                                    <li>Add sugar/milk (optional)</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ipo" class="topic">
+                    <h3>Input–Process–Output (IPO) Model</h3>
+                    <p>Every computer program follows the IPO model:</p>
+                    
+                    <div class="ipo-diagram">
+                        <div class="ipo-box input">
+                            <h4>INPUT</h4>
+                            <p>Data provided to the program</p>
+                            <ul>
+                                <li>User input</li>
+                                <li>File data</li>
+                                <li>Sensor data</li>
+                            </ul>
+                        </div>
+                        <div class="ipo-arrow">→</div>
+                        <div class="ipo-box process">
+                            <h4>PROCESS</h4>
+                            <p>Operations performed on data</p>
+                            <ul>
+                                <li>Calculations</li>
+                                <li>Comparisons</li>
+                                <li>Transformations</li>
+                            </ul>
+                        </div>
+                        <div class="ipo-arrow">→</div>
+                        <div class="ipo-box output">
+                            <h4>OUTPUT</h4>
+                            <p>Results produced</p>
+                            <ul>
+                                <li>Display on screen</li>
+                                <li>Save to file</li>
+                                <li>Send to device</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>IPO Example: Calculator Program</h4>
+                        <p><strong>Input:</strong> Two numbers (5 and 3) and an operation (+)</p>
+                        <p><strong>Process:</strong> Add the two numbers (5 + 3)</p>
+                        <p><strong>Output:</strong> Display result (8)</p>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Program Execution Flow</h3>
+                    <p>Programs execute instructions in a specific order:</p>
+                    
+                    <div class="flow-types">
+                        <div class="flow-type">
+                            <h4>1. Sequential Flow</h4>
+                            <p>Instructions execute one after another, top to bottom</p>
+                            <pre><code class="language-python">print("Step 1")
+print("Step 2")
+print("Step 3")</code></pre>
+                        </div>
+
+                        <div class="flow-type">
+                            <h4>2. Conditional Flow</h4>
+                            <p>Instructions execute based on conditions</p>
+                            <pre><code class="language-python">if age >= 18:
+    print("You can vote")
+else:
+    print("You cannot vote yet")</code></pre>
+                        </div>
+
+                        <div class="flow-type">
+                            <h4>3. Iterative Flow</h4>
+                            <p>Instructions repeat multiple times</p>
+                            <pre><code class="language-python">for i in range(5):
+    print("Count:", i)</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Human Thinking vs Computer Logic</h3>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Human Thinking</th>
+                                <th>Computer Logic</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Can understand context and ambiguity</td>
+                                <td>Requires precise, unambiguous instructions</td>
+                            </tr>
+                            <tr>
+                                <td>Can make assumptions</td>
+                                <td>Cannot assume anything not explicitly stated</td>
+                            </tr>
+                            <tr>
+                                <td>Learns from experience</td>
+                                <td>Follows programmed instructions exactly</td>
+                            </tr>
+                            <tr>
+                                <td>Can handle incomplete information</td>
+                                <td>Needs complete data to process</td>
+                            </tr>
+                            <tr>
+                                <td>Relatively slow at calculations</td>
+                                <td>Extremely fast at calculations</td>
+                            </tr>
+                            <tr>
+                                <td>Gets tired and makes mistakes</td>
+                                <td>Never tires, consistent results</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="example-box">
+                        <h4>Example of Precision Needed:</h4>
+                        <p><strong>Human instruction:</strong> "Make me a cup of tea"</p>
+                        <p>A human understands this means: boil water, add tea bag, pour water, wait, remove bag, etc.</p>
+                        
+                        <p><strong>Computer instruction:</strong> Must specify every single step:</p>
+                        <ol>
+                            <li>Fill kettle with 250ml water</li>
+                            <li>Turn on kettle</li>
+                            <li>Wait until water temperature = 100°C</li>
+                            <li>Place tea bag in cup</li>
+                            <li>Pour water into cup</li>
+                            <li>Wait 180 seconds</li>
+                            <li>Remove tea bag</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Role of Programming Languages</h3>
+                    <p>Programming languages bridge the gap between human thinking and computer execution.</p>
+                    
+                    <div class="language-levels">
+                        <div class="level">
+                            <h4>Machine Language (Binary)</h4>
+                            <p>What computers actually understand</p>
+                            <code>10110000 01100001</code>
+                            <p class="level-desc">Difficult for humans to read and write</p>
+                        </div>
+
+                        <div class="level">
+                            <h4>Assembly Language</h4>
+                            <p>Low-level, close to machine code</p>
+                            <code>MOV AL, 61h</code>
+                            <p class="level-desc">Still complex, hardware-specific</p>
+                        </div>
+
+                        <div class="level">
+                            <h4>High-Level Languages (Python, Java, C++)</h4>
+                            <p>Human-readable, easier to learn</p>
+                            <code>print("Hello, World!")</code>
+                            <p class="level-desc">Easier to write, maintain, and understand</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>Why Python?</strong></p>
+                        <ul>
+                            <li>Simple, readable syntax (looks like English)</li>
+                            <li>Versatile (web, data science, AI, automation)</li>
+                            <li>Large community and extensive libraries</li>
+                            <li>Great for beginners and professionals</li>
+                            <li>High demand in job market</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Python Environment Setup + Basic Syntax</h2>
+                
+                <div class="topic">
+                    <h3>What is Python?</h3>
+                    <p>Python is a high-level, interpreted programming language created by Guido van Rossum in 1991. It emphasizes code readability and simplicity.</p>
+                    
+                    <div class="key-points">
+                        <h4>Key Characteristics:</h4>
+                        <ul>
+                            <li><strong>Interpreted:</strong> Code runs line by line (no compilation needed)</li>
+                            <li><strong>Dynamically Typed:</strong> No need to declare variable types</li>
+                            <li><strong>Object-Oriented:</strong> Supports OOP concepts</li>
+                            <li><strong>Cross-Platform:</strong> Runs on Windows, Mac, Linux</li>
+                            <li><strong>Extensive Libraries:</strong> Thousands of pre-built modules</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Where Python is Used</h3>
+                    
+                    <div class="use-cases">
+                        <div class="use-case">
+                            <i class="fas fa-globe"></i>
+                            <h4>Web Development</h4>
+                            <p>Django, Flask frameworks</p>
+                            <p class="example">Instagram, Pinterest, Spotify</p>
+                        </div>
+
+                        <div class="use-case">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Data Science & AI</h4>
+                            <p>NumPy, Pandas, TensorFlow</p>
+                            <p class="example">Machine Learning, Data Analysis</p>
+                        </div>
+
+                        <div class="use-case">
+                            <i class="fas fa-robot"></i>
+                            <h4>Automation</h4>
+                            <p>Scripting, Testing</p>
+                            <p class="example">Task automation, Web scraping</p>
+                        </div>
+
+                        <div class="use-case">
+                            <i class="fas fa-gamepad"></i>
+                            <h4>Game Development</h4>
+                            <p>Pygame library</p>
+                            <p class="example">2D games, Prototypes</p>
+                        </div>
+
+                        <div class="use-case">
+                            <i class="fas fa-desktop"></i>
+                            <h4>Desktop Applications</h4>
+                            <p>Tkinter, PyQt</p>
+                            <p class="example">GUI applications</p>
+                        </div>
+
+                        <div class="use-case">
+                            <i class="fas fa-network-wired"></i>
+                            <h4>IoT & Embedded</h4>
+                            <p>Raspberry Pi, MicroPython</p>
+                            <p class="example">Smart devices, Sensors</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="anaconda" class="topic">
+                    <h3>Python Development Environments</h3>
+                    
+                    <div class="env-options">
+                        <div class="env-option">
+                            <h4>1. IDLE</h4>
+                            <p>Built-in Python IDE, simple and lightweight</p>
+                        </div>
+
+                        <div class="env-option">
+                            <h4>2. VS Code</h4>
+                            <p>Popular code editor with Python extensions</p>
+                        </div>
+
+                        <div class="env-option">
+                            <h4>3. PyCharm</h4>
+                            <p>Professional Python IDE with advanced features</p>
+                        </div>
+
+                        <div class="env-option highlighted">
+                            <h4>4. Anaconda + Jupyter Notebook</h4>
+                            <p>Complete data science platform (Our Choice!)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>What is Anaconda?</h3>
+                    <p>Anaconda is a free, open-source distribution of Python and R for scientific computing and data science.</p>
+                    
+                    <div class="key-points">
+                        <h4>Why Use Anaconda?</h4>
+                        <ul>
+                            <li><strong>Package Management:</strong> Comes with 250+ pre-installed packages (NumPy, Pandas, Matplotlib, etc.)</li>
+                            <li><strong>Environment Management:</strong> Create isolated environments for different projects</li>
+                            <li><strong>Cross-Platform:</strong> Works on Windows, Mac, and Linux</li>
+                            <li><strong>Anaconda Navigator:</strong> GUI for managing packages and environments</li>
+                            <li><strong>Jupyter Notebook:</strong> Interactive coding environment included</li>
+                            <li><strong>No Admin Rights Needed:</strong> Can be installed without administrator privileges</li>
+                        </ul>
+                    </div>
+
+                    <div class="installation-steps">
+                        <h4>Anaconda Installation Steps (Conceptual)</h4>
+                        <ol>
+                            <li>
+                                <strong>Download Anaconda:</strong>
+                                <p>Visit <a href="https://www.anaconda.com/download" target="_blank">anaconda.com/download</a></p>
+                                <p>Choose your operating system (Windows/Mac/Linux)</p>
+                                <p>Download the installer (typically 500-700 MB)</p>
+                            </li>
+                            <li>
+                                <strong>Run the Installer:</strong>
+                                <p>Double-click the downloaded file</p>
+                                <p>Follow the installation wizard</p>
+                                <p>Choose "Just Me" (recommended) or "All Users"</p>
+                            </li>
+                            <li>
+                                <strong>Select Installation Location:</strong>
+                                <p>Use default location or choose custom path</p>
+                                <p>Ensure sufficient disk space (3-5 GB)</p>
+                            </li>
+                            <li>
+                                <strong>Advanced Options:</strong>
+                                <p>✓ Register Anaconda as default Python (recommended for beginners)</p>
+                                <p>✓ Add Anaconda to PATH environment variable (optional)</p>
+                            </li>
+                            <li>
+                                <strong>Complete Installation:</strong>
+                                <p>Wait for installation to complete (5-10 minutes)</p>
+                                <p>Click "Finish"</p>
+                            </li>
+                            <li>
+                                <strong>Verify Installation:</strong>
+                                <p>Open Anaconda Navigator from Start Menu/Applications</p>
+                                <p>You should see various tools including Jupyter Notebook</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Introduction to Jupyter Notebook</h3>
+                    <p>Jupyter Notebook is an open-source web application that allows you to create and share documents containing live code, equations, visualizations, and narrative text.</p>
+                    
+                    <div class="key-points">
+                        <h4>Why Use Jupyter Notebook?</h4>
+                        <ul>
+                            <li><strong>Interactive:</strong> Run code and see results immediately</li>
+                            <li><strong>Documentation:</strong> Mix code with explanatory text and images</li>
+                            <li><strong>Visualization:</strong> Display graphs and charts inline</li>
+                            <li><strong>Experimentation:</strong> Test code snippets without creating full programs</li>
+                            <li><strong>Sharing:</strong> Easy to share notebooks with others</li>
+                            <li><strong>Learning:</strong> Perfect for tutorials and educational content</li>
+                        </ul>
+                    </div>
+
+                    <div class="jupyter-structure">
+                        <h4>How Jupyter Notebook Works</h4>
+                        
+                        <div class="structure-item">
+                            <h5>1. Notebook (.ipynb file)</h5>
+                            <p>A document that contains cells of different types</p>
+                        </div>
+
+                        <div class="structure-item">
+                            <h5>2. Cells</h5>
+                            <p>Building blocks of a notebook:</p>
+                            <ul>
+                                <li><strong>Code Cells:</strong> Contain executable Python code</li>
+                                <li><strong>Markdown Cells:</strong> Contain formatted text, headings, lists</li>
+                                <li><strong>Raw Cells:</strong> Unformatted text (rarely used)</li>
+                            </ul>
+                        </div>
+
+                        <div class="structure-item">
+                            <h5>3. Kernel</h5>
+                            <p>The computational engine that executes code (Python 3 in our case)</p>
+                        </div>
+
+                        <div class="structure-item">
+                            <h5>4. Output</h5>
+                            <p>Results displayed below code cells (text, numbers, graphs, tables)</p>
+                        </div>
+                    </div>
+
+                    <div class="jupyter-launch">
+                        <h4>Launching Jupyter Notebook (Conceptual Flow)</h4>
+                        
+                        <div class="launch-method">
+                            <h5>Method 1: Using Anaconda Navigator (Easiest)</h5>
+                            <ol>
+                                <li>Open Anaconda Navigator</li>
+                                <li>Find "Jupyter Notebook" tile</li>
+                                <li>Click "Launch" button</li>
+                                <li>Browser opens automatically with Jupyter interface</li>
+                                <li>Navigate to desired folder</li>
+                                <li>Click "New" → "Python 3" to create a notebook</li>
+                            </ol>
+                        </div>
+
+                        <div class="launch-method">
+                            <h5>Method 2: Using Command Line</h5>
+                            <ol>
+                                <li>Open Terminal (Mac/Linux) or Anaconda Prompt (Windows)</li>
+                                <li>Navigate to your working directory: <code>cd Documents/Python</code></li>
+                                <li>Type: <code>jupyter notebook</code></li>
+                                <li>Press Enter</li>
+                                <li>Browser opens with Jupyter interface</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="jupyter-shortcuts">
+                        <h4>Essential Jupyter Shortcuts</h4>
+                        <table class="shortcuts-table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Shortcut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Run current cell</td>
+                                    <td><kbd>Shift</kbd> + <kbd>Enter</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Insert cell below</td>
+                                    <td><kbd>B</kbd> (in command mode)</td>
+                                </tr>
+                                <tr>
+                                    <td>Insert cell above</td>
+                                    <td><kbd>A</kbd> (in command mode)</td>
+                                </tr>
+                                <tr>
+                                    <td>Delete cell</td>
+                                    <td><kbd>D</kbd> + <kbd>D</kbd> (in command mode)</td>
+                                </tr>
+                                <tr>
+                                    <td>Change to code cell</td>
+                                    <td><kbd>Y</kbd> (in command mode)</td>
+                                </tr>
+                                <tr>
+                                    <td>Change to markdown cell</td>
+                                    <td><kbd>M</kbd> (in command mode)</td>
+                                </tr>
+                                <tr>
+                                    <td>Save notebook</td>
+                                    <td><kbd>Ctrl</kbd> + <kbd>S</kbd> (or <kbd>Cmd</kbd> + <kbd>S</kbd>)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="syntax" class="topic">
+                    <h3>Structure of a Python Program in Jupyter</h3>
+                    
+                    <div class="program-structure">
+                        <h4>Basic Program Structure:</h4>
+                        
+                        <div class="code-example">
+                            <h5>Cell 1: Comments and Documentation</h5>
+                            <pre><code class="language-python"># This is a comment - explains what the code does
+# Comments start with # and are ignored by Python
+# Use comments to make your code understandable
+
+"""
+This is a multi-line comment (docstring)
+Used for longer explanations
+"""</code></pre>
+                        </div>
+
+                        <div class="code-example">
+                            <h5>Cell 2: Variable Declarations</h5>
+                            <pre><code class="language-python"># Storing data in variables
+name = "Alice"
+age = 25
+height = 5.6
+is_student = True</code></pre>
+                        </div>
+
+                        <div class="code-example">
+                            <h5>Cell 3: Processing/Calculations</h5>
+                            <pre><code class="language-python"># Performing operations
+birth_year = 2024 - age
+height_in_cm = height * 30.48</code></pre>
+                        </div>
+
+                        <div class="code-example">
+                            <h5>Cell 4: Output</h5>
+                            <pre><code class="language-python"># Displaying results
+print("Name:", name)
+print("Age:", age)
+print("Birth Year:", birth_year)</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Python Syntax Rules</h3>
+                    
+                    <div class="syntax-rules">
+                        <div class="rule">
+                            <h4>1. Case Sensitivity</h4>
+                            <p>Python is case-sensitive. <code>Name</code>, <code>name</code>, and <code>NAME</code> are different variables.</p>
+                            <pre><code class="language-python">name = "Alice"
+Name = "Bob"
+print(name)  # Output: Alice
+print(Name)  # Output: Bob</code></pre>
+                        </div>
+
+                        <div class="rule">
+                            <h4>2. Indentation (CRITICAL!)</h4>
+                            <p>Python uses indentation (spaces/tabs) to define code blocks. Most languages use braces { }.</p>
+                            <pre><code class="language-python"># Correct indentation
+if age >= 18:
+    print("Adult")      # 4 spaces indentation
+    print("Can vote")   # Same level
+
+# Wrong indentation (will cause error)
+if age >= 18:
+print("Adult")  # Error: expected indented block</code></pre>
+                            <div class="warning-box">
+                                <p><strong>⚠️ Important:</strong> Use either 4 spaces OR 1 tab consistently. Don't mix them!</p>
+                            </div>
+                        </div>
+
+                        <div class="rule">
+                            <h4>3. Comments</h4>
+                            <p>Use # for single-line comments, """ """ for multi-line comments</p>
+                            <pre><code class="language-python"># This is a single-line comment
+
+"""
+This is a
+multi-line comment
+"""
+
+x = 5  # You can also add comments after code</code></pre>
+                        </div>
+
+                        <div class="rule">
+                            <h4>4. Statements</h4>
+                            <p>Each statement typically goes on a new line. No semicolon needed!</p>
+                            <pre><code class="language-python"># Correct
+x = 5
+y = 10
+z = x + y
+
+# Also valid (but not recommended)
+x = 5; y = 10; z = x + y</code></pre>
+                        </div>
+
+                        <div class="rule">
+                            <h4>5. Line Continuation</h4>
+                            <p>Use backslash \ to continue long lines</p>
+                            <pre><code class="language-python"># Long line broken into multiple lines
+total = 1 + 2 + 3 + \
+        4 + 5 + 6
+
+# Or use parentheses (preferred)
+total = (1 + 2 + 3 +
+         4 + 5 + 6)</code></pre>
+                        </div>
+
+                        <div class="rule">
+                            <h4>6. Naming Conventions</h4>
+                            <ul>
+                                <li>Variable names: lowercase with underscores: <code>my_variable</code></li>
+                                <li>Function names: lowercase with underscores: <code>calculate_total()</code></li>
+                                <li>Class names: CapitalizedWords: <code>MyClass</code></li>
+                                <li>Constants: UPPERCASE: <code>MAX_SIZE</code></li>
+                            </ul>
+                            <pre><code class="language-python"># Good naming
+student_name = "Alice"
+total_marks = 95
+MAX_ATTEMPTS = 3
+
+# Bad naming (but valid)
+x = "Alice"
+tm = 95
+ma = 3</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="examples" class="topic">
+                    <h3>Understanding a Simple Python Program Line by Line</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 1: Hello World Program</h4>
+                        <pre><code class="language-python"># My first Python program
+print("Hello, World!")</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>Line 1:</strong> <code># My first Python program</code></p>
+                            <ul>
+                                <li>This is a comment (starts with #)</li>
+                                <li>Python ignores this line</li>
+                                <li>Used to explain what the code does</li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>Line 2:</strong> <code>print("Hello, World!")</code></p>
+                            <ul>
+                                <li><code>print()</code> is a built-in function that displays output</li>
+                                <li><code>"Hello, World!"</code> is a string (text) in quotes</li>
+                                <li>This line displays: Hello, World!</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Hello, World!</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 2: Simple Calculator</h4>
+                        <pre><code class="language-python"># Simple addition program
+num1 = 10
+num2 = 20
+sum = num1 + num2
+print("The sum is:", sum)</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>Line 1:</strong> <code># Simple addition program</code></p>
+                            <ul>
+                                <li>Comment describing the program</li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>Line 2:</strong> <code>num1 = 10</code></p>
+                            <ul>
+                                <li>Creates a variable named <code>num1</code></li>
+                                <li>Assigns the value 10 to it</li>
+                                <li><code>=</code> is the assignment operator</li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>Line 3:</strong> <code>num2 = 20</code></p>
+                            <ul>
+                                <li>Creates another variable <code>num2</code> with value 20</li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>Line 4:</strong> <code>sum = num1 + num2</code></p>
+                            <ul>
+                                <li>Adds <code>num1</code> (10) and <code>num2</code> (20)</li>
+                                <li>Stores the result (30) in variable <code>sum</code></li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>Line 5:</strong> <code>print("The sum is:", sum)</code></p>
+                            <ul>
+                                <li>Displays the text "The sum is:" followed by the value of <code>sum</code></li>
+                                <li>Comma separates multiple items to print</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>The sum is: 30</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: User Input Program</h4>
+                        <pre><code class="language-python"># Program to greet user by name
+name = input("Enter your name: ")
+print("Hello,", name)
+print("Welcome to Python programming!")</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>Line 2:</strong> <code>name = input("Enter your name: ")</code></p>
+                            <ul>
+                                <li><code>input()</code> function asks user to type something</li>
+                                <li>Displays the message "Enter your name: "</li>
+                                <li>Waits for user to type and press Enter</li>
+                                <li>Stores what user typed in variable <code>name</code></li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>Line 3:</strong> <code>print("Hello,", name)</code></p>
+                            <ul>
+                                <li>Displays "Hello," followed by the user's name</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Sample Run:</strong>
+                            <pre>Enter your name: Alice
+Hello, Alice
+Welcome to Python programming!</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Complete IPO Model Program</h4>
+                        <pre><code class="language-python"># Program to calculate rectangle area
+# INPUT
+length = float(input("Enter length: "))
+width = float(input("Enter width: "))
+
+# PROCESS
+area = length * width
+perimeter = 2 * (length + width)
+
+# OUTPUT
+print("Area of rectangle:", area)
+print("Perimeter of rectangle:", perimeter)</code></pre>
+                        
+                        <div class="line-explanation">
+                            <p><strong>INPUT Section:</strong></p>
+                            <ul>
+                                <li><code>float()</code> converts input text to decimal number</li>
+                                <li>Gets length and width from user</li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>PROCESS Section:</strong></p>
+                            <ul>
+                                <li>Calculates area: length × width</li>
+                                <li>Calculates perimeter: 2 × (length + width)</li>
+                            </ul>
+                        </div>
+
+                        <div class="line-explanation">
+                            <p><strong>OUTPUT Section:</strong></p>
+                            <ul>
+                                <li>Displays calculated area and perimeter</li>
+                            </ul>
+                        </div>
+
+                        <div class="output-box">
+                            <strong>Sample Run:</strong>
+                            <pre>Enter length: 5
+Enter width: 3
+Area of rectangle: 15.0
+Perimeter of rectangle: 16.0</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Practice Exercises</h3>
+                    
+                    <div class="exercise">
+                        <h4>Exercise 1: Personal Information</h4>
+                        <p>Write a program that asks for your name, age, and city, then displays them in a formatted message.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python"># Personal information program
+name = input("Enter your name: ")
+age = input("Enter your age: ")
+city = input("Enter your city: ")
+
+print("Name:", name)
+print("Age:", age)
+print("City:", city)
+print("Nice to meet you,", name, "from", city + "!")</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="exercise">
+                        <h4>Exercise 2: Temperature Converter</h4>
+                        <p>Write a program to convert Celsius to Fahrenheit. Formula: F = (C × 9/5) + 32</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python"># Temperature converter
+celsius = float(input("Enter temperature in Celsius: "))
+fahrenheit = (celsius * 9/5) + 32
+print(celsius, "°C is equal to", fahrenheit, "°F")</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="exercise">
+                        <h4>Exercise 3: Simple Interest Calculator</h4>
+                        <p>Calculate simple interest. Formula: SI = (P × R × T) / 100</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python"># Simple interest calculator
+principal = float(input("Enter principal amount: "))
+rate = float(input("Enter rate of interest: "))
+time = float(input("Enter time period (years): "))
+
+simple_interest = (principal * rate * time) / 100
+
+print("Simple Interest:", simple_interest)
+print("Total Amount:", principal + simple_interest)</code></pre>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section assessment-section">
+                <h2><i class="fas fa-clipboard-check"></i> Day 1 Assessment</h2>
+                
+                <div class="assessment-intro">
+                    <p>Test your understanding of today's concepts. Try to answer these questions without looking at the notes!</p>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="question">
+                        <h3>Question 1: Multiple Choice</h3>
+                        <p>What does IPO stand for in programming?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> A) Internet Protocol Operations</label>
+                            <label><input type="radio" name="q1" value="b"> B) Input-Process-Output</label>
+                            <label><input type="radio" name="q1" value="c"> C) Integrated Programming Object</label>
+                            <label><input type="radio" name="q1" value="d"> D) Initial Program Operation</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: B) Input-Process-Output</strong></p>
+                            <p>The IPO model describes how programs work: they take input, process it, and produce output.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 2: Multiple Choice</h3>
+                        <p>Which of the following is NOT a pillar of computational thinking?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> A) Decomposition</label>
+                            <label><input type="radio" name="q2" value="b"> B) Pattern Recognition</label>
+                            <label><input type="radio" name="q2" value="c"> C) Compilation</label>
+                            <label><input type="radio" name="q2" value="d"> D) Abstraction</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: C) Compilation</strong></p>
+                            <p>The four pillars are: Decomposition, Pattern Recognition, Abstraction, and Algorithm Design.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 3: True/False</h3>
+                        <p>Python is case-sensitive, meaning 'name' and 'Name' are different variables.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="true"> True</label>
+                            <label><input type="radio" name="q3" value="false"> False</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: True</strong></p>
+                            <p>Python is case-sensitive. 'name', 'Name', and 'NAME' are all different variables.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 4: Multiple Choice</h3>
+                        <p>What is the correct way to write a comment in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> A) // This is a comment</label>
+                            <label><input type="radio" name="q4" value="b"> B) # This is a comment</label>
+                            <label><input type="radio" name="q4" value="c"> C) /* This is a comment */</label>
+                            <label><input type="radio" name="q4" value="d"> D) -- This is a comment</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: B) # This is a comment</strong></p>
+                            <p>Python uses # for single-line comments.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 5: Fill in the Blank</h3>
+                        <p>In Python, __________ is used to define code blocks instead of curly braces.</p>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: Indentation</strong></p>
+                            <p>Python uses indentation (spaces or tabs) to define code blocks, unlike languages like C++ or Java that use { }.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 6: Code Analysis</h3>
+                        <p>What will be the output of this code?</p>
+                        <pre><code class="language-python">x = 5
+y = 10
+z = x + y
+print("Result:", z)</code></pre>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: Result: 15</strong></p>
+                            <p>x (5) + y (10) = 15, which is stored in z and then printed.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 7: Short Answer</h3>
+                        <p>Name three areas where Python is commonly used.</p>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Possible Answers:</strong></p>
+                            <ul>
+                                <li>Web Development</li>
+                                <li>Data Science and Machine Learning</li>
+                                <li>Automation and Scripting</li>
+                                <li>Game Development</li>
+                                <li>Desktop Applications</li>
+                                <li>IoT and Embedded Systems</li>
+                            </ul>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 8: Practical</h3>
+                        <p>Write a Python program that asks the user for two numbers and displays their sum.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python"># Get two numbers from user
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Calculate sum
+total = num1 + num2
+
+# Display result
+print("Sum:", total)</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 9: Conceptual</h3>
+                        <p>Explain the difference between human thinking and computer logic with one example.</p>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Sample Answer:</strong></p>
+                            <p>Humans can understand context and make assumptions, while computers need explicit instructions. For example, if you tell a human "make tea," they understand all the steps involved. But a computer needs every step spelled out: boil water, add tea bag, pour water, wait 3 minutes, remove bag, etc.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 10: Practical Challenge</h3>
+                        <p>Write a program that calculates the area of a circle. Formula: Area = π × r²  (use 3.14159 for π)</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python"># Circle area calculator
+radius = float(input("Enter radius of circle: "))
+pi = 3.14159
+
+area = pi * radius * radius
+# Or: area = pi * (radius ** 2)
+
+print("Area of circle:", area)</code></pre>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems</h2>
+                <p style="color: white; font-size: 1.1rem;">Strengthen your programming skills with these coding challenges:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.geeksforgeeks.org/problems/sum-of-digits1742/1" target="_blank" style="color: #ffd700;">Sum of Digits - GeeksforGeeks</a></li>
+                    <li><a href="https://leetcode.com/problems/add-digits/" target="_blank" style="color: #ffd700;">Add Digits - LeetCode</a></li>
+                    <li><a href="https://codeforces.com/problemset/problem/1807/A" target="_blank" style="color: #ffd700;">Problem 1807A - Codeforces</a></li>
+                    <li><a href="https://leetcode.com/problems/ugly-number/" target="_blank" style="color: #ffd700;">Ugly Number - LeetCode</a></li>
+                    <li><a href="https://codeforces.com/contest/1352/problem/A" target="_blank" style="color: #ffd700;">Problem 1352A - Codeforces</a></li>
+                    <li><a href="https://leetcode.com/problems/number-of-common-factors/" target="_blank" style="color: #ffd700;">Number of Common Factors - LeetCode</a></li>
+                </ul>
+            </section>
+
+            <div class="day-navigation">
+                <a href="index.html" class="nav-btn prev"><i class="fas fa-home"></i> Back to Home</a>
+                <a href="day2.html" class="nav-btn next">Next: Day 2 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

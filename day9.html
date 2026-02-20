@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9: Arrays and Searching Algorithms</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 9 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Arrays</a></li>
+                <li><a href="#arrays">Array Basics</a></li>
+                <li><a href="#operations">Array Operations</a></li>
+                <li><a href="#hour2">Hour 2: Searching</a></li>
+                <li><a href="#linear">Linear Search</a></li>
+                <li><a href="#binary">Binary Search</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day8.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 8</a>
+                <a href="day10.html" class="nav-btn next">Day 10 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 9: Arrays and Searching Algorithms</h1>
+                <p class="day-subtitle">Master array operations and search techniques</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Welcome to Day 9! Today we'll learn about arrays (the most fundamental data structure) and searching algorithms (linear and binary search).</p>
+                
+                <div class="key-points">
+                    <h4>What You'll Learn Today:</h4>
+                    <ul>
+                        <li>What arrays are and how they work</li>
+                        <li>Array operations: traversal, insertion, deletion</li>
+                        <li>Advantages and limitations of arrays</li>
+                        <li>Linear search algorithm</li>
+                        <li>Binary search algorithm</li>
+                        <li>Comparing search algorithms</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Arrays</h2>
+                
+                <div id="arrays" class="topic">
+                    <h3>What is an Array?</h3>
+                    <p>An <strong>array</strong> is a collection of elements stored in contiguous memory locations. All elements are of the same type and accessed using an index.</p>
+                    
+                    <div class="example-box">
+                        <h4>Real-World Analogy:</h4>
+                        <p>Think of an array like a row of mailboxes:</p>
+                        <ul>
+                            <li>Each mailbox has a number (index)</li>
+                            <li>All mailboxes are in a line (contiguous)</li>
+                            <li>Each holds one item (element)</li>
+                            <li>You can directly access any mailbox by its number</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Array Memory Representation:</h4>
+                        <pre>Array: [10, 20, 30, 40, 50]
+Index:   0   1   2   3   4
+
+Memory: [10][20][30][40][50]
+Address: 1000 1004 1008 1012 1016</pre>
+                        <p>Elements are stored in consecutive memory locations.</p>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 1: Creating and Accessing Arrays</h4>
+                        <pre><code class="language-python"># Create array (list in Python)
+numbers = [10, 20, 30, 40, 50]
+fruits = ["apple", "banana", "cherry"]
+
+# Access elements
+print(f"First number: {numbers[0]}")
+print(f"Last number: {numbers[-1]}")
+print(f"Second fruit: {fruits[1]}")
+
+# Array length
+print(f"Array size: {len(numbers)}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>First number: 10
+Last number: 50
+Second fruit: banana
+Array size: 5</pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Advantages of Arrays:</h4>
+                        <ul>
+                            <li><strong>Fast access:</strong> O(1) time to access any element</li>
+                            <li><strong>Memory efficient:</strong> Contiguous storage</li>
+                            <li><strong>Cache friendly:</strong> Better performance</li>
+                            <li><strong>Simple:</strong> Easy to understand and use</li>
+                        </ul>
+                        
+                        <h4>Limitations of Arrays:</h4>
+                        <ul>
+                            <li><strong>Fixed size:</strong> Cannot grow dynamically (in some languages)</li>
+                            <li><strong>Insertion/Deletion:</strong> Expensive operations</li>
+                            <li><strong>Wasted space:</strong> If not fully utilized</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="operations" class="topic">
+                    <h3>Array Operations</h3>
+                    
+                    <div class="detailed-example">
+                        <h4>Example 2: Array Traversal</h4>
+                        <pre><code class="language-python">def traverse_array(arr):
+                    """Visit each element - O(n)"""
+    print("Array elements:")
+    for i in range(len(arr)):
+        print(f"Index {i}: {arr[i]}")
+
+# Alternative: Direct iteration
+def traverse_simple(arr):
+    for element in arr:
+        print(element)
+
+# Test
+numbers = [10, 20, 30, 40, 50]
+traverse_array(numbers)</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 3: Array Insertion</h4>
+                        <pre><code class="language-python"># Insert at end - O(1)
+def insert_at_end(arr, element):
+    arr.append(element)
+    return arr
+
+# Insert at beginning - O(n)
+def insert_at_beginning(arr, element):
+    arr.insert(0, element)
+    return arr
+
+# Insert at specific position - O(n)
+def insert_at_position(arr, index, element):
+    arr.insert(index, element)
+    return arr
+
+# Test
+numbers = [10, 20, 30, 40]
+print(f"Original: {numbers}")
+
+insert_at_end(numbers, 50)
+print(f"After insert at end: {numbers}")
+
+insert_at_position(numbers, 2, 25)
+print(f"After insert at index 2: {numbers}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: [10, 20, 30, 40]
+After insert at end: [10, 20, 30, 40, 50]
+After insert at index 2: [10, 20, 25, 30, 40, 50]</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 4: Array Deletion</h4>
+                        <pre><code class="language-python"># Delete by value - O(n)
+def delete_by_value(arr, value):
+    if value in arr:
+        arr.remove(value)
+    return arr
+
+# Delete by index - O(n)
+def delete_by_index(arr, index):
+    if 0 <= index < len(arr):
+        del arr[index]
+    return arr
+
+# Delete last element - O(1)
+def delete_last(arr):
+    if arr:
+        arr.pop()
+    return arr
+
+# Test
+numbers = [10, 20, 30, 40, 50]
+print(f"Original: {numbers}")
+
+delete_by_value(numbers, 30)
+print(f"After deleting 30: {numbers}")
+
+delete_by_index(numbers, 0)
+print(f"After deleting index 0: {numbers}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 5: Array Update</h4>
+                        <pre><code class="language-python">def update_element(arr, index, new_value):
+    """Update element at index - O(1)"""
+    if 0 <= index < len(arr):
+        arr[index] = new_value
+        return True
+    return False
+
+# Test
+numbers = [10, 20, 30, 40, 50]
+print(f"Original: {numbers}")
+
+update_element(numbers, 2, 35)
+print(f"After update: {numbers}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Original: [10, 20, 30, 40, 50]
+After update: [10, 20, 35, 40, 50]</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Searching Algorithms</h2>
+                
+                <div id="linear" class="topic">
+                    <h3>Linear Search</h3>
+                    <p><strong>Linear search</strong> checks each element sequentially until the target is found or the end is reached.</p>
+                    
+                    <div class="info-box">
+                        <h4>Algorithm:</h4>
+                        <ol>
+                            <li>Start from first element</li>
+                            <li>Compare with target</li>
+                            <li>If match found, return index</li>
+                            <li>If not, move to next element</li>
+                            <li>Repeat until found or end reached</li>
+                        </ol>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 6: Linear Search Implementation</h4>
+                        <pre><code class="language-python">def linear_search(arr, target):
+    """
+    Linear Search Algorithm
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    """
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i  # Found at index i
+    return -1  # Not found
+
+# Test
+numbers = [64, 34, 25, 12, 22, 11, 90]
+target = 22
+
+result = linear_search(numbers, target)
+if result != -1:
+    print(f"Element {target} found at index {result}")
+else:
+    print(f"Element {target} not found")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Element 22 found at index 4</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 7: Linear Search with Count</h4>
+                        <pre><code class="language-python">def linear_search_all(arr, target):
+    """Find all occurrences of target"""
+    indices = []
+    for i in range(len(arr)):
+        if arr[i] == target:
+            indices.append(i)
+    return indices
+
+# Test
+numbers = [10, 20, 30, 20, 40, 20, 50]
+target = 20
+
+indices = linear_search_all(numbers, target)
+print(f"Element {target} found at indices: {indices}")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Element 20 found at indices: [1, 3, 5]</pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Linear Search Complexity:</h4>
+                        <ul>
+                            <li><strong>Best Case:</strong> O(1) - element at first position</li>
+                            <li><strong>Average Case:</strong> O(n/2) = O(n)</li>
+                            <li><strong>Worst Case:</strong> O(n) - element at last or not present</li>
+                            <li><strong>Space:</strong> O(1) - no extra space needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="binary" class="topic">
+                    <h3>Binary Search</h3>
+                    <p><strong>Binary search</strong> is an efficient algorithm that works on sorted arrays by repeatedly dividing the search interval in half.</p>
+                    
+                    <div class="warning-box">
+                        <h4>⚠️ Important Prerequisite:</h4>
+                        <p>Binary search only works on <strong>sorted arrays</strong>!</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Algorithm:</h4>
+                        <ol>
+                            <li>Find middle element</li>
+                            <li>If middle == target, return index</li>
+                            <li>If target < middle, search left half</li>
+                            <li>If target > middle, search right half</li>
+                            <li>Repeat until found or no elements left</li>
+                        </ol>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 8: Binary Search Implementation</h4>
+                        <pre><code class="language-python">def binary_search(arr, target):
+    """
+    Binary Search Algorithm
+    Time Complexity: O(log n)
+    Space Complexity: O(1)
+    Prerequisite: Array must be sorted
+    """
+    left = 0
+    right = len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if arr[mid] == target:
+            return mid  # Found
+        elif arr[mid] < target:
+            left = mid + 1  # Search right half
+        else:
+            right = mid - 1  # Search left half
+    
+    return -1  # Not found
+
+# Test
+numbers = [11, 12, 22, 25, 34, 64, 90]  # Must be sorted!
+target = 25
+
+result = binary_search(numbers, target)
+if result != -1:
+    print(f"Element {target} found at index {result}")
+else:
+    print(f"Element {target} not found")</code></pre>
+                        
+                        <div class="output-box">
+                            <strong>Output:</strong>
+                            <pre>Element 25 found at index 3</pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 9: Binary Search Recursive</h4>
+                        <pre><code class="language-python">def binary_search_recursive(arr, target, left, right):
+    """Recursive implementation of binary search"""
+    if left > right:
+        return -1  # Base case: not found
+    
+    mid = (left + right) // 2
+    
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] < target:
+        return binary_search_recursive(arr, target, mid + 1, right)
+    else:
+        return binary_search_recursive(arr, target, left, mid - 1)
+
+# Test
+numbers = [11, 12, 22, 25, 34, 64, 90]
+target = 64
+
+result = binary_search_recursive(numbers, target, 0, len(numbers) - 1)
+print(f"Element {target} found at index {result}")</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Example 10: Comparing Search Algorithms</h4>
+                        <pre><code class="language-python">import time
+
+def compare_searches(arr, target):
+    """Compare linear and binary search"""
+    # Linear search
+    start = time.time()
+    linear_result = linear_search(arr, target)
+    linear_time = time.time() - start
+    
+    # Binary search (array must be sorted)
+    arr_sorted = sorted(arr)
+    start = time.time()
+    binary_result = binary_search(arr_sorted, target)
+    binary_time = time.time() - start
+    
+    print(f"Linear Search: Found at {linear_result}, Time: {linear_time:.6f}s")
+    print(f"Binary Search: Found at {binary_result}, Time: {binary_time:.6f}s")
+
+# Test with large array
+numbers = list(range(1, 100001))
+target = 99999
+
+compare_searches(numbers, target)</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Linear vs Binary Search:</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Linear Search</th>
+                                    <th>Binary Search</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Time Complexity</td>
+                                    <td>O(n)</td>
+                                    <td>O(log n)</td>
+                                </tr>
+                                <tr>
+                                    <td>Prerequisite</td>
+                                    <td>None</td>
+                                    <td>Sorted array</td>
+                                </tr>
+                                <tr>
+                                    <td>Best For</td>
+                                    <td>Small/unsorted arrays</td>
+                                    <td>Large sorted arrays</td>
+                                </tr>
+                                <tr>
+                                    <td>Implementation</td>
+                                    <td>Simple</td>
+                                    <td>Moderate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section">
+                <h2><i class="fas fa-clipboard-check"></i> Assessment</h2>
+                <p>Test your understanding of arrays and searching algorithms:</p>
+
+                <div class="assessment-questions">
+                    <div class="question">
+                        <h4>Question 1: Array Access</h4>
+                        <p>What is the time complexity of accessing an array element by index?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(1)
+                            <p><strong>Explanation:</strong> Direct access using index is constant time.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 2: Array Memory</h4>
+                        <p>How are array elements stored in memory?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Contiguous locations
+                            <p><strong>Explanation:</strong> Array elements are stored in consecutive memory addresses.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 3: Linear Search</h4>
+                        <p>What is the worst-case time complexity of linear search?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(n)
+                            <p><strong>Explanation:</strong> May need to check all n elements.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 4: Binary Search Prerequisite</h4>
+                        <p>What condition must be met for binary search?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Array must be sorted
+                            <p><strong>Explanation:</strong> Binary search only works on sorted arrays.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 5: Binary Search Complexity</h4>
+                        <p>What is the time complexity of binary search?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(log n)
+                            <p><strong>Explanation:</strong> Divides search space in half each time.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 6: Array Insertion</h4>
+                        <p>What is the time complexity of inserting at the beginning of an array?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> O(n)
+                            <p><strong>Explanation:</strong> Need to shift all existing elements.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 7: Search Comparison</h4>
+                        <p>Which is faster for large sorted arrays?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Binary search
+                            <p><strong>Explanation:</strong> O(log n) is much faster than O(n) for large inputs.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 8: Array Advantage</h4>
+                        <p>What is the main advantage of arrays?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Fast random access
+                            <p><strong>Explanation:</strong> Can access any element in O(1) time using index.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 9: Linear Search Use</h4>
+                        <p>When should you use linear search over binary search?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> For unsorted or small arrays
+                            <p><strong>Explanation:</strong> Linear search works on any array, no sorting needed.</p>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>Question 10: Array Limitation</h4>
+                        <p>What is a major limitation of arrays?</p>
+                        <div class="answer">
+                            <strong>Answer:</strong> Fixed size (in some languages)
+                            <p><strong>Explanation:</strong> Arrays have fixed size and expensive insertion/deletion.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Arrays</strong> store elements in contiguous memory</li>
+                        <li>Array access is <strong>O(1)</strong> - very fast</li>
+                        <li>Insertion/deletion can be <strong>O(n)</strong> - expensive</li>
+                        <li><strong>Linear search</strong> checks each element sequentially - O(n)</li>
+                        <li><strong>Binary search</strong> divides search space in half - O(log n)</li>
+                        <li>Binary search requires <strong>sorted array</strong></li>
+                        <li>Use <strong>linear search</strong> for small/unsorted arrays</li>
+                        <li>Use <strong>binary search</strong> for large sorted arrays</li>
+                        <li>Arrays are <strong>cache-friendly</strong> and memory efficient</li>
+                        <li>Choose data structure based on <strong>use case</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems - Day 9</h2>
+                <p style="color: white; font-size: 1.1rem;">Advanced array problems for searching & sorting:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.geeksforgeeks.org/problems/find-the-smallest-and-second-smallest-element-in-an-array3226/1" target="_blank" style="color: #ffd700;">Smallest and Second Smallest - GeeksforGeeks</a></li>
+                    <li><a href="https://codeforces.com/problemset/problem/1711/A" target="_blank" style="color: #ffd700;">Problem 1711A - Codeforces</a></li>
+                    <li><a href="https://www.codechef.com/problems/MAXCOUNT" target="_blank" style="color: #ffd700;">Max Count - CodeChef</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1" target="_blank" style="color: #ffd700;">Leaders in Array - GeeksforGeeks</a></li>
+                    <li><a href="https://leetcode.com/problems/count-elements-with-maximum-frequency/description/" target="_blank" style="color: #ffd700;">Count Elements with Max Frequency - LeetCode</a></li>
+                    <li><a href="https://leetcode.com/problems/minimum-number-game/description/" target="_blank" style="color: #ffd700;">Minimum Number Game - LeetCode (Good)</a></li>
+                    <li><a href="https://www.hackerearth.com/practice/data-structures/arrays/1-d/practice-problems/algorithm/make-it-non-decreasing-7d3391fd/" target="_blank" style="color: #ffd700;">Make it Non-Decreasing - HackerEarth (Good)</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

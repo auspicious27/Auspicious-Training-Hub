@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2: Variables, Data Types, and Operators</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="day-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Tech Training Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#curriculum">Curriculum</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-container">
+        <aside class="sidebar">
+            <h3>Day 2 Contents</h3>
+            <ul class="topic-list">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hour1">Hour 1: Variables & Data Types</a></li>
+                <li><a href="#variables">Variables</a></li>
+                <li><a href="#datatypes">Data Types</a></li>
+                <li><a href="#conversion">Type Conversion</a></li>
+                <li><a href="#hour2">Hour 2: Operators</a></li>
+                <li><a href="#arithmetic">Arithmetic Operators</a></li>
+                <li><a href="#relational">Relational Operators</a></li>
+                <li><a href="#logical">Logical Operators</a></li>
+                <li><a href="#assignment">Assignment Operators</a></li>
+                <li><a href="#precedence">Operator Precedence</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+            </ul>
+            <div class="navigation-buttons">
+                <a href="day1.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 1</a>
+                <a href="day3.html" class="nav-btn next">Day 3 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="day-header">
+                <h1>Day 2: Variables, Data Types, and Operators</h1>
+                <p class="day-subtitle">Learn how to store and manipulate data in Python</p>
+            </header>
+
+            <section id="intro" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>Today we'll explore the fundamental building blocks of Python programming: variables, data types, and operators. These concepts are essential for storing, organizing, and manipulating data in your programs.</p>
+            </section>
+
+            <section id="hour1" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 1: Variables & Data Types</h2>
+                
+                <div id="variables" class="topic">
+                    <h3>What are Variables?</h3>
+                    <p>A <strong>variable</strong> is a named container that stores data in computer memory. Think of it as a labeled box where you can put information and retrieve it later.</p>
+                    
+                    <div class="key-points">
+                        <h4>Purpose of Variables:</h4>
+                        <ul>
+                            <li><strong>Storage:</strong> Hold data temporarily during program execution</li>
+                            <li><strong>Reusability:</strong> Use the same value multiple times without retyping</li>
+                            <li><strong>Flexibility:</strong> Change values as the program runs</li>
+                            <li><strong>Readability:</strong> Make code more understandable with meaningful names</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>Real-World Analogy:</h4>
+                        <p>Imagine a locker in a gym:</p>
+                        <ul>
+                            <li><strong>Locker Number:</strong> Variable name (e.g., "age")</li>
+                            <li><strong>Contents:</strong> Variable value (e.g., 25)</li>
+                            <li>You can open the locker, check contents, or replace them</li>
+                        </ul>
+                    </div>
+
+                    <h4>Creating Variables in Python</h4>
+                    <pre><code class="language-python"># Variable assignment syntax: variable_name = value
+name = "Alice"
+age = 25
+height = 5.6
+is_student = True
+
+# Using variables
+print(name)  # Output: Alice
+print(age)   # Output: 25</code></pre>
+                </div>
+
+                <div class="topic">
+                    <h3>Rules for Naming Variables</h3>
+                    
+                    <div class="syntax-rules">
+                        <div class="rule">
+                            <h4>1. Must Start with Letter or Underscore</h4>
+                            <pre><code class="language-python"># Valid
+name = "Alice"
+_age = 25
+user1 = "Bob"
+
+# Invalid
+1user = "Bob"  # Error: cannot start with number
+@name = "Alice"  # Error: cannot use special characters</code></pre>
+                        </div>
+
+                        <div class="rule">
+                            <h4>2. Can Contain Letters, Numbers, and Underscores</h4>
+                            <pre><code class="language-python"># Valid
+student_name = "Alice"
+age2 = 25
+first_name_1 = "Bob"
+
+# Invalid
+student-name = "Alice"  # Error: hyphen not allowed
+first name = "Bob"  # Error: space not allowed
+user@email = "test"  # Error: @ not allowed</code></pre>
+                        </div>
+
+                        <div class="rule">
+                            <h4>3. Case Sensitive</h4>
+                            <pre><code class="language-python">name = "Alice"
+Name = "Bob"
+NAME = "Charlie"
+
+print(name)  # Alice
+print(Name)  # Bob
+print(NAME)  # Charlie
+# These are three different variables!</code></pre>
+                        </div>
+
+                        <div class="rule">
+                            <h4>4. Cannot Use Reserved Keywords</h4>
+                            <p>Python has reserved words that cannot be used as variable names:</p>
+                            <div class="info-box">
+                                <code>if, else, elif, for, while, def, class, import, from, return, True, False, None, and, or, not, in, is, try, except, finally, with, as, pass, break, continue, lambda, yield</code>
+                            </div>
+                            <pre><code class="language-python"># Invalid
+if = 5  # Error: 'if' is a keyword
+class = "Python"  # Error: 'class' is a keyword
+
+# Valid alternatives
+if_condition = 5
+class_name = "Python"</code></pre>
+                        </div>
+
+                        <div class="rule">
+                            <h4>5. Use Descriptive Names</h4>
+                            <pre><code class="language-python"># Bad (not descriptive)
+x = 25
+y = "Alice"
+z = 5.6
+
+# Good (descriptive)
+age = 25
+student_name = "Alice"
+height_in_feet = 5.6</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="key-points">
+                        <h4>Best Practices for Variable Names:</h4>
+                        <ul>
+                            <li>Use lowercase with underscores: <code>student_age</code></li>
+                            <li>Be descriptive: <code>total_price</code> instead of <code>tp</code></li>
+                            <li>Avoid single letters except for counters: <code>i, j, k</code></li>
+                            <li>Use meaningful abbreviations: <code>num_students</code> instead of <code>number_of_students_in_class</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="datatypes" class="topic">
+                    <h3>Data Types in Python</h3>
+                    <p>A <strong>data type</strong> defines what kind of value a variable can hold and what operations can be performed on it.</p>
+                    
+                    <div class="four-pillars">
+                        <div class="pillar">
+                            <h4>1. Integer (int)</h4>
+                            <p>Whole numbers without decimal points</p>
+                            <pre><code class="language-python"># Integer examples
+age = 25
+year = 2024
+temperature = -5
+population = 1000000
+
+print(type(age))  # Output: <class 'int'>
+
+# Operations
+x = 10
+y = 3
+print(x + y)  # 13
+print(x - y)  # 7
+print(x * y)  # 30
+print(x // y)  # 3 (integer division)</code></pre>
+                            
+                            <div class="example-box">
+                                <strong>Use Cases:</strong>
+                                <ul>
+                                    <li>Counting items</li>
+                                    <li>Age, year, quantity</li>
+                                    <li>Array indices</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>2. Float (float)</h4>
+                            <p>Numbers with decimal points</p>
+                            <pre><code class="language-python"># Float examples
+height = 5.6
+price = 19.99
+temperature = 98.6
+pi = 3.14159
+
+print(type(height))  # Output: <class 'float'>
+
+# Operations
+x = 10.5
+y = 2.5
+print(x + y)  # 13.0
+print(x / y)  # 4.2
+print(x * y)  # 26.25</code></pre>
+                            
+                            <div class="example-box">
+                                <strong>Use Cases:</strong>
+                                <ul>
+                                    <li>Measurements (height, weight)</li>
+                                    <li>Prices and money</li>
+                                    <li>Scientific calculations</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>3. String (str)</h4>
+                            <p>Text data enclosed in quotes</p>
+                            <pre><code class="language-python"># String examples
+name = "Alice"
+city = 'New York'
+message = """This is a
+multi-line string"""
+
+print(type(name))  # Output: <class 'str'>
+
+# String operations
+first_name = "John"
+last_name = "Doe"
+full_name = first_name + " " + last_name  # Concatenation
+print(full_name)  # John Doe
+
+# String methods
+text = "hello world"
+print(text.upper())  # HELLO WORLD
+print(text.capitalize())  # Hello world
+print(len(text))  # 11 (length)</code></pre>
+                            
+                            <div class="example-box">
+                                <strong>Use Cases:</strong>
+                                <ul>
+                                    <li>Names, addresses</li>
+                                    <li>Messages and text</li>
+                                    <li>File paths</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>4. Boolean (bool)</h4>
+                            <p>True or False values</p>
+                            <pre><code class="language-python"># Boolean examples
+is_student = True
+has_license = False
+is_adult = True
+
+print(type(is_student))  # Output: <class 'bool'>
+
+# Boolean from comparisons
+age = 20
+is_adult = age >= 18
+print(is_adult)  # True
+
+# Boolean operations
+x = True
+y = False
+print(x and y)  # False
+print(x or y)   # True
+print(not x)    # False</code></pre>
+                            
+                            <div class="example-box">
+                                <strong>Use Cases:</strong>
+                                <ul>
+                                    <li>Conditional checks</li>
+                                    <li>Flags and switches</li>
+                                    <li>Validation results</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Checking Data Types</h4>
+                        <pre><code class="language-python"># Use type() function to check data type
+x = 10
+y = 10.5
+z = "Hello"
+w = True
+
+print(type(x))  # <class 'int'>
+print(type(y))  # <class 'float'>
+print(type(z))  # <class 'str'>
+print(type(w))  # <class 'bool'></code></pre>
+                    </div>
+                </div>
+
+                <div id="conversion" class="topic">
+                    <h3>Type Conversion</h3>
+                    <p><strong>Type conversion</strong> (also called type casting) is the process of converting one data type to another.</p>
+                    
+                    <h4>Why Type Conversion is Needed</h4>
+                    <div class="example-box">
+                        <p>When you get input from a user, it's always a string. To perform calculations, you need to convert it:</p>
+                        <pre><code class="language-python"># Without conversion (WRONG)
+age = input("Enter age: ")  # User enters: 25
+next_year_age = age + 1  # Error! Can't add string and number
+
+# With conversion (CORRECT)
+age = int(input("Enter age: "))  # Converts string to int
+next_year_age = age + 1  # Works! 25 + 1 = 26
+print(next_year_age)  # 26</code></pre>
+                    </div>
+
+                    <h4>Type Conversion Functions</h4>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Function</th>
+                                <th>Purpose</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>int()</code></td>
+                                <td>Convert to integer</td>
+                                <td><code>int("25") → 25</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>float()</code></td>
+                                <td>Convert to float</td>
+                                <td><code>float("3.14") → 3.14</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>str()</code></td>
+                                <td>Convert to string</td>
+                                <td><code>str(25) → "25"</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>bool()</code></td>
+                                <td>Convert to boolean</td>
+                                <td><code>bool(1) → True</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Detailed Examples</h4>
+                    
+                    <div class="detailed-example">
+                        <h5>String to Number Conversion</h5>
+                        <pre><code class="language-python"># String to int
+age_str = "25"
+age_int = int(age_str)
+print(age_int + 5)  # 30
+
+# String to float
+price_str = "19.99"
+price_float = float(price_str)
+print(price_float * 2)  # 39.98
+
+# Invalid conversion (causes error)
+# invalid = int("hello")  # ValueError!</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h5>Number to String Conversion</h5>
+                        <pre><code class="language-python"># Int to string
+age = 25
+age_str = str(age)
+message = "I am " + age_str + " years old"
+print(message)  # I am 25 years old
+
+# Float to string
+price = 19.99
+price_str = str(price)
+print("Price: $" + price_str)  # Price: $19.99</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h5>Number Conversions</h5>
+                        <pre><code class="language-python"># Float to int (truncates decimal)
+x = 3.7
+y = int(x)
+print(y)  # 3 (not 4!)
+
+# Int to float
+a = 5
+b = float(a)
+print(b)  # 5.0</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h5>Boolean Conversions</h5>
+                        <pre><code class="language-python"># Numbers to boolean
+print(bool(0))    # False
+print(bool(1))    # True
+print(bool(-5))   # True
+print(bool(100))  # True
+
+# Strings to boolean
+print(bool(""))      # False (empty string)
+print(bool("Hello")) # True (non-empty string)
+
+# Boolean to int
+print(int(True))   # 1
+print(int(False))  # 0</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Common Conversion Errors</h4>
+                        <pre><code class="language-python"># These will cause errors:
+# int("3.14")  # ValueError: invalid literal
+# int("hello")  # ValueError: invalid literal
+# float("abc")  # ValueError: could not convert
+
+# Solutions:
+x = float("3.14")  # Use float() for decimals
+y = int(float("3.14"))  # Convert to float first, then int</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hour2" class="content-section">
+                <h2><i class="fas fa-clock"></i> Hour 2: Operators</h2>
+                
+                <div class="topic">
+                    <h3>What are Operators?</h3>
+                    <p><strong>Operators</strong> are special symbols that perform operations on variables and values. They are the building blocks for creating expressions and performing calculations.</p>
+                    
+                    <div class="key-points">
+                        <h4>Purpose of Operators:</h4>
+                        <ul>
+                            <li>Perform mathematical calculations</li>
+                            <li>Compare values</li>
+                            <li>Make logical decisions</li>
+                            <li>Assign and modify values</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="arithmetic" class="topic">
+                    <h3>Arithmetic Operators</h3>
+                    <p>Used to perform mathematical operations</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Name</th>
+                                <th>Example</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>+</code></td>
+                                <td>Addition</td>
+                                <td><code>5 + 3</code></td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td><code>-</code></td>
+                                <td>Subtraction</td>
+                                <td><code>5 - 3</code></td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td><code>*</code></td>
+                                <td>Multiplication</td>
+                                <td><code>5 * 3</code></td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td><code>/</code></td>
+                                <td>Division</td>
+                                <td><code>5 / 2</code></td>
+                                <td>2.5</td>
+                            </tr>
+                            <tr>
+                                <td><code>//</code></td>
+                                <td>Floor Division</td>
+                                <td><code>5 // 2</code></td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td><code>%</code></td>
+                                <td>Modulus (Remainder)</td>
+                                <td><code>5 % 2</code></td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td><code>**</code></td>
+                                <td>Exponentiation (Power)</td>
+                                <td><code>5 ** 2</code></td>
+                                <td>25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="detailed-example">
+                        <h4>Detailed Examples</h4>
+                        <pre><code class="language-python"># Basic arithmetic
+a = 10
+b = 3
+
+print(a + b)   # 13 (addition)
+print(a - b)   # 7 (subtraction)
+print(a * b)   # 30 (multiplication)
+print(a / b)   # 3.333... (division - always returns float)
+print(a // b)  # 3 (floor division - returns integer part)
+print(a % b)   # 1 (modulus - returns remainder)
+print(a ** b)  # 1000 (10 to the power of 3)
+
+# Practical examples
+# Calculate area of rectangle
+length = 5
+width = 3
+area = length * width
+print("Area:", area)  # 15
+
+# Calculate average
+num1 = 85
+num2 = 90
+num3 = 78
+average = (num1 + num2 + num3) / 3
+print("Average:", average)  # 84.333...
+
+# Check if number is even or odd using modulus
+number = 7
+remainder = number % 2
+print(remainder)  # 1 (odd number)
+# If remainder is 0, number is even
+# If remainder is 1, number is odd</code></pre>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>Real-World Use Cases</h4>
+                        <ul>
+                            <li><strong>Addition (+):</strong> Calculate total price, sum of scores</li>
+                            <li><strong>Subtraction (-):</strong> Calculate discount, age difference</li>
+                            <li><strong>Multiplication (*):</strong> Calculate total cost (price × quantity)</li>
+                            <li><strong>Division (/):</strong> Calculate average, split bill</li>
+                            <li><strong>Modulus (%):</strong> Check even/odd, find remainder, cycle through values</li>
+                            <li><strong>Exponentiation (**):</strong> Calculate compound interest, area of circle</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="relational" class="topic">
+                    <h3>Relational (Comparison) Operators</h3>
+                    <p>Used to compare two values. Always return <code>True</code> or <code>False</code></p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Name</th>
+                                <th>Example</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>==</code></td>
+                                <td>Equal to</td>
+                                <td><code>5 == 5</code></td>
+                                <td>True</td>
+                            </tr>
+                            <tr>
+                                <td><code>!=</code></td>
+                                <td>Not equal to</td>
+                                <td><code>5 != 3</code></td>
+                                <td>True</td>
+                            </tr>
+                            <tr>
+                                <td><code>></code></td>
+                                <td>Greater than</td>
+                                <td><code>5 > 3</code></td>
+                                <td>True</td>
+                            </tr>
+                            <tr>
+                                <td><code><</code></td>
+                                <td>Less than</td>
+                                <td><code>5 < 3</code></td>
+                                <td>False</td>
+                            </tr>
+                            <tr>
+                                <td><code>>=</code></td>
+                                <td>Greater than or equal to</td>
+                                <td><code>5 >= 5</code></td>
+                                <td>True</td>
+                            </tr>
+                            <tr>
+                                <td><code><=</code></td>
+                                <td>Less than or equal to</td>
+                                <td><code>5 <= 3</code></td>
+                                <td>False</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="detailed-example">
+                        <h4>Detailed Examples</h4>
+                        <pre><code class="language-python"># Comparison examples
+age = 20
+passing_marks = 40
+marks = 45
+
+# Equal to
+print(age == 20)  # True
+print(age == 25)  # False
+
+# Not equal to
+print(age != 25)  # True
+print(age != 20)  # False
+
+# Greater than
+print(marks > passing_marks)  # True (45 > 40)
+print(marks > 50)  # False
+
+# Less than
+print(age < 30)  # True
+print(age < 18)  # False
+
+# Greater than or equal to
+print(marks >= 40)  # True
+print(marks >= 45)  # True
+print(marks >= 50)  # False
+
+# Less than or equal to
+print(age <= 20)  # True
+print(age <= 18)  # False
+
+# Practical example: Check voting eligibility
+age = 17
+can_vote = age >= 18
+print("Can vote:", can_vote)  # False
+
+# Compare strings
+name1 = "Alice"
+name2 = "Bob"
+print(name1 == name2)  # False
+print(name1 != name2)  # True</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Common Mistake</h4>
+                        <p>Don't confuse <code>=</code> (assignment) with <code>==</code> (comparison)</p>
+                        <pre><code class="language-python"># Assignment (stores value)
+x = 5  # x now equals 5
+
+# Comparison (checks equality)
+result = (x == 5)  # result is True
+
+# Wrong usage
+# if x = 5:  # Error! Use == for comparison
+if x == 5:  # Correct!</code></pre>
+                    </div>
+                </div>
+
+                <div id="logical" class="topic">
+                    <h3>Logical Operators</h3>
+                    <p>Used to combine multiple conditions. Return <code>True</code> or <code>False</code></p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>and</code></td>
+                                <td>True if both conditions are True</td>
+                                <td><code>True and True</code></td>
+                                <td>True</td>
+                            </tr>
+                            <tr>
+                                <td><code>or</code></td>
+                                <td>True if at least one condition is True</td>
+                                <td><code>True or False</code></td>
+                                <td>True</td>
+                            </tr>
+                            <tr>
+                                <td><code>not</code></td>
+                                <td>Reverses the boolean value</td>
+                                <td><code>not True</code></td>
+                                <td>False</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="four-pillars">
+                        <div class="pillar">
+                            <h4>AND Operator</h4>
+                            <p>Returns True only if BOTH conditions are True</p>
+                            <pre><code class="language-python"># Truth table for AND
+print(True and True)    # True
+print(True and False)   # False
+print(False and True)   # False
+print(False and False)  # False
+
+# Practical example
+age = 25
+has_license = True
+can_drive = age >= 18 and has_license
+print(can_drive)  # True (both conditions met)
+
+age = 16
+has_license = True
+can_drive = age >= 18 and has_license
+print(can_drive)  # False (age condition not met)</code></pre>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>OR Operator</h4>
+                            <p>Returns True if AT LEAST ONE condition is True</p>
+                            <pre><code class="language-python"># Truth table for OR
+print(True or True)    # True
+print(True or False)   # True
+print(False or True)   # True
+print(False or False)  # False
+
+# Practical example
+is_weekend = True
+is_holiday = False
+can_relax = is_weekend or is_holiday
+print(can_relax)  # True (one condition met)
+
+is_weekend = False
+is_holiday = False
+can_relax = is_weekend or is_holiday
+print(can_relax)  # False (no condition met)</code></pre>
+                        </div>
+
+                        <div class="pillar">
+                            <h4>NOT Operator</h4>
+                            <p>Reverses the boolean value</p>
+                            <pre><code class="language-python"># Truth table for NOT
+print(not True)   # False
+print(not False)  # True
+
+# Practical example
+is_raining = False
+go_outside = not is_raining
+print(go_outside)  # True
+
+is_raining = True
+go_outside = not is_raining
+print(go_outside)  # False</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Complex Logical Expressions</h4>
+                        <pre><code class="language-python"># Combining multiple operators
+age = 25
+income = 50000
+has_job = True
+
+# Check loan eligibility
+eligible = age >= 21 and income >= 30000 and has_job
+print("Loan eligible:", eligible)  # True
+
+# Check discount eligibility (student OR senior citizen)
+is_student = False
+age = 70
+gets_discount = is_student or age >= 65
+print("Gets discount:", gets_discount)  # True
+
+# Complex condition
+temperature = 25
+is_sunny = True
+is_weekend = True
+
+# Perfect day for picnic
+perfect_day = temperature >= 20 and temperature <= 30 and is_sunny and is_weekend
+print("Perfect for picnic:", perfect_day)  # True</code></pre>
+                    </div>
+                </div>
+
+                <div id="assignment" class="topic">
+                    <h3>Assignment Operators</h3>
+                    <p>Used to assign values to variables</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Example</th>
+                                <th>Equivalent To</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>=</code></td>
+                                <td><code>x = 5</code></td>
+                                <td><code>x = 5</code></td>
+                                <td>Assign value</td>
+                            </tr>
+                            <tr>
+                                <td><code>+=</code></td>
+                                <td><code>x += 3</code></td>
+                                <td><code>x = x + 3</code></td>
+                                <td>Add and assign</td>
+                            </tr>
+                            <tr>
+                                <td><code>-=</code></td>
+                                <td><code>x -= 3</code></td>
+                                <td><code>x = x - 3</code></td>
+                                <td>Subtract and assign</td>
+                            </tr>
+                            <tr>
+                                <td><code>*=</code></td>
+                                <td><code>x *= 3</code></td>
+                                <td><code>x = x * 3</code></td>
+                                <td>Multiply and assign</td>
+                            </tr>
+                            <tr>
+                                <td><code>/=</code></td>
+                                <td><code>x /= 3</code></td>
+                                <td><code>x = x / 3</code></td>
+                                <td>Divide and assign</td>
+                            </tr>
+                            <tr>
+                                <td><code>//=</code></td>
+                                <td><code>x //= 3</code></td>
+                                <td><code>x = x // 3</code></td>
+                                <td>Floor divide and assign</td>
+                            </tr>
+                            <tr>
+                                <td><code>%=</code></td>
+                                <td><code>x %= 3</code></td>
+                                <td><code>x = x % 3</code></td>
+                                <td>Modulus and assign</td>
+                            </tr>
+                            <tr>
+                                <td><code>**=</code></td>
+                                <td><code>x **= 3</code></td>
+                                <td><code>x = x ** 3</code></td>
+                                <td>Exponent and assign</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="detailed-example">
+                        <h4>Detailed Examples</h4>
+                        <pre><code class="language-python"># Basic assignment
+x = 10
+print(x)  # 10
+
+# Add and assign
+x += 5  # Same as: x = x + 5
+print(x)  # 15
+
+# Subtract and assign
+x -= 3  # Same as: x = x - 3
+print(x)  # 12
+
+# Multiply and assign
+x *= 2  # Same as: x = x * 2
+print(x)  # 24
+
+# Divide and assign
+x /= 4  # Same as: x = x / 4
+print(x)  # 6.0
+
+# Practical examples
+# Counter
+count = 0
+count += 1  # Increment by 1
+count += 1
+count += 1
+print("Count:", count)  # 3
+
+# Shopping cart total
+total = 0
+total += 19.99  # Add item 1
+total += 29.99  # Add item 2
+total += 9.99   # Add item 3
+print("Total:", total)  # 59.97
+
+# Apply discount
+total *= 0.9  # 10% discount (multiply by 0.9)
+print("After discount:", total)  # 53.973</code></pre>
+                    </div>
+                </div>
+
+                <div id="precedence" class="topic">
+                    <h3>Operator Precedence</h3>
+                    <p><strong>Operator precedence</strong> determines the order in which operations are performed in an expression.</p>
+                    
+                    <div class="key-points">
+                        <h4>Precedence Order (Highest to Lowest):</h4>
+                        <ol>
+                            <li><code>()</code> - Parentheses</li>
+                            <li><code>**</code> - Exponentiation</li>
+                            <li><code>*, /, //, %</code> - Multiplication, Division, Floor Division, Modulus</li>
+                            <li><code>+, -</code> - Addition, Subtraction</li>
+                            <li><code>==, !=, >, <, >=, <=</code> - Comparison operators</li>
+                            <li><code>not</code> - Logical NOT</li>
+                            <li><code>and</code> - Logical AND</li>
+                            <li><code>or</code> - Logical OR</li>
+                        </ol>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Examples of Precedence</h4>
+                        <pre><code class="language-python"># Without parentheses
+result = 2 + 3 * 4
+print(result)  # 14 (not 20!)
+# Explanation: 3 * 4 = 12, then 2 + 12 = 14
+
+# With parentheses
+result = (2 + 3) * 4
+print(result)  # 20
+# Explanation: 2 + 3 = 5, then 5 * 4 = 20
+
+# Complex expression
+result = 10 + 5 * 2 - 3
+print(result)  # 17
+# Step 1: 5 * 2 = 10
+# Step 2: 10 + 10 = 20
+# Step 3: 20 - 3 = 17
+
+# With parentheses for clarity
+result = 10 + (5 * 2) - 3
+print(result)  # 17 (same result, but clearer)
+
+# Exponentiation has higher precedence
+result = 2 + 3 ** 2
+print(result)  # 11 (not 25!)
+# Explanation: 3 ** 2 = 9, then 2 + 9 = 11
+
+# Comparison and logical operators
+age = 25
+income = 50000
+result = age >= 18 and income >= 30000
+print(result)  # True
+# Step 1: age >= 18 = True
+# Step 2: income >= 30000 = True
+# Step 3: True and True = True</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Best Practice: Use Parentheses</h4>
+                        <p>Even when not required, use parentheses to make your code clearer:</p>
+                        <pre><code class="language-python"># Less clear
+total = price * quantity + tax - discount
+
+# More clear
+total = (price * quantity) + tax - discount
+
+# Even clearer
+total = ((price * quantity) + tax) - discount</code></pre>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>Practice Problems</h4>
+                        <p>What will these expressions evaluate to?</p>
+                        <pre><code class="language-python"># Problem 1
+result = 5 + 3 * 2
+# Answer: 11 (3*2=6, then 5+6=11)
+
+# Problem 2
+result = (5 + 3) * 2
+# Answer: 16 (5+3=8, then 8*2=16)
+
+# Problem 3
+result = 10 / 2 + 3
+# Answer: 8.0 (10/2=5.0, then 5.0+3=8.0)
+
+# Problem 4
+result = 2 ** 3 ** 2
+# Answer: 512 (3**2=9, then 2**9=512)
+# Note: ** is right-associative!</code></pre>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <h3>Expression Evaluation</h3>
+                    <p>An <strong>expression</strong> is a combination of values, variables, and operators that produces a result.</p>
+                    
+                    <div class="detailed-example">
+                        <h4>Step-by-Step Evaluation</h4>
+                        <pre><code class="language-python"># Complex expression
+a = 5
+b = 3
+c = 2
+
+result = a + b * c ** 2 - 10 / 2
+
+# Step-by-step evaluation:
+# Step 1: c ** 2 = 2 ** 2 = 4
+# Step 2: b * 4 = 3 * 4 = 12
+# Step 3: 10 / 2 = 5.0
+# Step 4: a + 12 = 5 + 12 = 17
+# Step 5: 17 - 5.0 = 12.0
+
+print(result)  # 12.0</code></pre>
+                    </div>
+
+                    <div class="detailed-example">
+                        <h4>Real-World Example: Calculate Final Price</h4>
+                        <pre><code class="language-python"># Calculate final price with tax and discount
+original_price = 100
+quantity = 3
+discount_percent = 10
+tax_percent = 8
+
+# Calculate step by step
+subtotal = original_price * quantity
+print("Subtotal:", subtotal)  # 300
+
+discount_amount = subtotal * discount_percent / 100
+print("Discount:", discount_amount)  # 30.0
+
+price_after_discount = subtotal - discount_amount
+print("After discount:", price_after_discount)  # 270.0
+
+tax_amount = price_after_discount * tax_percent / 100
+print("Tax:", tax_amount)  # 21.6
+
+final_price = price_after_discount + tax_amount
+print("Final price:", final_price)  # 291.6
+
+# Or in one expression (with parentheses for clarity)
+final_price = ((original_price * quantity) * (1 - discount_percent/100)) * (1 + tax_percent/100)
+print("Final price:", final_price)  # 291.6</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="assessment" class="content-section assessment-section">
+                <h2><i class="fas fa-clipboard-check"></i> Day 2 Assessment</h2>
+                
+                <div class="assessment-intro">
+                    <p>Test your understanding of variables, data types, and operators!</p>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="question">
+                        <h3>Question 1: Multiple Choice</h3>
+                        <p>Which of the following is a valid variable name in Python?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> A) 1student</label>
+                            <label><input type="radio" name="q1" value="b"> B) student-name</label>
+                            <label><input type="radio" name="q1" value="c"> C) student_name</label>
+                            <label><input type="radio" name="q1" value="d"> D) student name</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: C) student_name</strong></p>
+                            <p>Variable names must start with a letter or underscore, can contain letters, numbers, and underscores, but cannot contain spaces or hyphens.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 2: Multiple Choice</h3>
+                        <p>What is the data type of the value <code>3.14</code>?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> A) int</label>
+                            <label><input type="radio" name="q2" value="b"> B) float</label>
+                            <label><input type="radio" name="q2" value="c"> C) str</label>
+                            <label><input type="radio" name="q2" value="d"> D) bool</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: B) float</strong></p>
+                            <p>Numbers with decimal points are float (floating-point) data type.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 3: Code Analysis</h3>
+                        <p>What will be the output of this code?</p>
+                        <pre><code class="language-python">x = 10
+y = 3
+print(x // y)</code></pre>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: 3</strong></p>
+                            <p>The // operator performs floor division, which returns only the integer part of the division (10 ÷ 3 = 3 remainder 1, so result is 3).</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 4: Multiple Choice</h3>
+                        <p>What does the modulus operator (%) return?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> A) The quotient of division</label>
+                            <label><input type="radio" name="q4" value="b"> B) The remainder of division</label>
+                            <label><input type="radio" name="q4" value="c"> C) The product of multiplication</label>
+                            <label><input type="radio" name="q4" value="d"> D) The power of a number</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: B) The remainder of division</strong></p>
+                            <p>The modulus operator (%) returns the remainder after division. For example, 7 % 3 = 1.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 5: True/False</h3>
+                        <p>The expression <code>5 > 3 and 2 < 1</code> evaluates to True.</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="true"> True</label>
+                            <label><input type="radio" name="q5" value="false"> False</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: False</strong></p>
+                            <p>5 > 3 is True, but 2 < 1 is False. The 'and' operator requires BOTH conditions to be True, so the result is False.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 6: Code Analysis</h3>
+                        <p>What will be the value of <code>x</code> after this code?</p>
+                        <pre><code class="language-python">x = 10
+x += 5
+x *= 2</code></pre>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: 30</strong></p>
+                            <p>Step 1: x = 10<br>
+                            Step 2: x += 5 → x = 10 + 5 = 15<br>
+                            Step 3: x *= 2 → x = 15 * 2 = 30</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 7: Multiple Choice</h3>
+                        <p>What is the result of <code>2 + 3 * 4</code>?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> A) 20</label>
+                            <label><input type="radio" name="q7" value="b"> B) 14</label>
+                            <label><input type="radio" name="q7" value="c"> C) 24</label>
+                            <label><input type="radio" name="q7" value="d"> D) 11</label>
+                        </div>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: B) 14</strong></p>
+                            <p>Due to operator precedence, multiplication is performed first: 3 * 4 = 12, then 2 + 12 = 14.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 8: Fill in the Blank</h3>
+                        <p>To convert a string to an integer in Python, we use the __________ function.</p>
+                        <details>
+                            <summary>Show Answer</summary>
+                            <p class="answer"><strong>Answer: int()</strong></p>
+                            <p>The int() function converts a string or float to an integer. Example: int("25") returns 25.</p>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 9: Practical</h3>
+                        <p>Write a program that takes two numbers as input and displays their sum, difference, product, and quotient.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python"># Get input from user
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Perform operations
+sum_result = num1 + num2
+difference = num1 - num2
+product = num1 * num2
+quotient = num1 / num2
+
+# Display results
+print("Sum:", sum_result)
+print("Difference:", difference)
+print("Product:", product)
+print("Quotient:", quotient)</code></pre>
+                        </details>
+                    </div>
+
+                    <div class="question">
+                        <h3>Question 10: Practical Challenge</h3>
+                        <p>Write a program that calculates the final price of a product after applying a discount and adding tax. Take original price, discount percentage, and tax percentage as input.</p>
+                        <details>
+                            <summary>Show Solution</summary>
+                            <pre><code class="language-python"># Get input
+original_price = float(input("Enter original price: "))
+discount_percent = float(input("Enter discount percentage: "))
+tax_percent = float(input("Enter tax percentage: "))
+
+# Calculate discount amount
+discount_amount = original_price * discount_percent / 100
+price_after_discount = original_price - discount_amount
+
+# Calculate tax amount
+tax_amount = price_after_discount * tax_percent / 100
+final_price = price_after_discount + tax_amount
+
+# Display results
+print("Original Price:", original_price)
+print("Discount Amount:", discount_amount)
+print("Price After Discount:", price_after_discount)
+print("Tax Amount:", tax_amount)
+print("Final Price:", final_price)
+
+# Alternative: One-line calculation
+# final_price = original_price * (1 - discount_percent/100) * (1 + tax_percent/100)</code></pre>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h2 style="color: white; margin-top: 0;"><i class="fas fa-code"></i> Practice Problems</h2>
+                <p style="color: white; font-size: 1.1rem;">Master variables and operators with these challenges:</p>
+                <ul style="color: white; line-height: 2; font-size: 1rem;">
+                    <li><a href="https://www.hackerrank.com/challenges/fizzbuzz/problem" target="_blank" style="color: #ffd700;">FizzBuzz - HackerRank</a></li>
+                    <li><a href="https://leetcode.com/problems/number-of-common-factors/" target="_blank" style="color: #ffd700;">Number of Common Factors - LeetCode</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/gcd-of-two-numbers3459/1" target="_blank" style="color: #ffd700;">GCD of Two Numbers - GeeksforGeeks</a></li>
+                    <li><a href="https://leetcode.com/problems/power-of-two/" target="_blank" style="color: #ffd700;">Power of Two - LeetCode</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/problems/prime-number2314/1" target="_blank" style="color: #ffd700;">Prime Number - GeeksforGeeks</a></li>
+                    <li><a href="https://codeforwin.org/c-programming/square-star-pattern-in-c" target="_blank" style="color: #ffd700;">Square Star Pattern</a></li>
+                    <li><a href="https://codeforwin.org/c-programming/right-triangle-star-pattern-program-in-c" target="_blank" style="color: #ffd700;">Right Triangle Pattern</a></li>
+                    <li><a href="https://codeforwin.org/c-programming/c-program-to-print-number-pattern-with-0-1-at-alternate-rows" target="_blank" style="color: #ffd700;">Number Pattern 0-1</a></li>
+                </ul>
+            </section>
+
+            <div class="day-navigation">
+                <a href="day1.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Day 1: Programming Foundations</a>
+                <a href="day3.html" class="nav-btn next">Day 3: Conditional Statements <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tech Training Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
