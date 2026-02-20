@@ -1,51 +1,38 @@
-let pyodide;
+function outf(text) {
+    const output = document.getElementById('output');
+    output.textContent += text;
+}
 
-async function loadPyodideEnvironment() {
-    if (!pyodide) {
-        document.getElementById('output').textContent = 'Loading Python environment...\nThis may take a few seconds on first load.';
-        try {
-            pyodide = await loadPyodide({
-                indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
-            });
-            document.getElementById('output').textContent = '✓ Python ready! Write your code and click Run.';
-        } catch (error) {
-            document.getElementById('output').textContent = `Error loading Python: ${error.message}`;
-        }
-    }
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+        throw "File not found: '" + x + "'";
+    return Sk.builtinFiles["files"][x];
 }
 
 async function runCode() {
     const code = document.getElementById('code-editor').value;
     const output = document.getElementById('output');
     
+    output.textContent = '';
+    output.style.color = '#00ff00';
+    
+    Sk.pre = "output";
+    Sk.configure({
+        output: outf,
+        read: builtinRead
+    });
+    
     try {
-        if (!pyodide) {
-            await loadPyodideEnvironment();
+        await Sk.misceval.asyncToPromise(function() {
+            return Sk.importMainWithBody("<stdin>", false, code, true);
+        });
+        
+        if (output.textContent === '') {
+            output.textContent = '✓ Code executed successfully (no output)';
         }
-        
-        output.textContent = 'Running...';
-        output.style.color = '#00ff00';
-        
-        // Capture stdout
-        await pyodide.runPythonAsync(`
-import sys
-from io import StringIO
-sys.stdout = StringIO()
-        `);
-        
-        // Run user code
-        await pyodide.runPythonAsync(code);
-        
-        // Get output
-        const result = await pyodide.runPythonAsync('sys.stdout.getvalue()');
-        output.textContent = result || '✓ Code executed successfully (no output)';
-        
     } catch (error) {
-        output.textContent = `❌ Error:\n${error.message}`;
+        output.textContent = `❌ Error:\n${error.toString()}`;
         output.style.color = '#ff4444';
-        setTimeout(() => {
-            output.style.color = '#00ff00';
-        }, 3000);
     }
 }
 
@@ -61,11 +48,11 @@ print("Welcome to Python Playground!")`,
     
     loop: `# For Loop Example
 for i in range(1, 6):
-    print(f"Number: {i}")`,
+    print("Number:", i)`,
     
     function: `# Function Example
 def greet(name):
-    return f"Hello, {name}!"
+    return "Hello, " + name + "!"
 
 print(greet("Python"))
 print(greet("World"))`,
@@ -80,20 +67,21 @@ print("Reversed:", numbers[::-1])`,
     fibonacci: `# Fibonacci Series
 def fibonacci(n):
     a, b = 0, 1
+    result = []
     for _ in range(n):
-        print(a, end=' ')
+        result.append(a)
         a, b = b, a + b
-    print()
+    return result
 
 print("First 10 Fibonacci numbers:")
-fibonacci(10)`
+print(fibonacci(10))`
 };
 
 function loadExample(type) {
     document.getElementById('code-editor').value = examples[type];
 }
 
-// Load Pyodide on page load
+// Ready message
 window.addEventListener('DOMContentLoaded', () => {
-    loadPyodideEnvironment();
+    document.getElementById('output').textContent = '✓ Python ready! Write your code and click Run.';
 });
