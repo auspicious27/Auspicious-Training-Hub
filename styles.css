@@ -24,12 +24,31 @@ body {
     color: var(--text-light);
     background: var(--dark-bg);
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Subtle Grid Pattern for Depth */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 27, 107, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 27, 107, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
 /* Navbar */
@@ -81,7 +100,7 @@ body {
     color: var(--accent);
 }
 
-/* Hero Section */
+/* Hero Section with 3D Effect */
 .hero {
     background: var(--darker-bg);
     color: var(--text-light);
@@ -92,14 +111,35 @@ body {
     overflow: hidden;
 }
 
+/* Animated 3D Gradient Mesh Background */
 .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 27, 107, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 110, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+    animation: meshMove 20s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* Floating Orbs Effect */
+.hero::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 27, 107, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+    background: 
+        radial-gradient(circle at 15% 20%, rgba(255, 27, 107, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(255, 0, 110, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.06) 0%, transparent 30%);
+    animation: orbFloat 15s ease-in-out infinite alternate;
     z-index: 0;
 }
 
@@ -107,14 +147,31 @@ body {
     position: relative;
     z-index: 1;
 }
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 27, 107, 0.15) 0%, transparent 70%);
-    z-index: 0;
+
+/* 3D Mesh Animation */
+@keyframes meshMove {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(5%, 5%) rotate(1deg);
+    }
+    66% {
+        transform: translate(-5%, 3%) rotate(-1deg);
+    }
 }
 
-.hero-content {
-    position: relative;
-    z-index: 1;
+/* Floating Orbs Animation */
+@keyframes orbFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(3%, -3%) scale(1.05);
+    }
+    100% {
+        transform: translate(-2%, 2%) scale(0.95);
+    }
 }
 
 .hero-title {
@@ -187,15 +244,38 @@ body {
     background: var(--card-bg);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.5),
+        0 1px 8px rgba(255, 27, 107, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     border: 1px solid rgba(255, 27, 107, 0.2);
+    position: relative;
+}
+
+.curriculum-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 27, 107, 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .curriculum-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(255, 27, 107, 0.4);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.7),
+        0 5px 20px rgba(255, 27, 107, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     border-color: var(--accent);
+}
+
+.curriculum-card:hover::before {
+    opacity: 1;
 }
 
 .card-header {
@@ -470,7 +550,7 @@ footer {
     }
 }
 
-/* Enhanced Day Buttons */
+/* Enhanced Day Buttons with 3D Effect */
 .day-button {
     display: flex;
     flex-direction: column;
@@ -482,13 +562,37 @@ footer {
     text-decoration: none;
     color: var(--text-light);
     transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.day-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255, 27, 107, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .day-button:hover {
     border-color: var(--accent);
-    background: linear-gradient(135deg, rgba(255, 27, 107, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 27, 107, 0.3);
+    background: linear-gradient(135deg, rgba(255, 27, 107, 0.15) 0%, rgba(255, 0, 110, 0.15) 100%);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 
+        0 12px 35px rgba(255, 27, 107, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.day-button:hover::after {
+    opacity: 1;
 }
 
 .day-number {
@@ -546,7 +650,7 @@ footer {
     color: var(--text-gray);
 }
 
-/* Enhanced About Cards */
+/* Enhanced About Cards with 3D Effect */
 .about-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -561,12 +665,37 @@ footer {
     text-align: center;
     border: 2px solid transparent;
     transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 
+        0 5px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 10px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s;
 }
 
 .about-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 27, 107, 0.3);
+    border-color: transparent;
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 15px 40px rgba(255, 27, 107, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.about-card:hover::before {
+    opacity: 1;
 }
 
 .about-card i {
@@ -589,7 +718,7 @@ footer {
     line-height: 1.6;
 }
 
-/* Enhanced CTA Button */
+/* Enhanced CTA Button with 3D Effect */
 .cta-button {
     display: inline-block;
     padding: 1rem 2.5rem;
@@ -600,12 +729,45 @@ footer {
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(255, 27, 107, 0.4);
+    box-shadow: 
+        0 8px 25px rgba(255, 27, 107, 0.4),
+        0 3px 10px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
 }
 
 .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(255, 27, 107, 0.6);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 15px 40px rgba(255, 27, 107, 0.6),
+        0 5px 15px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 
+        0 5px 15px rgba(255, 27, 107, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive Design */
