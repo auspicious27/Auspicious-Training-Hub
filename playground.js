@@ -1,10 +1,16 @@
 let pyodide;
 
-async function loadPyodide() {
+async function loadPyodideEnvironment() {
     if (!pyodide) {
-        document.getElementById('output').textContent = 'Loading Python environment...';
-        pyodide = await loadPyodide();
-        document.getElementById('output').textContent = 'Python ready! Write your code and click Run.';
+        document.getElementById('output').textContent = 'Loading Python environment...\nThis may take a few seconds on first load.';
+        try {
+            pyodide = await loadPyodide({
+                indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
+            });
+            document.getElementById('output').textContent = '✓ Python ready! Write your code and click Run.';
+        } catch (error) {
+            document.getElementById('output').textContent = `Error loading Python: ${error.message}`;
+        }
     }
 }
 
@@ -14,27 +20,28 @@ async function runCode() {
     
     try {
         if (!pyodide) {
-            await loadPyodide();
+            await loadPyodideEnvironment();
         }
         
         output.textContent = 'Running...';
+        output.style.color = '#00ff00';
         
         // Capture stdout
-        pyodide.runPython(`
+        await pyodide.runPythonAsync(`
 import sys
 from io import StringIO
 sys.stdout = StringIO()
         `);
         
         // Run user code
-        pyodide.runPython(code);
+        await pyodide.runPythonAsync(code);
         
         // Get output
-        const result = pyodide.runPython('sys.stdout.getvalue()');
-        output.textContent = result || 'Code executed successfully (no output)';
+        const result = await pyodide.runPythonAsync('sys.stdout.getvalue()');
+        output.textContent = result || '✓ Code executed successfully (no output)';
         
     } catch (error) {
-        output.textContent = `Error: ${error.message}`;
+        output.textContent = `❌ Error:\n${error.message}`;
         output.style.color = '#ff4444';
         setTimeout(() => {
             output.style.color = '#00ff00';
@@ -44,6 +51,7 @@ sys.stdout = StringIO()
 
 function clearOutput() {
     document.getElementById('output').textContent = 'Output cleared. Run your code to see results.';
+    document.getElementById('output').style.color = '#00ff00';
 }
 
 const examples = {
@@ -86,4 +94,6 @@ function loadExample(type) {
 }
 
 // Load Pyodide on page load
-window.addEventListener('DOMContentLoaded', loadPyodide);
+window.addEventListener('DOMContentLoaded', () => {
+    loadPyodideEnvironment();
+});
